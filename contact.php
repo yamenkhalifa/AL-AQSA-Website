@@ -1,7 +1,7 @@
 <?php
 declare(strict_types=1);
 
-// Run on the PHP-enabled MijnDomein host. No mailbox password is required.
+// Run on the PHP-enabled host. SMTP credentials stay in a private file outside httpdocs.
 const ENQUIRY_MAILBOX = 'info@al-aqsa.eu';
 const ENQUIRY_SUCCESS = 'Thank you — your enquiry has been submitted. We’ll be in touch.';
 const ENQUIRY_UNAVAILABLE = 'We couldn’t send your enquiry right now. Please try again later, or email info@al-aqsa.eu.';
@@ -87,6 +87,52 @@ function reserveSend(): int
         flock($handle, LOCK_UN);
         fclose($handle);
     }
+}
+
+
+function sendAuthenticatedEnquiry(string $configPath, string $replyTo, string $project, string $body): void
+{
+    $raw = @file_get_contents($configPath);
+    if ($raw === false) {
+        throw new RuntimeException('Cannot read private mail configuration');
+    }
+    $config = json_decode($raw, true, 512, JSON_THROW_ON_ERROR);
+    if (!is_array($config) || ($config['username'] ?? '') !== ENQUIRY_MAILBOX
+        || !is_string($config['password'] ?? null) || $config['password'] === ''
+        || !is_string($config['host'] ?? null) || $config['host'] === ''
+        || !is_int($config['port'] ?? null) || $config['port'] < 1 || $config['port'] > 65535) {
+        throw new RuntimeException('Invalid private mail configuration');
+    }
+    $directory = dirname($configPath);
+    require_once $directory . '/Exception.php';
+    require_once $directory . '/SMTP.php';
+    require_once $directory . '/PHPMailer.php';
+
+    $mailer = new \PHPMailer\PHPMailer\PHPMailer(true);
+    $mailer->isSMTP();
+    $mailer->Host = $config['host'];
+    $mailer->Port = $config['port'];
+    $mailer->SMTPAuth = true;
+    $mailer->AuthType = 'LOGIN';
+    $mailer->Username = ENQUIRY_MAILBOX;
+    $mailer->Password = $config['password'];
+    $mailer->SMTPSecure = \PHPMailer\PHPMailer\PHPMailer::ENCRYPTION_STARTTLS;
+    $mailer->SMTPOptions = ['ssl' => [
+        'verify_peer' => true,
+        'verify_peer_name' => true,
+        'allow_self_signed' => false,
+    ]];
+    $mailer->SMTPDebug = 0;
+    $mailer->Timeout = 10;
+    $mailer->getSMTPInstance()->Timelimit = 15;
+    $mailer->CharSet = \PHPMailer\PHPMailer\PHPMailer::CHARSET_UTF8;
+    $mailer->Encoding = \PHPMailer\PHPMailer\PHPMailer::ENCODING_BASE64;
+    $mailer->setFrom(ENQUIRY_MAILBOX, 'AL-AQSA website');
+    $mailer->addAddress(ENQUIRY_MAILBOX);
+    $mailer->addReplyTo($replyTo);
+    $mailer->Subject = 'AL-AQSA enquiry: ' . $project;
+    $mailer->Body = $body;
+    $mailer->send();
 }
 
 $failureCode = 'server_error';
@@ -197,10 +243,6 @@ try {
         header('Retry-After: ' . $retryAfter);
         respond(429, false, 'The form has received too many enquiries. Please try again later, or email info@al-aqsa.eu.');
     }
-    $failureCode = 'mail_unavailable';
-    if (!function_exists('mail')) {
-        throw new RuntimeException('Mail transport is unavailable');
-    }
     $failureCode = 'server_error';
 
     $body = implode("\r\n", [
@@ -217,11 +259,21 @@ try {
         'Content-Transfer-Encoding' => 'base64',
     ];
     // All destination, sender and envelope addresses are fixed, never supplied by visitors.
-    $failureCode = 'mail_rejected';
-    $accepted = @mail(ENQUIRY_MAILBOX, 'AL-AQSA enquiry: ' . $project,
-        chunk_split(base64_encode($body), 76, "\r\n"), $headers, '-f' . ENQUIRY_MAILBOX);
-    if (!$accepted) {
-        throw new RuntimeException('Mail transport rejected the enquiry');
+    $configPath = dirname(__DIR__) . '/private/alaqsa-enquiry/mail.json';
+    if (is_file($configPath)) {
+        $failureCode = 'smtp_rejected';
+        sendAuthenticatedEnquiry($configPath, $email, $project, $body);
+    } else {
+        $failureCode = 'mail_unavailable';
+        if (!function_exists('mail')) {
+            throw new RuntimeException('Mail transport is unavailable');
+        }
+        $failureCode = 'mail_rejected';
+        $accepted = @mail(ENQUIRY_MAILBOX, 'AL-AQSA enquiry: ' . $project,
+            chunk_split(base64_encode($body), 76, "\r\n"), $headers, '-f' . ENQUIRY_MAILBOX);
+        if (!$accepted) {
+            throw new RuntimeException('Mail transport rejected the enquiry');
+        }
     }
     $_SESSION['sent'][$requestId] = ['digest' => $digest, 'at' => time()];
     respond(200, true, ENQUIRY_SUCCESS);
