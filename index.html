@@ -205,14 +205,14 @@
             </div>
             <a class="contact-whatsapp" href="https://wa.me/31684050907?text=Hello%20AL-AQSA%2C%20I%27d%20like%20to%20discuss%20a%20project." target="_blank" rel="noopener noreferrer">Chat on WhatsApp <span aria-hidden="true">↗</span></a>
           </div>
-          <form class="contact-form reveal" data-contact-form>
+          <form class="contact-form reveal" data-contact-form action="contact.php" method="post" accept-charset="UTF-8" aria-describedby="enquiry-note enquiry-status">
             <label>
               <span>Your name</span>
-              <input name="name" autocomplete="name" required />
+              <input name="name" autocomplete="name" maxlength="160" required />
             </label>
             <label>
               <span>Email address</span>
-              <input name="email" type="email" autocomplete="email" required />
+              <input name="email" type="email" autocomplete="email" maxlength="254" required />
             </label>
             <label>
               <span>What can we help with?</span>
@@ -227,10 +227,15 @@
             </label>
             <label>
               <span>Tell us briefly about your project</span>
-              <textarea name="message" rows="4" required></textarea>
+              <textarea name="message" rows="4" maxlength="5000" required></textarea>
             </label>
-            <button class="button button-light" type="submit">Send enquiry <span aria-hidden="true">↗</span></button>
-            <p class="form-note">Submitting opens your email app with the details already prepared.</p>
+            <div class="form-trap" aria-hidden="true" inert>
+              <label>Leave this field empty<input name="website" tabindex="-1" autocomplete="off" /></label>
+            </div>
+            <button class="button button-light" type="submit" disabled>Send enquiry <span aria-hidden="true">↗</span></button>
+            <p class="form-note" id="enquiry-note">Your enquiry goes directly to info@al-aqsa.eu. We use your details to respond to your request. <a href="privacy.html">Privacy notice</a>.</p>
+            <p class="form-status" id="enquiry-status" data-form-status role="status" aria-live="polite" aria-atomic="true" tabindex="-1"></p>
+            <noscript><p class="form-note">Enable JavaScript to use this form, or <a href="mailto:info@al-aqsa.eu">email info@al-aqsa.eu</a>.</p></noscript>
           </form>
         </div>
       </section>
