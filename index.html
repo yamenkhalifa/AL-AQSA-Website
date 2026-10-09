@@ -36,8 +36,17 @@
           <img src="assets/al-aqsa-logo.png" alt="AL-AQSA" width="1176" height="259" />
         </a>
 
-        <div class="language-toggle" role="group" aria-label="Language" data-i18n-aria-label="language.label" dir="ltr" hidden>
-          <button type="button" data-language="ar" lang="ar" aria-pressed="false">العربية</button><span aria-hidden="true">|</span><button type="button" data-language="en" lang="en" aria-pressed="true">English</button>
+        <div class="language-picker" data-language-picker hidden>
+          <button class="language-trigger" type="button" data-language-trigger aria-expanded="false" aria-controls="language-panel" aria-label="Language: English">
+            <svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="12" r="9"/><ellipse cx="12" cy="12" rx="4" ry="9"/><path d="M3 12h18"/></svg>
+            <bdi data-language-name lang="en">English</bdi><span aria-hidden="true">⌄</span>
+          </button>
+          <div class="language-panel" id="language-panel" data-language-panel hidden>
+            <input class="language-search" type="search" data-language-search role="combobox" aria-expanded="false" aria-controls="language-list" aria-autocomplete="list" aria-label="Search languages" placeholder="Search languages" autocomplete="off" dir="auto" />
+            <div class="language-list" id="language-list" data-language-list role="listbox" aria-label="Language"></div>
+            <p class="language-empty" data-language-empty hidden></p>
+          </div>
+          <p class="language-status" data-language-status role="status" aria-live="polite" aria-atomic="true"></p>
         </div>
 
         <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="site-menu" data-menu-toggle>
@@ -264,6 +273,7 @@
     </footer>
 
     <script src="assets/language.js"></script>
+    <script src="assets/language-controller.js"></script>
     <script src="script.js"></script>
   </body>
 </html>

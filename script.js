@@ -58,12 +58,22 @@ if (contactForm) {
   let statusMessage = '';
   let statusKey = null;
   const translate = (key, fallback) => window.SiteLanguage?.t(key) ?? fallback;
+  const validateControl = (control) => {
+    if (!control?.setCustomValidity) return;
+    control.setCustomValidity('');
+    if (!control.validity.valid) {
+      const keys = { name: 'server.name', email: 'server.email', project: 'server.service', message: 'server.message' };
+      control.setCustomValidity(translate(keys[control.name] || 'server.required', 'Please check this field.'));
+    }
+  };
+  contactForm.addEventListener('invalid', (event) => validateControl(event.target), true);
   const renderButton = () => {
     if (sending) submitButton.textContent = translate('form.sending', 'Sending…');
     else submitButton.innerHTML = translate('form.submit', buttonContent);
   };
   window.SiteLanguage?.subscribe(() => {
     renderButton();
+    [...contactForm.elements].filter((control) => control.validity?.customError).forEach(validateControl);
     if (statusMessage) status.textContent = statusKey ? translate(statusKey, statusMessage) : statusMessage;
   });
 
@@ -80,8 +90,8 @@ if (contactForm) {
     try {
       const language = window.SiteLanguage?.language ?? 'en';
       // Keep the original URL for English clients; POST carries its own language field.
-      const url = options.method === 'GET' && language === 'ar'
-        ? `${contactForm.action}${contactForm.action.includes('?') ? '&' : '?'}lang=ar` : contactForm.action;
+      const url = options.method === 'GET' && language !== 'en'
+        ? `${contactForm.action}${contactForm.action.includes('?') ? '&' : '?'}lang=${encodeURIComponent(language)}` : contactForm.action;
       if (options.body) options.body.set('lang', language);
       const response = await fetch(url, {
         ...options,
@@ -101,7 +111,10 @@ if (contactForm) {
   };
 
   // A retry after a lost connection keeps its ID. Editing the enquiry starts a new one.
-  contactForm.addEventListener('input', () => { requestId = null; });
+  contactForm.addEventListener('input', (event) => {
+    requestId = null;
+    event?.target?.setCustomValidity?.('');
+  });
 
   contactForm.addEventListener('submit', async (event) => {
     event.preventDefault();

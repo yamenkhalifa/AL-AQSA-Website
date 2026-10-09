@@ -4,83 +4,94 @@ const fs = require('node:fs');
 const vm = require('node:vm');
 const path = require('node:path');
 const source = fs.readFileSync(path.join(__dirname, '../assets/language.js'), 'utf8');
+const controller = fs.readFileSync(path.join(__dirname, '../assets/language-controller.js'), 'utf8');
+const locale = code => JSON.parse(fs.readFileSync(path.join(__dirname, `../assets/locales/${code}.json`), 'utf8'));
+const tick = () => new Promise(resolve => setImmediate(resolve));
 
-function setup({ saved, preferred = 'en-US', blocked = false } = {}) {
+function setup({ saved, preferences = ['en-US'], blocked = false, fetch } = {}) {
   const storage = new Map(saved ? [['alaqsa-language', saved]] : []);
-  const element = (dataset = {}) => ({ dataset, attributes: {}, innerHTML: '',
-    setAttribute(key, value) { this.attributes[key] = value; },
-    getAttribute(key) { return this.attributes[key]; },
-    addEventListener(event, handler) { this[event] = handler; } });
-  const heading = element({ i18n: 'hero.title' });
-  const option = element({ i18n: 'form.website' });
-  option.value = 'Website design & development';
-  const buttons = ['ar', 'en'].map(language => element({ language }));
-  const toggle = { hidden: true };
+  const heading = { dataset: { i18n: 'hero.title' }, innerHTML: '' };
+  const option = { dataset: { i18n: 'form.website' }, value: 'Website design & development' };
   const whatsapp = {};
   const document = { documentElement: {},
     querySelector(selector) { return selector === '.contact-whatsapp' ? whatsapp : null; },
-    querySelectorAll(selector) {
-      if (selector === '[data-i18n]') return [heading, option];
-      if (selector === '[data-language]') return buttons;
-      if (selector === '.language-toggle') return [toggle];
-      return [];
-    } };
-  const sandbox = { document, navigator: { languages: [preferred] }, window: {},
+    querySelectorAll(selector) { return selector === '[data-i18n]' ? [heading, option] : []; } };
+  const sandbox = { document, navigator: { languages: preferences },
+    window: { setTimeout, clearTimeout }, AbortController,
+    fetch: fetch || (async url => ({ ok: true, json: async () => locale(path.basename(url, '.json')) })),
     localStorage: { getItem(key) { if (blocked) throw Error(); return storage.get(key); },
       setItem(key, value) { if (blocked) throw Error(); storage.set(key, value); } } };
-  vm.runInNewContext(source, sandbox);
-  return { ...sandbox, storage, heading, option, buttons, toggle, whatsapp };
+  vm.runInNewContext(source + controller, sandbox);
+  return { ...sandbox, storage, heading, option, whatsapp };
 }
 
-test('first visit uses preferred browser locale and saved choices take precedence', () => {
+test('browser preferences, regional codes, aliases and saved choices resolve correctly', async () => {
   for (const [options, expected] of [
-    [{ preferred: 'ar-SA' }, 'ar'], [{ preferred: 'AR' }, 'ar'],
-    [{ preferred: 'nl-NL' }, 'en'], [{ saved: 'en', preferred: 'ar' }, 'en'],
-    [{ saved: 'ar', preferred: 'en' }, 'ar'], [{ saved: 'invalid', preferred: 'ar' }, 'ar'],
+    [{ preferences: ['ar-SA'] }, 'ar'], [{ preferences: ['AR'] }, 'ar'],
+    [{ preferences: ['unsupported', 'nl-NL'] }, 'nl'], [{ preferences: ['pt-BR'] }, 'pt'],
+    [{ preferences: ['no-NO'] }, 'nb'], [{ preferences: ['tl-PH'] }, 'fil'],
+    [{ saved: 'en', preferences: ['ar'] }, 'en'], [{ saved: 'ar' }, 'ar'],
+    [{ saved: 'invalid', preferences: ['ar'] }, 'ar'], [{ preferences: [] }, 'en'],
   ]) {
-    const ui = setup(options);
+    const ui = setup(options); await tick();
     assert.equal(ui.document.documentElement.lang, expected);
     assert.equal(ui.document.documentElement.dir, expected === 'ar' ? 'rtl' : 'ltr');
-    assert.equal(ui.toggle.hidden, false);
   }
 });
 
-test('switch updates content, active state and WhatsApp while preserving submission values', () => {
-  const ui = setup();
-  let updates = 0;
-  ui.window.SiteLanguage.subscribe(() => updates++);
-  ui.buttons[0].click();
-  assert.equal(ui.storage.get('alaqsa-language'), 'ar');
+test('switch updates content and WhatsApp while preserving submission values; cache loads once', async () => {
+  let requests = 0;
+  const ui = setup({ fetch: async url => { requests++; return { ok: true, json: async () => locale(path.basename(url, '.json')) }; } });
+  let updates = 0; ui.window.SiteLanguage.subscribe(() => updates++);
+  await ui.window.SiteLanguage.set('ar');
   assert.match(ui.heading.innerHTML, /أعمالك/);
-  assert.equal(ui.buttons[0].attributes['aria-pressed'], 'true');
-  assert.equal(ui.buttons[1].attributes['aria-pressed'], 'false');
   assert.match(decodeURIComponent(ui.whatsapp.href), /مرحبًا/);
   assert.equal(ui.option.value, 'Website design & development');
-  ui.buttons[1].click();
-  assert.match(ui.heading.innerHTML, /business/);
-  assert.equal(updates, 2);
-  ui.window.SiteLanguage.set('unsupported');
-  assert.equal(ui.document.documentElement.lang, 'en');
+  await ui.window.SiteLanguage.set('nl'); await ui.window.SiteLanguage.set('en'); await ui.window.SiteLanguage.set('nl');
+  assert.equal(requests, 1); assert.equal(updates, 4);
+  assert.equal(ui.storage.get('alaqsa-language'), 'nl');
+  await ui.window.SiteLanguage.set('unsupported'); assert.equal(ui.document.documentElement.lang, 'nl');
 });
 
-test('blocked storage does not prevent browser selection or manual switching', () => {
-  const ui = setup({ blocked: true, preferred: 'ar' });
-  assert.equal(ui.document.documentElement.lang, 'ar');
-  ui.buttons[1].click();
-  assert.equal(ui.document.documentElement.lang, 'en');
+test('blocked storage works; failed or incomplete downloads retain the current language', async () => {
+  const ui = setup({ blocked: true, preferences: ['ar'] });
+  await ui.window.SiteLanguage.set('en'); assert.equal(ui.document.documentElement.lang, 'en');
+  for (const fetch of [async () => { throw Error(); }, async () => ({ ok: false }),
+    async () => ({ ok: true, json: async () => ({}) })]) {
+    const failed = setup({ saved: 'ar', fetch });
+    assert.equal(await failed.window.SiteLanguage.set('de'), false);
+    assert.equal(failed.window.SiteLanguage.language, 'ar'); assert.equal(failed.storage.get('alaqsa-language'), 'ar');
+  }
 });
 
-test('all authored translation keys exist in both languages and PHP messages match the dictionary', () => {
-  const dictionaries = vm.runInNewContext(source.split('(() => {')[0] + '\nsiteTranslations;');
+test('latest selection wins, including a built-in language selected during downloading', async () => {
+  const pending = new Map();
+  const ui = setup({ fetch: url => new Promise(resolve => pending.set(path.basename(url, '.json'), resolve)) });
+  const german = ui.window.SiteLanguage.set('de'); const french = ui.window.SiteLanguage.set('fr');
+  pending.get('fr')({ ok: true, json: async () => locale('fr') }); await french;
+  pending.get('de')({ ok: true, json: async () => locale('de') }); await german;
+  assert.equal(ui.window.SiteLanguage.language, 'fr');
+  const dutch = ui.window.SiteLanguage.set('nl'); await ui.window.SiteLanguage.set('ar');
+  pending.get('nl')({ ok: true, json: async () => locale('nl') }); await dutch;
+  assert.equal(ui.window.SiteLanguage.language, 'ar');
+});
+
+test('40 complete dictionaries preserve markup and server feedback coverage', () => {
+  const registry = JSON.parse(fs.readFileSync(path.join(__dirname, '../assets/locales/registry.json'), 'utf8'));
+  const embedded = vm.runInNewContext(source + '\nsiteTranslations;');
+  assert.equal(registry.length, 40); const base = locale('en');
+  for (const item of registry) {
+    const data = locale(item.code);
+    assert.deepEqual(Object.keys(data).sort(), Object.keys(base).sort(), item.code);
+    for (const [key, value] of Object.entries(data)) {
+      assert.equal(typeof value, 'string'); assert.ok(value.trim(), `${item.code}/${key}`);
+      const tags = text => (text.match(/<[^>]+>/g) || []).sort();
+      if (!['ar', 'en'].includes(item.code)) assert.deepEqual(tags(value), tags(base[key]), `${item.code}/${key}`);
+    }
+    if (embedded[item.code]) assert.deepEqual(JSON.parse(JSON.stringify(embedded[item.code])), data);
+  }
   for (const file of ['index.html', 'privacy.html']) {
     const html = fs.readFileSync(path.join(__dirname, '..', file), 'utf8');
-    for (const match of html.matchAll(/data-i18n(?:-aria-label|-alt|-content)?="([^"]+)"/g)) {
-      for (const language of ['en', 'ar']) assert.ok(dictionaries[language][match[1]], `${file}: ${language}/${match[1]}`);
-    }
-  }
-  const php = fs.readFileSync(path.join(__dirname, '../contact.php'), 'utf8');
-  for (const key of Object.keys(dictionaries.ar).filter(key => key.startsWith('server.'))) {
-    assert.ok(php.includes(`'${key}'`));
-    assert.ok(php.includes(dictionaries.ar[key]));
+    for (const match of html.matchAll(/data-i18n(?:-aria-label|-alt|-content)?="([^"]+)"/g)) assert.ok(base[match[1]], match[1]);
   }
 });

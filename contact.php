@@ -13,7 +13,7 @@ header('X-Content-Type-Options: nosniff');
 
 function respond(int $status, bool $ok, string $message, array $extra = []): void
 {
-    // Only the two supported language codes are accepted; absent/invalid values use English.
+    // Registry lookup is an allowlist; untrusted language values never become file paths.
     $requestedLanguage = ($_SERVER['REQUEST_METHOD'] ?? '') === 'POST'
         ? ($_POST['lang'] ?? 'en') : ($_GET['lang'] ?? 'en');
     $translations = [
@@ -39,6 +39,14 @@ function respond(int $status, bool $ok, string $message, array $extra = []): voi
         [$key, $arabic] = $translations[$message];
         $extra['message_key'] = $key;
         if ($requestedLanguage === 'ar') $message = $arabic;
+        if (is_string($requestedLanguage) && $requestedLanguage !== 'en' && $requestedLanguage !== 'ar') {
+            $registry = json_decode((string) @file_get_contents(__DIR__ . '/assets/locales/registry.json'), true);
+            $allowed = is_array($registry) ? array_column($registry, 'code') : [];
+            if (in_array($requestedLanguage, $allowed, true)) {
+                $locale = json_decode((string) @file_get_contents(__DIR__ . '/assets/locales/' . $requestedLanguage . '.json'), true);
+                if (is_array($locale) && isset($locale[$key]) && is_string($locale[$key])) $message = $locale[$key];
+            }
+        }
     }
     http_response_code($status);
     echo json_encode(array_merge(['ok' => $ok, 'message' => $message], $extra), JSON_UNESCAPED_UNICODE);

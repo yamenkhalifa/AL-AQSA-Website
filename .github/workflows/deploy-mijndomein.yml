@@ -41,6 +41,7 @@ jobs:
           php -l contact.php
           node --check script.js
           node --check assets/language.js
+          node --check assets/language-controller.js
           python3 tests/contact_form_test.py
           python3 tests/contact_smtp_test.py
           node --test tests/contact_ui_test.cjs

@@ -1,4 +1,4 @@
-/* Shared, trusted page translations. No visitor content is rendered as HTML. */
+/* Immediate English/Arabic translations and the supported language registry. */
 const siteTranslations = {
   "en": {
     "page.title": "AL-AQSA — App & Website Development",
@@ -122,7 +122,12 @@ const siteTranslations = {
     "server.message": "Please describe your project in 1 to 5,000 characters.",
     "server.refresh": "Please refresh the page and try again.",
     "server.duplicate": "This enquiry was already submitted. Refresh the page before sending another.",
-    "server.rate_limit": "The form has received too many enquiries. Please try again later, or email info@al-aqsa.eu."
+    "server.rate_limit": "The form has received too many enquiries. Please try again later, or email info@al-aqsa.eu.",
+    "language.search": "Search languages",
+    "language.empty": "No languages found",
+    "language.loading": "Loading language…",
+    "language.error": "Could not load this language. Select it again to retry.",
+    "language.changed": "Language changed to"
   },
   "ar": {
     "page.title": "AL-AQSA — تطوير التطبيقات والمواقع",
@@ -246,58 +251,253 @@ const siteTranslations = {
     "server.message": "يرجى وصف مشروعك بنص يتراوح بين حرف واحد و5,000 حرف.",
     "server.refresh": "يرجى تحديث الصفحة والمحاولة مرة أخرى.",
     "server.duplicate": "سبق إرسال هذا الاستفسار. يرجى تحديث الصفحة قبل إرسال استفسار آخر.",
-    "server.rate_limit": "تلقى النموذج عددًا كبيرًا من الاستفسارات. يرجى المحاولة لاحقًا، أو مراسلتنا على info@al-aqsa.eu."
+    "server.rate_limit": "تلقى النموذج عددًا كبيرًا من الاستفسارات. يرجى المحاولة لاحقًا، أو مراسلتنا على info@al-aqsa.eu.",
+    "language.search": "ابحث عن لغة",
+    "language.empty": "لم يتم العثور على لغات",
+    "language.loading": "جارٍ تحميل اللغة…",
+    "language.error": "تعذر تحميل هذه اللغة. اخترها مرة أخرى لإعادة المحاولة.",
+    "language.changed": "تم تغيير اللغة إلى"
   }
 };
-
-(() => {
-  const supported = (value) => value === 'ar' || value === 'en';
-  let saved;
-  try { saved = localStorage.getItem('alaqsa-language'); } catch { /* Storage may be blocked. */ }
-  const preferred = navigator.languages?.[0] || navigator.language || 'en';
-  let language = supported(saved) ? saved : /^ar(?:-|$)/i.test(preferred) ? 'ar' : 'en';
-  const listeners = new Set();
-  const t = (key) => siteTranslations[language][key] ?? siteTranslations.en[key] ?? key;
-
-  const render = () => {
-    document.documentElement.lang = language;
-    document.documentElement.dir = language === 'ar' ? 'rtl' : 'ltr';
-    document.querySelectorAll('[data-i18n]').forEach((element) => {
-      // Keys point only to authored markup; input values and server text never enter innerHTML.
-      element.innerHTML = t(element.dataset.i18n);
-    });
-    ['aria-label', 'alt', 'content'].forEach((attribute) => {
-      document.querySelectorAll(`[data-i18n-${attribute}]`).forEach((element) => {
-        element.setAttribute(attribute, t(element.getAttribute(`data-i18n-${attribute}`)));
-      });
-    });
-    document.querySelectorAll('[data-language]').forEach((button) => {
-      button.setAttribute('aria-pressed', String(button.dataset.language === language));
-    });
-    document.querySelectorAll('.language-toggle').forEach((toggle) => { toggle.hidden = false; });
-    const whatsapp = document.querySelector('.contact-whatsapp');
-    if (whatsapp) whatsapp.href = `https://wa.me/31684050907?text=${encodeURIComponent(t('whatsapp.greeting'))}`;
-    listeners.forEach((listener) => listener());
-  };
-
-  window.SiteLanguage = {
-    get language() { return language; },
-    t,
-    subscribe(listener) { listeners.add(listener); },
-    set(value) {
-      if (!supported(value)) return;
-      // Keep the current section in view when the translated copy changes its height.
-      const section = [...document.querySelectorAll('main section, main.policy')]
-        .find((element) => element.getBoundingClientRect().bottom > 100);
-      const top = section?.getBoundingClientRect().top;
-      language = value;
-      try { localStorage.setItem('alaqsa-language', language); } catch { /* Choice still works for this page. */ }
-      render();
-      if (section) window.scrollBy({ top: section.getBoundingClientRect().top - top, behavior: 'instant' });
-    },
-  };
-  document.querySelectorAll('[data-language]').forEach((button) => {
-    button.addEventListener('click', () => window.SiteLanguage.set(button.dataset.language));
-  });
-  render();
-})();
+const siteLanguages = [
+  {
+    "code": "en",
+    "name": "English",
+    "nativeName": "English",
+    "dir": "ltr"
+  },
+  {
+    "code": "ar",
+    "name": "Arabic",
+    "nativeName": "العربية",
+    "dir": "rtl"
+  },
+  {
+    "code": "am",
+    "name": "Amharic",
+    "nativeName": "አማርኛ",
+    "dir": "ltr"
+  },
+  {
+    "code": "bn",
+    "name": "Bengali",
+    "nativeName": "বাংলা",
+    "dir": "ltr"
+  },
+  {
+    "code": "zh",
+    "name": "Chinese",
+    "nativeName": "简体中文",
+    "dir": "ltr"
+  },
+  {
+    "code": "cs",
+    "name": "Czech",
+    "nativeName": "Čeština",
+    "dir": "ltr"
+  },
+  {
+    "code": "da",
+    "name": "Danish",
+    "nativeName": "Dansk",
+    "dir": "ltr"
+  },
+  {
+    "code": "nl",
+    "name": "Dutch",
+    "nativeName": "Nederlands",
+    "dir": "ltr"
+  },
+  {
+    "code": "fil",
+    "name": "Filipino",
+    "nativeName": "Filipino",
+    "dir": "ltr"
+  },
+  {
+    "code": "fi",
+    "name": "Finnish",
+    "nativeName": "Suomi",
+    "dir": "ltr"
+  },
+  {
+    "code": "fr",
+    "name": "French",
+    "nativeName": "Français",
+    "dir": "ltr"
+  },
+  {
+    "code": "de",
+    "name": "German",
+    "nativeName": "Deutsch",
+    "dir": "ltr"
+  },
+  {
+    "code": "el",
+    "name": "Greek",
+    "nativeName": "Ελληνικά",
+    "dir": "ltr"
+  },
+  {
+    "code": "he",
+    "name": "Hebrew",
+    "nativeName": "עברית",
+    "dir": "rtl"
+  },
+  {
+    "code": "hi",
+    "name": "Hindi",
+    "nativeName": "हिन्दी",
+    "dir": "ltr"
+  },
+  {
+    "code": "hu",
+    "name": "Hungarian",
+    "nativeName": "Magyar",
+    "dir": "ltr"
+  },
+  {
+    "code": "id",
+    "name": "Indonesian",
+    "nativeName": "Bahasa Indonesia",
+    "dir": "ltr"
+  },
+  {
+    "code": "it",
+    "name": "Italian",
+    "nativeName": "Italiano",
+    "dir": "ltr"
+  },
+  {
+    "code": "ja",
+    "name": "Japanese",
+    "nativeName": "日本語",
+    "dir": "ltr"
+  },
+  {
+    "code": "ko",
+    "name": "Korean",
+    "nativeName": "한국어",
+    "dir": "ltr"
+  },
+  {
+    "code": "ms",
+    "name": "Malay",
+    "nativeName": "Bahasa Melayu",
+    "dir": "ltr"
+  },
+  {
+    "code": "ne",
+    "name": "Nepali",
+    "nativeName": "नेपाली",
+    "dir": "ltr"
+  },
+  {
+    "code": "nb",
+    "name": "Norwegian",
+    "nativeName": "Norsk bokmål",
+    "dir": "ltr"
+  },
+  {
+    "code": "fa",
+    "name": "Persian",
+    "nativeName": "فارسی",
+    "dir": "rtl"
+  },
+  {
+    "code": "pl",
+    "name": "Polish",
+    "nativeName": "Polski",
+    "dir": "ltr"
+  },
+  {
+    "code": "pt",
+    "name": "Portuguese",
+    "nativeName": "Português",
+    "dir": "ltr"
+  },
+  {
+    "code": "pa",
+    "name": "Punjabi",
+    "nativeName": "ਪੰਜਾਬੀ",
+    "dir": "ltr"
+  },
+  {
+    "code": "ro",
+    "name": "Romanian",
+    "nativeName": "Română",
+    "dir": "ltr"
+  },
+  {
+    "code": "ru",
+    "name": "Russian",
+    "nativeName": "Русский",
+    "dir": "ltr"
+  },
+  {
+    "code": "si",
+    "name": "Sinhala",
+    "nativeName": "සිංහල",
+    "dir": "ltr"
+  },
+  {
+    "code": "es",
+    "name": "Spanish",
+    "nativeName": "Español",
+    "dir": "ltr"
+  },
+  {
+    "code": "sw",
+    "name": "Swahili",
+    "nativeName": "Kiswahili",
+    "dir": "ltr"
+  },
+  {
+    "code": "sv",
+    "name": "Swedish",
+    "nativeName": "Svenska",
+    "dir": "ltr"
+  },
+  {
+    "code": "ta",
+    "name": "Tamil",
+    "nativeName": "தமிழ்",
+    "dir": "ltr"
+  },
+  {
+    "code": "te",
+    "name": "Telugu",
+    "nativeName": "తెలుగు",
+    "dir": "ltr"
+  },
+  {
+    "code": "th",
+    "name": "Thai",
+    "nativeName": "ไทย",
+    "dir": "ltr"
+  },
+  {
+    "code": "tr",
+    "name": "Turkish",
+    "nativeName": "Türkçe",
+    "dir": "ltr"
+  },
+  {
+    "code": "uk",
+    "name": "Ukrainian",
+    "nativeName": "Українська",
+    "dir": "ltr"
+  },
+  {
+    "code": "ur",
+    "name": "Urdu",
+    "nativeName": "اردو",
+    "dir": "rtl"
+  },
+  {
+    "code": "vi",
+    "name": "Vietnamese",
+    "nativeName": "Tiếng Việt",
+    "dir": "ltr"
+  }
+];

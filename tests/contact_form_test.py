@@ -28,6 +28,7 @@ def main():
         web.mkdir()
         (temp / "sessions").mkdir()
         shutil.copy(Path(__file__).resolve().parents[1] / "contact.php", web / "contact.php")
+        shutil.copytree(Path(__file__).resolve().parents[1] / "assets/locales", web / "assets/locales")
         transport = temp / "fake-sendmail.py"
         transport.write_text(
             "import sys, pathlib, json, uuid\n"
@@ -89,10 +90,23 @@ def main():
             assert arabic_ready["token"] == ready["token"]
             assert request(query="?lang=unsupported")[1]["message"] == ready["message"]
             assert request(query="?lang[]=ar")[1]["message"] == ready["message"]
+            locale_root = Path(__file__).resolve().parents[1] / "assets/locales"
+            for locale_file in locale_root.glob("*.json"):
+                if locale_file.stem == "registry": continue
+                dictionary = json.loads(locale_file.read_text(encoding="utf-8"))
+                translated_ready = request(query="?lang=" + locale_file.stem)[1]
+                assert translated_ready["message"] == dictionary["server.ready"], locale_file.stem
+                assert translated_ready["message_key"] == "server.ready"
+            assert request(query="?lang=../../contact.php")[1]["message"] == ready["message"]
             fields = payload(ready["token"])
             _, arabic_error, _ = request({**fields, "lang": "ar", "email": "invalid"})
             assert arabic_error["message"] == "يرجى إدخال بريد إلكتروني صحيح."
             assert arabic_error["message_key"] == "server.email"
+            for locale_file in locale_root.glob("*.json"):
+                if locale_file.stem == "registry": continue
+                dictionary = json.loads(locale_file.read_text(encoding="utf-8"))
+                translated_error = request({**fields, "lang": locale_file.stem, "email": "invalid"})[1]
+                assert translated_error["message"] == dictionary["server.email"], locale_file.stem
             assert request(method="DELETE")[0] == 405
             assert request(fields, headers={"Origin": "https://unrelated.example"})[0] == 403
             assert request(fields, headers={"Sec-Fetch-Site": "cross-site"})[0] == 403

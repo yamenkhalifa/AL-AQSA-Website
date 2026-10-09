@@ -86,9 +86,13 @@ Official hosting guidance:
 
 ## Languages
 
-The homepage and privacy notice support English and Modern Standard Arabic. The header's **العربية | English** buttons switch immediately; Arabic uses a right-to-left layout. On the first visit, the browser's preferred language chooses Arabic for `ar` locales and English otherwise. Manual choices are remembered in local storage when available. Include all files under `assets` when uploading manually.
+The homepage and privacy notice have a searchable language dropdown with 40 built-in languages. Search by native or English name, use arrow keys and Enter to select, and Escape to close. Arabic, Hebrew, Persian and Urdu use right-to-left layouts. Browser preferences choose the first supported language; a manually saved choice takes precedence. Storage failure does not prevent switching. Include all nested files under `assets` when uploading manually.
 
-The contact endpoint accepts an optional `lang` field on POST or query parameter on GET (`ar` or `en`, default English). Responses retain `ok` and `message` and include a stable `message_key` for language changes while a request is in progress. Service option values remain English in both languages.
+English and Arabic are available immediately. Other languages load from same-origin JSON files under `assets/locales`, with complete translation keys and preserved HTML links. Downloads are cached for the page; failed loads keep the current language and offer retry. The website uses no live translation service and sends no visitor content to translation providers. The registry specifies native names, English names, codes and direction. Chinese is Simplified Chinese, Norwegian is Bokmål, and Punjabi uses Gurmukhi.
+
+The new translation drafts were generated locally with [M2M100](https://huggingface.co/facebook/m2m100_418M), then corrected for interface wording, brand names and detected script errors; Amharic, Telugu, Punjabi, Nepali and Sinhala were rewritten. They have not had professional native-speaker review. To edit a language, update its JSON file; English and Arabic also have immediate copies in `assets/language.js`, which must match their JSON files. The local authoring model and tools are not shipped.
+
+The contact endpoint accepts an optional `lang` field on POST or query parameter on GET, validated against the supported registry (default English). Responses retain `ok` and `message` and include a stable `message_key` for language changes while a request is in progress. Service option values remain English in every language.
 
 ## Local verification
 
@@ -98,6 +102,7 @@ With PHP 8.x, Python 3 and Node installed:
 php -l contact.php
 node --check script.js
 node --check assets/language.js
+node --check assets/language-controller.js
 python3 tests/contact_form_test.py
 python3 tests/contact_smtp_test.py
 node --test tests/contact_ui_test.cjs
