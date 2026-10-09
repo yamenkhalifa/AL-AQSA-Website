@@ -39,8 +39,10 @@ jobs:
         run: |
           php -l contact.php
           node --check script.js
+          node --check assets/language.js
           python3 tests/contact_form_test.py
           node --test tests/contact_ui_test.cjs
+          node --test tests/language_test.cjs
           python3 tests/deploy_ftps_test.py
           bash -n scripts/deploy-ftps.sh
 

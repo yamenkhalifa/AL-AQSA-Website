@@ -51,9 +51,9 @@ def main():
         server = subprocess.Popen(command, stdout=log, stderr=log)
         client = build_opener(HTTPCookieProcessor(CookieJar()))
 
-        def request(fields=None, method=None, headers=None, opener=None):
+        def request(fields=None, method=None, headers=None, opener=None, query=""):
             data = urlencode(fields).encode() if fields is not None else None
-            req = Request(url, data, {"Accept": "application/json", "Origin": origin,
+            req = Request(url + query, data, {"Accept": "application/json", "Origin": origin,
                                      **(headers or {})}, method=method)
             try:
                 result = (opener or client).open(req, timeout=5)
@@ -83,7 +83,16 @@ def main():
             assert "no-store" in headers["Cache-Control"]
             assert "HttpOnly" in headers["Set-Cookie"]
             assert "SameSite=Strict" in headers["Set-Cookie"]
+            _, arabic_ready, _ = request(query="?lang=ar")
+            assert arabic_ready["message"] == "النموذج جاهز لإرسال استفسارك."
+            assert arabic_ready["message_key"] == "server.ready"
+            assert arabic_ready["token"] == ready["token"]
+            assert request(query="?lang=unsupported")[1]["message"] == ready["message"]
+            assert request(query="?lang[]=ar")[1]["message"] == ready["message"]
             fields = payload(ready["token"])
+            _, arabic_error, _ = request({**fields, "lang": "ar", "email": "invalid"})
+            assert arabic_error["message"] == "يرجى إدخال بريد إلكتروني صحيح."
+            assert arabic_error["message_key"] == "server.email"
             assert request(method="DELETE")[0] == 405
             assert request(fields, headers={"Origin": "https://unrelated.example"})[0] == 403
             assert request(fields, headers={"Sec-Fetch-Site": "cross-site"})[0] == 403
@@ -105,6 +114,9 @@ def main():
 
             code, body, _ = request(fields)
             assert code == 200 and body["ok"], body
+            _, arabic_duplicate, _ = request({**fields, "lang": "ar"})
+            assert arabic_duplicate["message_key"] == "server.success"
+            assert "شكرًا" in arabic_duplicate["message"]
             sent = list(temp.glob("*.eml"))
             assert len(sent) == 1
             message = BytesParser(policy=email.policy.default).parsebytes(sent[0].read_bytes())

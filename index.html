@@ -1,18 +1,18 @@
 <!doctype html>
-<html lang="en">
+<html lang="en" dir="ltr">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta
       name="description"
       content="AL-AQSA designs and builds high-quality business websites, web applications, Mendix solutions and digital products."
-    />
+    data-i18n-content="meta.description" />
     <meta name="theme-color" content="#081f40" />
-    <meta property="og:title" content="AL-AQSA — Digital products built to move business forward" />
+    <meta property="og:title" content="AL-AQSA — Digital products built to move business forward" data-i18n-content="meta.og:title" />
     <meta
       property="og:description"
       content="Business websites, web applications, Mendix solutions and digital product delivery."
-    />
+    data-i18n-content="meta.og:description" />
     <meta property="og:type" content="website" />
     <meta property="og:url" content="https://al-aqsa.eu/" />
     <meta property="og:image" content="https://al-aqsa.eu/assets/al-aqsa-logo.png" />
@@ -21,32 +21,36 @@
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Manrope:wght@400;500;600;700;800&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Noto+Sans+Arabic:wght@400;500;600;700;800&family=DM+Mono:wght@400;500&family=Manrope:wght@400;500;600;700;800&display=swap"
       rel="stylesheet"
     />
     <link rel="stylesheet" href="styles.css" />
-    <title>AL-AQSA — App & Website Development</title>
+    <title data-i18n="page.title">AL-AQSA — App & Website Development</title>
   </head>
   <body>
-    <a class="skip-link" href="#main">Skip to content</a>
+    <a class="skip-link" href="#main" data-i18n="skip">Skip to content</a>
 
     <header class="site-header" data-header>
       <div class="shell nav-wrap">
-        <a class="brand" href="#home" aria-label="AL-AQSA home">
+        <a class="brand" href="#home" aria-label="AL-AQSA home" data-i18n-aria-label="brand.home">
           <img src="assets/al-aqsa-logo.png" alt="AL-AQSA" width="1176" height="259" />
         </a>
 
+        <div class="language-toggle" role="group" aria-label="Language" data-i18n-aria-label="language.label" dir="ltr" hidden>
+          <button type="button" data-language="ar" lang="ar" aria-pressed="false">العربية</button><span aria-hidden="true">|</span><button type="button" data-language="en" lang="en" aria-pressed="true">English</button>
+        </div>
+
         <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="site-menu" data-menu-toggle>
-          <span class="sr-only">Open navigation</span>
+          <span class="sr-only" data-i18n="menu.open">Open navigation</span>
           <span></span><span></span>
         </button>
 
-        <nav class="site-nav" id="site-menu" aria-label="Main navigation" data-menu>
-          <a href="#services">Services</a>
-          <a href="#solutions">Solutions</a>
-          <a href="#approach">Approach</a>
-          <a href="#about">About</a>
-          <a class="nav-cta" href="#contact">Start a project <span aria-hidden="true">↗</span></a>
+        <nav class="site-nav" id="site-menu" aria-label="Main navigation" data-i18n-aria-label="nav.label" data-menu>
+          <a href="#services" data-i18n="nav.services">Services</a>
+          <a href="#solutions" data-i18n="nav.solutions">Solutions</a>
+          <a href="#approach" data-i18n="nav.approach">Approach</a>
+          <a href="#about" data-i18n="nav.about">About</a>
+          <a class="nav-cta" href="#contact" data-i18n="action.start">Start a project <span aria-hidden="true">↗</span></a>
         </nav>
       </div>
     </header>
@@ -58,35 +62,35 @@
         <div class="hero-glow hero-glow-two" aria-hidden="true"></div>
         <div class="shell hero-content">
           <div class="hero-intro">
-            <p class="eyebrow reveal">Digital products · Mendix · Web development</p>
-            <h1 class="reveal">Built to move<br /><em>business</em> forward.</h1>
-            <p class="hero-copy reveal">
+            <p class="eyebrow reveal" data-i18n="hero.eyebrow">Digital products · Mendix · Web development</p>
+            <h1 class="reveal" data-i18n="hero.title">Built to move<br /><em>business</em> forward.</h1>
+            <p class="hero-copy reveal" data-i18n="hero.copy">
               AL-AQSA helps ambitious businesses turn ideas and complex processes into clear, capable digital experiences.
             </p>
             <div class="hero-actions reveal">
-              <a class="button button-primary" href="#contact">Start a project <span aria-hidden="true">↗</span></a>
-              <a class="text-link" href="#services">Explore services <span aria-hidden="true">↓</span></a>
+              <a class="button button-primary" href="#contact" data-i18n="action.start">Start a project <span aria-hidden="true">↗</span></a>
+              <a class="text-link" href="#services" data-i18n="action.explore">Explore services <span aria-hidden="true">↓</span></a>
             </div>
             <div class="hero-foot reveal">
               <span class="line"></span>
-              <p>Strategy, design and delivery — all connected.</p>
+              <p data-i18n="hero.foot">Strategy, design and delivery — all connected.</p>
             </div>
           </div>
           <div class="hero-brand reveal">
-            <img src="assets/al-aqsa-logo.png" alt="AL-AQSA — Web Development" width="1176" height="259" fetchpriority="high" />
+            <img src="assets/al-aqsa-logo.png" alt="AL-AQSA — Web Development" data-i18n-alt="brand.alt" width="1176" height="259" fetchpriority="high" />
           </div>
         </div>
       </section>
 
       <section class="intro section">
         <div class="shell intro-grid">
-          <p class="eyebrow eyebrow-dark reveal">A focused digital partner</p>
+          <p class="eyebrow eyebrow-dark reveal" data-i18n="intro.eyebrow">A focused digital partner</p>
           <div class="intro-copy reveal">
-            <h2>Not just a website. A better way to do business.</h2>
-            <p>
+            <h2 data-i18n="intro.title">Not just a website. A better way to do business.</h2>
+            <p data-i18n="intro.copy">
               Whether you need a polished online presence, a scalable business application or help bringing a Mendix platform to life, AL-AQSA combines thoughtful design with practical technical delivery.
             </p>
-            <a class="inline-link" href="#approach">How we work <span aria-hidden="true">→</span></a>
+            <a class="inline-link" href="#approach" data-i18n="action.approach">How we work <span aria-hidden="true">→</span></a>
           </div>
         </div>
       </section>
@@ -94,39 +98,39 @@
       <section class="services section section-soft" id="services">
         <div class="shell">
           <div class="section-heading reveal">
-            <p class="eyebrow eyebrow-dark">What we do</p>
-            <h2>Clear digital work,<br />built around real goals.</h2>
+            <p class="eyebrow eyebrow-dark" data-i18n="services.eyebrow">What we do</p>
+            <h2 data-i18n="services.title">Clear digital work,<br />built around real goals.</h2>
           </div>
           <div class="service-grid">
             <article class="service-card reveal">
               <span class="service-number">01</span>
               <div>
-                <h3>Mendix consulting</h3>
-                <p>Architecture, delivery strategy and practical support for secure, scalable low-code applications.</p>
+                <h3 data-i18n="service.mendix">Mendix consulting</h3>
+                <p data-i18n="service.mendix.copy">Architecture, delivery strategy and practical support for secure, scalable low-code applications.</p>
               </div>
               <span class="service-icon" aria-hidden="true">↗</span>
             </article>
             <article class="service-card reveal">
               <span class="service-number">02</span>
               <div>
-                <h3>Web applications &amp; PWAs</h3>
-                <p>Useful, fast web applications that work beautifully across devices and fit the way your team operates.</p>
+                <h3 data-i18n="service.web">Web applications &amp; PWAs</h3>
+                <p data-i18n="service.web.copy">Useful, fast web applications that work beautifully across devices and fit the way your team operates.</p>
               </div>
               <span class="service-icon" aria-hidden="true">↗</span>
             </article>
             <article class="service-card reveal">
               <span class="service-number">03</span>
               <div>
-                <h3>Websites &amp; digital presence</h3>
-                <p>Distinctive websites that explain your value clearly, build confidence and turn attention into enquiries.</p>
+                <h3 data-i18n="service.website">Websites &amp; digital presence</h3>
+                <p data-i18n="service.website.copy">Distinctive websites that explain your value clearly, build confidence and turn attention into enquiries.</p>
               </div>
               <span class="service-icon" aria-hidden="true">↗</span>
             </article>
             <article class="service-card reveal">
               <span class="service-number">04</span>
               <div>
-                <h3>Training &amp; enablement</h3>
-                <p>Hands-on workshops and guidance that help your team make confident, lasting progress.</p>
+                <h3 data-i18n="service.training">Training &amp; enablement</h3>
+                <p data-i18n="service.training.copy">Hands-on workshops and guidance that help your team make confident, lasting progress.</p>
               </div>
               <span class="service-icon" aria-hidden="true">↗</span>
             </article>
@@ -137,31 +141,31 @@
       <section class="solutions section" id="solutions">
         <div class="shell">
           <div class="solutions-top reveal">
-            <p class="eyebrow eyebrow-dark">Typical solutions</p>
-            <p>Every engagement begins with the business problem — not a pre-chosen technology.</p>
+            <p class="eyebrow eyebrow-dark" data-i18n="solutions.eyebrow">Typical solutions</p>
+            <p data-i18n="solutions.copy">Every engagement begins with the business problem — not a pre-chosen technology.</p>
           </div>
           <div class="solution-grid">
             <article class="solution-card solution-card-navy reveal">
-              <span class="solution-kicker">Customer experience</span>
-              <h3>Websites that make a strong first impression.</h3>
-              <p>Clear messaging, premium visual design and an easy route to get in touch.</p>
+              <span class="solution-kicker" data-i18n="solution.customer">Customer experience</span>
+              <h3 data-i18n="solution.customer.title">Websites that make a strong first impression.</h3>
+              <p data-i18n="solution.customer.copy">Clear messaging, premium visual design and an easy route to get in touch.</p>
               <div class="solution-art art-window" aria-hidden="true">
                 <span></span><span></span><span></span>
                 <i></i><i></i><i></i>
               </div>
             </article>
             <article class="solution-card solution-card-gold reveal">
-              <span class="solution-kicker">Operations</span>
-              <h3>Applications that make work flow better.</h3>
-              <p>From workflows to dashboards, designed around the people doing the work.</p>
+              <span class="solution-kicker" data-i18n="solution.operations">Operations</span>
+              <h3 data-i18n="solution.operations.title">Applications that make work flow better.</h3>
+              <p data-i18n="solution.operations.copy">From workflows to dashboards, designed around the people doing the work.</p>
               <div class="solution-art art-flow" aria-hidden="true">
                 <span></span><b></b><span></span><b></b><span></span>
               </div>
             </article>
             <article class="solution-card solution-card-purple reveal">
-              <span class="solution-kicker">Growth</span>
-              <h3>Digital foundations that can keep up.</h3>
-              <p>Scalable, responsive products that evolve as your business does.</p>
+              <span class="solution-kicker" data-i18n="solution.growth">Growth</span>
+              <h3 data-i18n="solution.growth.title">Digital foundations that can keep up.</h3>
+              <p data-i18n="solution.growth.copy">Scalable, responsive products that evolve as your business does.</p>
               <div class="solution-art art-bars" aria-hidden="true"><i></i><i></i><i></i><i></i></div>
             </article>
           </div>
@@ -171,15 +175,15 @@
       <section class="approach section section-dark" id="approach">
         <div class="shell approach-grid">
           <div class="approach-intro reveal">
-            <p class="eyebrow">Our approach</p>
-            <h2>Simple process.<br />Serious attention to detail.</h2>
-            <p>Clear communication and sensible decisions from the first conversation through launch and beyond.</p>
+            <p class="eyebrow" data-i18n="approach.eyebrow">Our approach</p>
+            <h2 data-i18n="approach.title">Simple process.<br />Serious attention to detail.</h2>
+            <p data-i18n="approach.copy">Clear communication and sensible decisions from the first conversation through launch and beyond.</p>
           </div>
           <ol class="process-list">
-            <li class="reveal"><span>01</span><div><h3>Discover</h3><p>Understand the problem, audience and outcome that matters most.</p></div></li>
-            <li class="reveal"><span>02</span><div><h3>Shape</h3><p>Turn the right ideas into a practical roadmap, design and technical plan.</p></div></li>
-            <li class="reveal"><span>03</span><div><h3>Build</h3><p>Deliver with care, transparency and regular momentum — not surprises.</p></div></li>
-            <li class="reveal"><span>04</span><div><h3>Improve</h3><p>Launch confidently, learn from real use and keep making the product stronger.</p></div></li>
+            <li class="reveal"><span>01</span><div><h3 data-i18n="process.discover">Discover</h3><p data-i18n="process.discover.copy">Understand the problem, audience and outcome that matters most.</p></div></li>
+            <li class="reveal"><span>02</span><div><h3 data-i18n="process.shape">Shape</h3><p data-i18n="process.shape.copy">Turn the right ideas into a practical roadmap, design and technical plan.</p></div></li>
+            <li class="reveal"><span>03</span><div><h3 data-i18n="process.build">Build</h3><p data-i18n="process.build.copy">Deliver with care, transparency and regular momentum — not surprises.</p></div></li>
+            <li class="reveal"><span>04</span><div><h3 data-i18n="process.improve">Improve</h3><p data-i18n="process.improve.copy">Launch confidently, learn from real use and keep making the product stronger.</p></div></li>
           </ol>
         </div>
       </section>
@@ -188,12 +192,12 @@
         <div class="shell about-grid">
           <div class="about-mark reveal" aria-hidden="true"><span>AL</span><i></i><b>AQSA</b></div>
           <div class="about-copy reveal">
-            <p class="eyebrow eyebrow-dark">About AL-AQSA</p>
-            <h2>Technical thinking with a human point of view.</h2>
-            <p>
+            <p class="eyebrow eyebrow-dark" data-i18n="about.eyebrow">About AL-AQSA</p>
+            <h2 data-i18n="about.title">Technical thinking with a human point of view.</h2>
+            <p data-i18n="about.copy">
               AL-AQSA is an independent digital-development partner led by Yamen Khalifa. The work blends app development, web design and Mendix expertise to create solutions that are useful, credible and built for the long term.
             </p>
-            <a class="inline-link" href="https://www.linkedin.com/in/yamenkha" target="_blank" rel="noopener noreferrer">Connect on LinkedIn <span aria-hidden="true">↗</span></a>
+            <a class="inline-link" href="https://www.linkedin.com/in/yamenkha" target="_blank" rel="noopener noreferrer" data-i18n="action.linkedin">Connect on LinkedIn <span aria-hidden="true">↗</span></a>
           </div>
         </div>
       </section>
@@ -201,46 +205,46 @@
       <section class="contact section" id="contact">
         <div class="shell contact-shell">
           <div class="contact-heading reveal">
-            <p class="eyebrow">Have a project in mind?</p>
-            <h2>Let’s build<br /><em>something useful.</em></h2>
-            <p>Tell us a little about what you need. We’ll respond personally and discuss the best next step.</p>
+            <p class="eyebrow" data-i18n="contact.eyebrow">Have a project in mind?</p>
+            <h2 data-i18n="contact.title">Let’s build<br /><em>something useful.</em></h2>
+            <p data-i18n="contact.copy">Tell us a little about what you need. We’ll respond personally and discuss the best next step.</p>
             <div class="contact-details">
               <a href="mailto:info@al-aqsa.eu">info@al-aqsa.eu</a>
               <a href="tel:+31684050907">+31 6 8405 0907</a>
             </div>
-            <a class="contact-whatsapp" href="https://wa.me/31684050907?text=Hello%20AL-AQSA%2C%20I%27d%20like%20to%20discuss%20a%20project." target="_blank" rel="noopener noreferrer">Chat on WhatsApp <span aria-hidden="true">↗</span></a>
+            <a class="contact-whatsapp" href="https://wa.me/31684050907?text=Hello%20AL-AQSA%2C%20I%27d%20like%20to%20discuss%20a%20project." target="_blank" rel="noopener noreferrer" data-i18n="action.whatsapp">Chat on WhatsApp <span aria-hidden="true">↗</span></a>
           </div>
           <form class="contact-form reveal" data-contact-form action="contact.php" method="post" accept-charset="UTF-8" aria-describedby="enquiry-note enquiry-status">
             <label>
-              <span>Your name</span>
-              <input name="name" autocomplete="name" maxlength="160" required />
+              <span data-i18n="form.name">Your name</span>
+              <input name="name" dir="auto" autocomplete="name" maxlength="160" required />
             </label>
             <label>
-              <span>Email address</span>
-              <input name="email" type="email" autocomplete="email" maxlength="254" required />
+              <span data-i18n="form.email">Email address</span>
+              <input name="email" type="email" dir="ltr" autocomplete="email" maxlength="254" required />
             </label>
             <label>
-              <span>What can we help with?</span>
+              <span data-i18n="form.service">What can we help with?</span>
               <select name="project" required>
-                <option value="" selected disabled>Select a service</option>
-                <option>Mendix consulting</option>
-                <option>Web application or PWA</option>
-                <option>Website design &amp; development</option>
-                <option>Training or workshop</option>
-                <option>Something else</option>
+                <option value="" selected disabled data-i18n="form.select">Select a service</option>
+                <option value="Mendix consulting" data-i18n="service.mendix">Mendix consulting</option>
+                <option value="Web application or PWA" data-i18n="form.web">Web application or PWA</option>
+                <option value="Website design &amp; development" data-i18n="form.website">Website design &amp; development</option>
+                <option value="Training or workshop" data-i18n="form.training">Training or workshop</option>
+                <option value="Something else" data-i18n="form.other">Something else</option>
               </select>
             </label>
             <label>
-              <span>Tell us briefly about your project</span>
-              <textarea name="message" rows="4" maxlength="5000" required></textarea>
+              <span data-i18n="form.message">Tell us briefly about your project</span>
+              <textarea name="message" dir="auto" rows="4" maxlength="5000" required></textarea>
             </label>
             <div class="form-trap" aria-hidden="true" inert>
-              <label>Leave this field empty<input name="website" tabindex="-1" autocomplete="off" /></label>
+              <label><span data-i18n="form.trap">Leave this field empty</span><input name="website" tabindex="-1" autocomplete="off" /></label>
             </div>
-            <button class="button button-light" type="submit" disabled>Send enquiry <span aria-hidden="true">↗</span></button>
-            <p class="form-note" id="enquiry-note">Your enquiry goes directly to info@al-aqsa.eu. We use your details to respond to your request. <a href="privacy.html">Privacy notice</a>.</p>
+            <button class="button button-light" type="submit" disabled data-i18n="form.submit">Send enquiry <span aria-hidden="true">↗</span></button>
+            <p class="form-note" id="enquiry-note" data-i18n="form.note">Your enquiry goes directly to info@al-aqsa.eu. We use your details to respond to your request. <a href="privacy.html">Privacy notice</a>.</p>
             <p class="form-status" id="enquiry-status" data-form-status role="status" aria-live="polite" aria-atomic="true" tabindex="-1"></p>
-            <noscript><p class="form-note">Enable JavaScript to use this form, or <a href="mailto:info@al-aqsa.eu">email info@al-aqsa.eu</a>.</p></noscript>
+            <noscript><p class="form-note" data-i18n="form.noscript">Enable JavaScript to use this form, or <a href="mailto:info@al-aqsa.eu">email info@al-aqsa.eu</a>.</p></noscript>
           </form>
         </div>
       </section>
@@ -249,16 +253,17 @@
     <footer class="site-footer">
       <div class="shell footer-main">
         <a class="footer-brand" href="#home"><img src="assets/al-aqsa-logo.png" alt="AL-AQSA" width="1176" height="259" /></a>
-        <p>Digital products built with clarity and care.</p>
+        <p data-i18n="footer.copy">Digital products built with clarity and care.</p>
         <div class="footer-links">
           <a href="https://www.linkedin.com/in/yamenkha" target="_blank" rel="noopener noreferrer">LinkedIn</a>
-          <a href="privacy.html">Privacy</a>
-          <a href="mailto:info@al-aqsa.eu">Email</a>
+          <a href="privacy.html" data-i18n="footer.privacy">Privacy</a>
+          <a href="mailto:info@al-aqsa.eu" data-i18n="footer.email">Email</a>
         </div>
       </div>
-      <div class="shell footer-bottom"><span>© <span data-year></span> AL-AQSA</span><span>The Netherlands</span></div>
+      <div class="shell footer-bottom"><span>© <span data-year></span> AL-AQSA</span><span data-i18n="footer.country">The Netherlands</span></div>
     </footer>
 
+    <script src="assets/language.js"></script>
     <script src="script.js"></script>
   </body>
 </html>

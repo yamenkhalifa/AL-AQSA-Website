@@ -65,6 +65,13 @@ Official hosting guidance:
 - `contact.php` — email delivery, validation and abuse prevention
 - `privacy.html` — privacy notice reflecting direct form submission
 - `assets/al-aqsa-logo.png` — original AL-AQSA logo
+- `assets/language.js` — shared English/Arabic translations and language selection
+
+## Languages
+
+The homepage and privacy notice support English and Modern Standard Arabic. The header's **العربية | English** buttons switch immediately; Arabic uses a right-to-left layout. On the first visit, the browser's preferred language chooses Arabic for `ar` locales and English otherwise. Manual choices are remembered in local storage when available. Include all files under `assets` when uploading manually.
+
+The contact endpoint accepts an optional `lang` field on POST or query parameter on GET (`ar` or `en`, default English). Responses retain `ok` and `message` and include a stable `message_key` for language changes while a request is in progress. Service option values remain English in both languages.
 
 ## Local verification
 
@@ -73,8 +80,10 @@ With PHP 8.x, Python 3 and Node installed:
 ```sh
 php -l contact.php
 node --check script.js
+node --check assets/language.js
 python3 tests/contact_form_test.py
 node --test tests/contact_ui_test.cjs
+node --test tests/language_test.cjs
 python3 tests/deploy_ftps_test.py
 ```
 

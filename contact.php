@@ -13,6 +13,33 @@ header('X-Content-Type-Options: nosniff');
 
 function respond(int $status, bool $ok, string $message, array $extra = []): void
 {
+    // Only the two supported language codes are accepted; absent/invalid values use English.
+    $requestedLanguage = ($_SERVER['REQUEST_METHOD'] ?? '') === 'POST'
+        ? ($_POST['lang'] ?? 'en') : ($_GET['lang'] ?? 'en');
+    $translations = [
+        'Thank you — your enquiry has been submitted. We’ll be in touch.' => ['server.success', 'شكرًا لك — تم إرسال استفسارك. سنتواصل معك قريبًا.'],
+        'We couldn’t send your enquiry right now. Please try again later, or email info@al-aqsa.eu.' => ['server.unavailable', 'تعذر إرسال استفسارك الآن. يرجى المحاولة لاحقًا، أو مراسلتنا على info@al-aqsa.eu.'],
+        'Please check the form and complete all required fields.' => ['server.required', 'يرجى مراجعة النموذج وإكمال جميع الحقول المطلوبة.'],
+        'This request method is not supported.' => ['server.method', 'طريقة الطلب هذه غير مدعومة.'],
+        'Please send your enquiry from the AL-AQSA website.' => ['server.origin', 'يرجى إرسال استفسارك من موقع AL-AQSA.'],
+        'Your enquiry is too long. Please shorten it and try again.' => ['server.too_long', 'استفسارك طويل جدًا. يرجى اختصاره والمحاولة مرة أخرى.'],
+        'Please submit your enquiry using the website form.' => ['server.content_type', 'يرجى إرسال استفسارك باستخدام نموذج الموقع.'],
+        'Ready to send your enquiry.' => ['server.ready', 'النموذج جاهز لإرسال استفسارك.'],
+        'Your form session expired. Please allow cookies for this site and try again.' => ['server.session', 'انتهت صلاحية جلسة النموذج. يرجى السماح بملفات تعريف الارتباط لهذا الموقع والمحاولة مرة أخرى.'],
+        'Please check the form and try again.' => ['server.invalid', 'يرجى مراجعة النموذج والمحاولة مرة أخرى.'],
+        'Please enter your name (up to 160 characters).' => ['server.name', 'يرجى إدخال اسمك (بحد أقصى 160 حرفًا).'],
+        'Please enter a valid email address.' => ['server.email', 'يرجى إدخال بريد إلكتروني صحيح.'],
+        'Please select a service from the list.' => ['server.service', 'يرجى اختيار خدمة من القائمة.'],
+        'Please describe your project in 1 to 5,000 characters.' => ['server.message', 'يرجى وصف مشروعك بنص يتراوح بين حرف واحد و5,000 حرف.'],
+        'Please refresh the page and try again.' => ['server.refresh', 'يرجى تحديث الصفحة والمحاولة مرة أخرى.'],
+        'This enquiry was already submitted. Refresh the page before sending another.' => ['server.duplicate', 'سبق إرسال هذا الاستفسار. يرجى تحديث الصفحة قبل إرسال استفسار آخر.'],
+        'The form has received too many enquiries. Please try again later, or email info@al-aqsa.eu.' => ['server.rate_limit', 'تلقى النموذج عددًا كبيرًا من الاستفسارات. يرجى المحاولة لاحقًا، أو مراسلتنا على info@al-aqsa.eu.'],
+    ];
+    if (isset($translations[$message])) {
+        [$key, $arabic] = $translations[$message];
+        $extra['message_key'] = $key;
+        if ($requestedLanguage === 'ar') $message = $arabic;
+    }
     http_response_code($status);
     echo json_encode(array_merge(['ok' => $ok, 'message' => $message], $extra), JSON_UNESCAPED_UNICODE);
     exit;

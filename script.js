@@ -2,11 +2,21 @@ const header = document.querySelector('[data-header]');
 const menuToggle = document.querySelector('[data-menu-toggle]');
 const menu = document.querySelector('[data-menu]');
 
+const renderMenuLabel = () => {
+  const label = menuToggle?.querySelector('.sr-only');
+  if (!label) return;
+  const open = menuToggle.getAttribute('aria-expanded') === 'true';
+  label.textContent = window.SiteLanguage?.t(open ? 'menu.close' : 'menu.open')
+    ?? (open ? 'Close navigation' : 'Open navigation');
+};
+window.SiteLanguage?.subscribe(renderMenuLabel);
+
 const closeMenu = () => {
   if (!menuToggle || !menu) return;
   menuToggle.setAttribute('aria-expanded', 'false');
   menu.classList.remove('is-open');
   document.body.classList.remove('menu-open');
+  renderMenuLabel();
 };
 
 menuToggle?.addEventListener('click', () => {
@@ -14,6 +24,7 @@ menuToggle?.addEventListener('click', () => {
   menuToggle.setAttribute('aria-expanded', String(!isOpen));
   menu?.classList.toggle('is-open', !isOpen);
   document.body.classList.toggle('menu-open', !isOpen);
+  renderMenuLabel();
 });
 
 menu?.querySelectorAll('a').forEach((link) => link.addEventListener('click', closeMenu));
@@ -33,7 +44,8 @@ const revealObserver = new IntersectionObserver((entries) => {
 
 document.querySelectorAll('.reveal').forEach((item) => revealObserver.observe(item));
 
-document.querySelector('[data-year]').textContent = new Date().getFullYear();
+const year = document.querySelector('[data-year]');
+if (year) year.textContent = new Date().getFullYear();
 
 const contactForm = document.querySelector('[data-contact-form]');
 
@@ -43,9 +55,22 @@ if (contactForm) {
   const buttonContent = submitButton.innerHTML;
   let sending = false;
   let requestId = null;
+  let statusMessage = '';
+  let statusKey = null;
+  const translate = (key, fallback) => window.SiteLanguage?.t(key) ?? fallback;
+  const renderButton = () => {
+    if (sending) submitButton.textContent = translate('form.sending', 'Sending…');
+    else submitButton.innerHTML = translate('form.submit', buttonContent);
+  };
+  window.SiteLanguage?.subscribe(() => {
+    renderButton();
+    if (statusMessage) status.textContent = statusKey ? translate(statusKey, statusMessage) : statusMessage;
+  });
 
-  const showStatus = (message, state) => {
-    status.textContent = message;
+  const showStatus = (message, state, key = null) => {
+    statusMessage = message;
+    statusKey = key;
+    status.textContent = key ? translate(key, message) : message;
     status.dataset.state = state;
   };
 
@@ -53,7 +78,12 @@ if (contactForm) {
     const controller = new AbortController();
     const timer = window.setTimeout(() => controller.abort(), timeout);
     try {
-      const response = await fetch(contactForm.action, {
+      const language = window.SiteLanguage?.language ?? 'en';
+      // Keep the original URL for English clients; POST carries its own language field.
+      const url = options.method === 'GET' && language === 'ar'
+        ? `${contactForm.action}${contactForm.action.includes('?') ? '&' : '?'}lang=ar` : contactForm.action;
+      if (options.body) options.body.set('lang', language);
+      const response = await fetch(url, {
         ...options,
         credentials: 'same-origin',
         cache: 'no-store',
@@ -81,8 +111,8 @@ if (contactForm) {
     sending = true;
     controls.forEach((control) => { control.disabled = true; });
     contactForm.setAttribute('aria-busy', 'true');
-    submitButton.textContent = 'Sending…';
-    showStatus('Sending your enquiry…', 'pending');
+    renderButton();
+    showStatus('Sending your enquiry…', 'pending', 'form.pending');
 
     try {
       if (!requestId) {
@@ -91,26 +121,26 @@ if (contactForm) {
       }
       const prepared = await request({ method: 'GET' }, 10000);
       if (!prepared.response.ok || !prepared.data.ok || typeof prepared.data.token !== 'string') {
-        showStatus(prepared.data.message || 'Please try again, or email info@al-aqsa.eu.', 'error');
+        showStatus(prepared.data.message || 'Please try again, or email info@al-aqsa.eu.', 'error', prepared.data.message_key || 'form.fallback');
         return;
       }
       fields.set('token', prepared.data.token);
       fields.set('request_id', requestId);
       const { response, data } = await request({ method: 'POST', body: fields }, 25000);
       if (!response.ok || !data.ok) {
-        showStatus(data.message, 'error');
+        showStatus(data.message, 'error', data.message_key);
         return;
       }
       contactForm.reset();
       requestId = null;
-      showStatus(data.message, 'success');
+      showStatus(data.message, 'success', data.message_key);
     } catch {
-      showStatus('We couldn’t confirm whether your enquiry was sent. Your text is still here. Please try again, or email info@al-aqsa.eu.', 'error');
+      showStatus('We couldn’t confirm whether your enquiry was sent. Your text is still here. Please try again, or email info@al-aqsa.eu.', 'error', 'form.uncertain');
     } finally {
       sending = false;
       controls.forEach((control) => { control.disabled = false; });
       contactForm.removeAttribute('aria-busy');
-      submitButton.innerHTML = buttonContent;
+      renderButton();
       status.focus({ preventScroll: true });
     }
   });

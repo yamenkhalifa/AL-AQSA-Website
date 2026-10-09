@@ -5,7 +5,7 @@ const vm = require('node:vm');
 const { webcrypto } = require('node:crypto');
 
 // A small DOM boundary stub exercises the shipped submission code without dependencies.
-function setup(fetch) {
+function setup(fetch, language = null) {
   const handlers = {};
   const button = { disabled: true, innerHTML: 'Send enquiry', textContent: '' };
   const status = { dataset: {}, textContent: '', focus() {} };
@@ -31,10 +31,60 @@ function setup(fetch) {
     FormData: class extends Map { constructor() { super(Object.entries(fields)); } },
     crypto: webcrypto, Uint8Array, AbortController, fetch,
   };
+  if (language) {
+    const dictionaries = vm.runInNewContext(fs.readFileSync(require.resolve('../assets/language.js'), 'utf8').split('(() => {')[0] + '\nsiteTranslations;');
+    const listeners = [];
+    sandbox.window.SiteLanguage = {
+      language,
+      t(key) { return dictionaries[this.language][key]; },
+      subscribe(listener) { listeners.push(listener); },
+      set(value) { this.language = value; listeners.forEach(listener => listener()); },
+    };
+  }
   vm.runInNewContext(fs.readFileSync(require.resolve('../script.js'), 'utf8'), sandbox);
-  return { button, input, status, fields, handlers, get resets() { return resets; },
+  return { button, input, status, fields, handlers, language: sandbox.window.SiteLanguage, get resets() { return resets; },
     submit: () => handlers.submit({ preventDefault() {} }) };
 }
+
+test('Arabic requests use canonical service values and feedback follows language changes during sending', async () => {
+  let finish;
+  let posted;
+  const ui = setup(async (url, options) => {
+    if (options.method === 'GET') {
+      assert.ok(url.endsWith('?lang=ar'));
+      return ready();
+    }
+    posted = options.body;
+    return new Promise(resolve => { finish = resolve; });
+  }, 'ar');
+  const submission = ui.submit();
+  while (!finish) await new Promise(resolve => setImmediate(resolve));
+  assert.equal(posted.get('lang'), 'ar');
+  assert.equal(posted.get('project'), 'Something else');
+  assert.match(ui.button.textContent, /جارٍ/);
+  ui.language.set('en');
+  assert.equal(ui.button.textContent, 'Sending…');
+  assert.equal(ui.status.textContent, 'Sending your enquiry…');
+  finish(response(true, { ok: true, message: 'شكرًا لك', message_key: 'server.success' }));
+  await submission;
+  assert.match(ui.status.textContent, /Thank you/);
+  assert.match(ui.button.innerHTML, /Send enquiry/);
+  ui.language.set('ar');
+  assert.match(ui.status.textContent, /شكرًا/);
+  assert.match(ui.button.innerHTML, /أرسل/);
+});
+
+test('Arabic server and uncertain-network errors retain text and localize feedback', async () => {
+  const rejected = setup(async (_, options) => options.method === 'GET' ? ready()
+    : response(false, { ok: false, message: 'Please enter a valid email address.', message_key: 'server.email' }), 'ar');
+  await rejected.submit();
+  assert.match(rejected.status.textContent, /بريد إلكتروني صحيح/);
+  assert.equal(rejected.resets, 0);
+  const disconnected = setup(async () => { throw new Error('network lost'); }, 'ar');
+  await disconnected.submit();
+  assert.match(disconnected.status.textContent, /ما زال نصك محفوظًا/);
+  assert.equal(disconnected.resets, 0);
+});
 
 const response = (ok, data) => ({ ok, json: async () => data });
 const ready = () => response(true, { ok: true, token: 'session-token', message: 'Ready' });
