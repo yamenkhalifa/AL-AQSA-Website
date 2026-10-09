@@ -86,7 +86,7 @@ Official hosting guidance:
 
 ## Languages
 
-The homepage and privacy notice have a searchable language dropdown with 40 built-in languages. Search by native or English name, use arrow keys and Enter to select, and Escape to close. Arabic, Hebrew, Persian and Urdu use right-to-left layouts. Browser preferences choose the first supported language; a manually saved choice takes precedence. Storage failure does not prevent switching. Include all nested files under `assets` when uploading manually.
+The homepage and privacy notice have a searchable language dropdown with 40 built-in languages. The first column shows native names; the second shows names in the selected site language using the browser's `Intl.DisplayNames`, with English fallback when unavailable. Search by localized name, native name, English name or language code, use arrow keys and Enter to select, and Escape to close. Arabic, Hebrew, Persian and Urdu use right-to-left layouts. Browser preferences choose the first supported language; a manually saved choice takes precedence. Storage failure does not prevent switching. Include all nested files under `assets` when uploading manually.
 
 English and Arabic are available immediately. Other languages load from same-origin JSON files under `assets/locales`, with complete translation keys and preserved HTML links. Downloads are cached for the page; failed loads keep the current language and offer retry. The website uses no live translation service and sends no visitor content to translation providers. The registry specifies native names, English names, codes and direction. Chinese is Simplified Chinese, Norwegian is Bokmål, and Punjabi uses Gurmukhi.
 

@@ -16,7 +16,25 @@
   let revision = 0;
   const listeners = new Set();
   const loading = new Map();
+  const displayNames = new Map();
   const t = (key) => siteTranslations[language][key] ?? siteTranslations.en[key] ?? key;
+  const localizedName = (item) => {
+    if (!displayNames.has(language)) {
+      let formatter = null;
+      try {
+        if (typeof Intl !== 'undefined' && typeof Intl.DisplayNames === 'function'
+          && Intl.DisplayNames.supportedLocalesOf([language]).length) {
+          formatter = new Intl.DisplayNames([language], { type: 'language', fallback: 'none' });
+        }
+      } catch { /* Unsupported browsers retain readable English labels. */ }
+      displayNames.set(language, formatter);
+    }
+    try {
+      const text = displayNames.get(language)?.of(item.code);
+      if (text) return { text, lang: language, dir: registry.get(language).dir };
+    } catch { /* Missing names fall back independently of the other options. */ }
+    return { text: item.name, lang: 'en', dir: 'ltr' };
+  };
   const pickers = [];
   const announce = (key, suffix = '') => pickers.forEach((picker) => {
     picker.status.dataset.state = key === 'language.error' ? 'error' : 'notice';
@@ -114,7 +132,7 @@
     const select = (code) => { close(true); void set(code); };
     const filter = () => {
       const query = fold(search.value.trim());
-      filtered = siteLanguages.filter((item) => fold(`${item.name} ${item.nativeName} ${item.code}`).includes(query));
+      filtered = siteLanguages.filter((item) => fold(`${localizedName(item).text} ${item.name} ${item.nativeName} ${item.code}`).includes(query));
       list.replaceChildren();
       filtered.forEach((item, i) => {
         const option = document.createElement('button');
@@ -127,9 +145,10 @@
         const native = document.createElement('bdi');
         native.lang = item.code;
         native.textContent = item.nativeName;
-        const english = document.createElement('small');
-        english.lang = 'en'; english.dir = 'ltr'; english.textContent = item.name;
-        option.append(native, english);
+        const description = document.createElement('small');
+        const label = localizedName(item);
+        description.lang = label.lang; description.dir = label.dir; description.textContent = label.text;
+        option.append(native, description);
         option.addEventListener('pointerdown', (event) => event.preventDefault());
         option.addEventListener('click', () => select(item.code));
         option.addEventListener('pointermove', () => { active = i; highlight(); });
