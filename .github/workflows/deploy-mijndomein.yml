@@ -12,6 +12,7 @@ on:
       - robots.txt
       - sitemap.xml
       - assets/**
+      - vendor/phpmailer/**
       - scripts/deploy-ftps.sh
       - .github/workflows/deploy-mijndomein.yml
   workflow_dispatch:
@@ -40,6 +41,7 @@ jobs:
           php -l contact.php
           node --check script.js
           python3 tests/contact_form_test.py
+          python3 tests/contact_smtp_test.py
           node --test tests/contact_ui_test.cjs
           python3 tests/deploy_ftps_test.py
           bash -n scripts/deploy-ftps.sh
@@ -49,43 +51,6 @@ jobs:
           FTP_SERVER: ${{ secrets.FTP_SERVER }}
           FTP_USERNAME: ${{ secrets.FTP_USERNAME }}
           FTP_PASSWORD: ${{ secrets.FTP_PASSWORD }}
+          SMTP_PASSWORD: ${{ secrets.SMTP_PASSWORD }}
         run: bash scripts/deploy-ftps.sh
 
-      - name: Diagnose live enquiry delivery once
-        if: contains(github.event.head_commit.message, '[enquiry-diagnostic]')
-        continue-on-error: true
-        run: |
-          python3 - <<'PY'
-          from http.cookiejar import CookieJar
-          import json
-          import secrets
-          from urllib.error import HTTPError
-          from urllib.parse import urlencode
-          from urllib.request import Request, build_opener, HTTPCookieProcessor
-
-          origin = "https://al-aqsa.eu"
-          client = build_opener(HTTPCookieProcessor(CookieJar()))
-          def request(fields=None):
-              data = None if fields is None else urlencode(fields).encode()
-              req = Request(origin + "/contact.php", data=data,
-                            headers={"Accept": "application/json", "Origin": origin})
-              try:
-                  response = client.open(req, timeout=35)
-              except HTTPError as error:
-                  response = error
-              return response.status, json.loads(response.read())
-
-          status, ready = request()
-          if status != 200 or not ready.get("ok"):
-              print(json.dumps({"stage": "prepare", "status": status,
-                                "error_code": ready.get("error_code", "unknown")}))
-              raise SystemExit(1)
-          status, result = request({
-              "token": ready["token"], "request_id": secrets.token_hex(16), "website": "",
-              "name": "AL-AQSA website delivery test", "email": "info@al-aqsa.eu",
-              "project": "Something else",
-              "message": "Automated delivery test while fixing the contact form. No customer enquiry or reply is required."
-          })
-          print(json.dumps({"stage": "send", "status": status, "ok": result.get("ok"),
-                            "error_code": result.get("error_code", "none")}))
-          PY
