@@ -40,7 +40,7 @@ for file in "${files[@]}"; do
 
   # TLS is mandatory and certificates are verified. Rename only after upload succeeds.
   # This replaces individual files without deleting other files on the hosting account.
-  curl --silent --show-error --fail --globoff \
+  curl --ipv4 --silent --show-error --fail --globoff \
     --ssl-reqd --tlsv1.2 --ftp-create-dirs \
     --connect-timeout 20 --max-time 120 \
     --retry 2 --retry-connrefused \

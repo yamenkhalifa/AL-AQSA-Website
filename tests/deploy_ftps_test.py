@@ -42,7 +42,7 @@ def main():
         assert len(calls) == 8
         published = []
         for args in calls:
-            assert "--ssl-reqd" in args and "--tlsv1.2" in args
+            assert "--ipv4" in args and "--ssl-reqd" in args and "--tlsv1.2" in args
             assert "--insecure" not in args
             assert not any(arg.startswith("DELE ") for arg in args)
             source = args[args.index("--upload-file") + 1]
