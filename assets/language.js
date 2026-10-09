@@ -273,6 +273,114 @@ const siteLanguages = [
     "dir": "rtl"
   },
   {
+    "code": "tr",
+    "name": "Turkish",
+    "nativeName": "Türkçe",
+    "dir": "ltr"
+  },
+  {
+    "code": "nl",
+    "name": "Dutch",
+    "nativeName": "Nederlands",
+    "dir": "ltr"
+  },
+  {
+    "code": "de",
+    "name": "German",
+    "nativeName": "Deutsch",
+    "dir": "ltr"
+  },
+  {
+    "code": "fr",
+    "name": "French",
+    "nativeName": "Français",
+    "dir": "ltr"
+  },
+  {
+    "code": "cs",
+    "name": "Czech",
+    "nativeName": "Čeština",
+    "dir": "ltr"
+  },
+  {
+    "code": "da",
+    "name": "Danish",
+    "nativeName": "Dansk",
+    "dir": "ltr"
+  },
+  {
+    "code": "fi",
+    "name": "Finnish",
+    "nativeName": "Suomi",
+    "dir": "ltr"
+  },
+  {
+    "code": "el",
+    "name": "Greek",
+    "nativeName": "Ελληνικά",
+    "dir": "ltr"
+  },
+  {
+    "code": "hu",
+    "name": "Hungarian",
+    "nativeName": "Magyar",
+    "dir": "ltr"
+  },
+  {
+    "code": "it",
+    "name": "Italian",
+    "nativeName": "Italiano",
+    "dir": "ltr"
+  },
+  {
+    "code": "nb",
+    "name": "Norwegian",
+    "nativeName": "Norsk bokmål",
+    "dir": "ltr"
+  },
+  {
+    "code": "pl",
+    "name": "Polish",
+    "nativeName": "Polski",
+    "dir": "ltr"
+  },
+  {
+    "code": "pt",
+    "name": "Portuguese",
+    "nativeName": "Português",
+    "dir": "ltr"
+  },
+  {
+    "code": "ro",
+    "name": "Romanian",
+    "nativeName": "Română",
+    "dir": "ltr"
+  },
+  {
+    "code": "ru",
+    "name": "Russian",
+    "nativeName": "Русский",
+    "dir": "ltr"
+  },
+  {
+    "code": "es",
+    "name": "Spanish",
+    "nativeName": "Español",
+    "dir": "ltr"
+  },
+  {
+    "code": "sv",
+    "name": "Swedish",
+    "nativeName": "Svenska",
+    "dir": "ltr"
+  },
+  {
+    "code": "uk",
+    "name": "Ukrainian",
+    "nativeName": "Українська",
+    "dir": "ltr"
+  },
+  {
     "code": "am",
     "name": "Amharic",
     "nativeName": "አማርኛ",
@@ -291,51 +399,9 @@ const siteLanguages = [
     "dir": "ltr"
   },
   {
-    "code": "cs",
-    "name": "Czech",
-    "nativeName": "Čeština",
-    "dir": "ltr"
-  },
-  {
-    "code": "da",
-    "name": "Danish",
-    "nativeName": "Dansk",
-    "dir": "ltr"
-  },
-  {
-    "code": "nl",
-    "name": "Dutch",
-    "nativeName": "Nederlands",
-    "dir": "ltr"
-  },
-  {
     "code": "fil",
     "name": "Filipino",
     "nativeName": "Filipino",
-    "dir": "ltr"
-  },
-  {
-    "code": "fi",
-    "name": "Finnish",
-    "nativeName": "Suomi",
-    "dir": "ltr"
-  },
-  {
-    "code": "fr",
-    "name": "French",
-    "nativeName": "Français",
-    "dir": "ltr"
-  },
-  {
-    "code": "de",
-    "name": "German",
-    "nativeName": "Deutsch",
-    "dir": "ltr"
-  },
-  {
-    "code": "el",
-    "name": "Greek",
-    "nativeName": "Ελληνικά",
     "dir": "ltr"
   },
   {
@@ -351,21 +417,9 @@ const siteLanguages = [
     "dir": "ltr"
   },
   {
-    "code": "hu",
-    "name": "Hungarian",
-    "nativeName": "Magyar",
-    "dir": "ltr"
-  },
-  {
     "code": "id",
     "name": "Indonesian",
     "nativeName": "Bahasa Indonesia",
-    "dir": "ltr"
-  },
-  {
-    "code": "it",
-    "name": "Italian",
-    "nativeName": "Italiano",
     "dir": "ltr"
   },
   {
@@ -393,45 +447,15 @@ const siteLanguages = [
     "dir": "ltr"
   },
   {
-    "code": "nb",
-    "name": "Norwegian",
-    "nativeName": "Norsk bokmål",
-    "dir": "ltr"
-  },
-  {
     "code": "fa",
     "name": "Persian",
     "nativeName": "فارسی",
     "dir": "rtl"
   },
   {
-    "code": "pl",
-    "name": "Polish",
-    "nativeName": "Polski",
-    "dir": "ltr"
-  },
-  {
-    "code": "pt",
-    "name": "Portuguese",
-    "nativeName": "Português",
-    "dir": "ltr"
-  },
-  {
     "code": "pa",
     "name": "Punjabi",
     "nativeName": "ਪੰਜਾਬੀ",
-    "dir": "ltr"
-  },
-  {
-    "code": "ro",
-    "name": "Romanian",
-    "nativeName": "Română",
-    "dir": "ltr"
-  },
-  {
-    "code": "ru",
-    "name": "Russian",
-    "nativeName": "Русский",
     "dir": "ltr"
   },
   {
@@ -441,21 +465,9 @@ const siteLanguages = [
     "dir": "ltr"
   },
   {
-    "code": "es",
-    "name": "Spanish",
-    "nativeName": "Español",
-    "dir": "ltr"
-  },
-  {
     "code": "sw",
     "name": "Swahili",
     "nativeName": "Kiswahili",
-    "dir": "ltr"
-  },
-  {
-    "code": "sv",
-    "name": "Swedish",
-    "nativeName": "Svenska",
     "dir": "ltr"
   },
   {
@@ -474,18 +486,6 @@ const siteLanguages = [
     "code": "th",
     "name": "Thai",
     "nativeName": "ไทย",
-    "dir": "ltr"
-  },
-  {
-    "code": "tr",
-    "name": "Turkish",
-    "nativeName": "Türkçe",
-    "dir": "ltr"
-  },
-  {
-    "code": "uk",
-    "name": "Ukrainian",
-    "nativeName": "Українська",
     "dir": "ltr"
   },
   {
