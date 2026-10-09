@@ -1,6 +1,6 @@
 # AL-AQSA Website
 
-Marketing website for AL-AQSA: Mendix consulting, web applications, digital-product delivery and website development. The enquiry form sends directly to **info@al-aqsa.eu** through the PHP-enabled MijnDomein Webhosting Plus server.
+Marketing website for AL-AQSA: Mendix consulting, web applications, digital-product delivery and website development. The enquiry form sends to **info@al-aqsa.eu** through the PHP-enabled MijnDomein Webhosting Plus server. Configure authenticated SMTP using the mailbox password as a GitHub Actions secret.
 
 ## Publish on MijnDomein / Plesk
 
@@ -11,9 +11,9 @@ Marketing website for AL-AQSA: Mendix consulting, web applications, digital-prod
 5. Check that `info@al-aqsa.eu` exists and can receive mail. Open `https://al-aqsa.eu/contact.php`: it should return JSON with `ok: true`. Never serve this PHP file on a static-only host.
 6. Submit one test enquiry from the live website. Confirm it arrives in the inbox (also check spam), contains the name, email, selected service and message, and that **Reply** addresses the visitor. A success message means the hosting mail system accepted the email, not that inbox delivery has been confirmed.
 
-There is no build step, third-party form activation or mailbox password to put in GitHub. If a CDN or page cache is enabled, exclude `contact.php` from caching and purge the updated HTML, CSS and JavaScript. Keep the same-origin form URL.
+There is no website build step or third-party form activation. Store the mailbox password only in the `SMTP_PASSWORD` GitHub Actions secret; never commit it to the repository. If a CDN or page cache is enabled, exclude `contact.php` from caching and purge the updated HTML, CSS and JavaScript. Keep the same-origin form URL.
 
-**Hosting requirement:** the full form requires PHP with sessions, a writable system temporary directory and a working `mail()` transport. GitHub Pages and static Cloudflare Pages can serve the design but cannot run this handler. Pointing the website there would require a different backend.
+**Hosting requirement:** the full form requires PHP with sessions, OpenSSL, a writable system temporary directory and an authenticated SMTP connection. The legacy PHP `mail()` path remains available when SMTP is not configured. GitHub Pages and static Cloudflare Pages can serve the design but cannot run this handler. Pointing the website there would require a different backend.
 
 ## Automatic updates from GitHub using FTPS
 
@@ -23,20 +23,37 @@ One-time setup:
 
 1. In Plesk, click **Connection Info** under **Files & Databases** to find the FTP host and system/FTP username. Use a DNS hostname matching the FTP server certificate rather than a Cloudflare-proxied domain. Ask MijnDomein for the FTP hostname if Connection Info supplies only an IP address. The FTP password is the FTP account password, not the MijnDomein or email password.
 2. Back up the current website, confirm the FTP account can access `httpdocs`, and check that an old `index.php` will not override this site's `index.html`. A dedicated FTP account restricted to this website is preferable if available; the current script expects `httpdocs` immediately beneath its login directory.
-3. In the GitHub repository, go to **Settings → Secrets and variables → Actions → New repository secret** and add these three values:
+3. In the GitHub repository, go to **Settings → Secrets and variables → Actions → New repository secret** and add the FTP credentials and mailbox password:
 
 | Secret | Value |
 |---|---|
 | `FTP_SERVER` | Plain FTP server hostname, without `ftp://`, a port or a path |
 | `FTP_USERNAME` | FTP account username |
 | `FTP_PASSWORD` | FTP account password |
+| `SMTP_PASSWORD` | Password for the **info@al-aqsa.eu mailbox**, separate from the FTP password |
 
 4. Merge the deployment workflow into `main`. That merge can start the first deployment if the secrets are already configured. To start one manually after setup, open **Actions → Deploy website to MijnDomein → Run workflow** and select `main`.
 5. Wait for a successful run, open the live website, and test delivery to `info@al-aqsa.eu`. Future website changes merged into `main` trigger another deployment automatically. Editing only this README does not deploy the site.
 
-The workflow uploads the seven root website files and regular files under `assets`, keeping the homepage until last. Tests, documentation, scripts and repository metadata are not uploaded. Each file is uploaded under a temporary name and renamed into place after its transfer succeeds. Other remote files are not deleted; removed or renamed assets need separate cleanup. Deployment runs do not overlap. The first connection to the actual hosting account still needs verification; no credentials are stored in this repository.
+The workflow uploads the seven root website files and regular files under `assets`, keeping the homepage until last. Tests, documentation, scripts and repository metadata are not uploaded. Each file is uploaded under a temporary name and renamed into place after its transfer succeeds. Other remote files are not deleted; removed or renamed assets need separate cleanup. Deployment runs do not overlap. No credentials are committed to this repository.
 
 If a run reports a certificate or login failure, check the FTP hostname and credentials. Do not disable TLS or certificate verification. A failed run stops further uploads and is visible in the Actions tab.
+
+
+## Authenticated enquiry email
+
+The live host rejected the legacy PHP mail transport. MijnDomein recommends PHPMailer over authenticated SMTP: `mail.mijndomein.nl`, port `587`, STARTTLS.
+
+1. Confirm the **info@al-aqsa.eu mailbox** exists and that its password works in MijnDomein webmail.
+2. Add that mailbox password as the **SMTP_PASSWORD** secret in **GitHub → Settings → Secrets and variables → Actions**.
+3. Run **Actions → Deploy website to MijnDomein → Run workflow** on `main`.
+4. Submit one enquiry and confirm it arrives in the inbox or spam folder.
+
+When the secret is present, the deployment uploads PHPMailer 7.1.1 and a generated mail configuration into `private/alaqsa-enquiry`, beside `httpdocs`. The handler reads that private configuration. The password is never uploaded inside `httpdocs` or included in the repository; the configuration is renamed into place with owner-only read/write permissions. TLS certificates are verified and SMTP debug output is disabled. Sender and recipient stay fixed to info@al-aqsa.eu, with the visitor in Reply-To.
+
+When the SMTP secret is absent, deployment preserves any existing private configuration. To revoke or disable SMTP access, change the mailbox password and remove the private `mail.json` file in Plesk. A failed SMTP send is reported as failure, with no fallback that could duplicate an accepted message.
+
+PHPMailer is vendored unchanged from its official v7.1.1 release with its LGPL 2.1 license. Update the vendored version and run the SMTP tests when applying future security updates.
 
 ## How enquiries work
 
@@ -48,9 +65,9 @@ If a run reports a certificate or login failure, check the FTP hostname and cred
 
 ## If emails do not arrive
 
-Check the inbox and spam folder first. If the form shows an error, check Plesk's PHP logs, PHP sessions, temporary-directory permissions and whether PHP `mail()` is enabled. If the form succeeds but the inbox remains empty, ask MijnDomein to check outgoing mail delivery, the domain's sender authentication and the destination mailbox.
+Check the inbox and spam folder first. If the form shows an error, check the SMTP secret, mailbox login, Plesk's PHP logs, PHP sessions and temporary-directory permissions. If the form succeeds but the inbox remains empty, ask MijnDomein to check outgoing mail delivery, the domain's sender authentication and the destination mailbox.
 
-MijnDomein documents PHP mail as the default form transport and recommends authenticated SMTP for more reliable delivery. If the host requires SMTP, the handler must be adapted to a maintained mail library such as PHPMailer with `mail.mijndomein.nl`, port `587`, STARTTLS and a mailbox login stored privately on the server. Do not paste mailbox credentials into public code, HTML or JavaScript.
+MijnDomein documents PHP mail as the default form transport and recommends authenticated SMTP for more reliable delivery. The handler uses PHPMailer with `mail.mijndomein.nl`, port `587`, STARTTLS when its private configuration is present. Do not paste mailbox credentials into public code, HTML or JavaScript.
 
 Official hosting guidance:
 
@@ -82,9 +99,10 @@ php -l contact.php
 node --check script.js
 node --check assets/language.js
 python3 tests/contact_form_test.py
+python3 tests/contact_smtp_test.py
 node --test tests/contact_ui_test.cjs
 node --test tests/language_test.cjs
 python3 tests/deploy_ftps_test.py
 ```
 
-The backend test starts a local PHP server with a fake mail transport; it never sends real email. Inbox delivery must still be verified after deployment on MijnDomein.
+The backend tests use a local PHP server with fake mail transports. The SMTP test also uses a local TLS server, checks authentication failures and rejects an untrusted certificate. OpenSSL is required. Tests never send real email. Inbox delivery must still be verified after deployment on MijnDomein.
