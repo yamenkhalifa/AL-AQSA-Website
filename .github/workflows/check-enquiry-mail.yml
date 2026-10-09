@@ -1,0 +1,32 @@
+name: Check enquiry email
+on:
+  push:
+    branches: [setup/authenticated-enquiry-mail]
+  pull_request:
+    branches: [main]
+    paths:
+      - contact.php
+      - scripts/deploy-ftps.sh
+      - tests/**
+      - vendor/phpmailer/**
+      - .github/workflows/check-enquiry-mail.yml
+permissions:
+  contents: read
+jobs:
+  check:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    steps:
+      - name: Check out proposed changes
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+        with:
+          persist-credentials: false
+      - name: Validate email delivery using local fake transports
+        run: |
+          php -l contact.php
+          node --check script.js
+          python3 tests/contact_form_test.py
+          python3 tests/contact_smtp_test.py
+          node --test tests/contact_ui_test.cjs
+          python3 tests/deploy_ftps_test.py
+          bash -n scripts/deploy-ftps.sh
