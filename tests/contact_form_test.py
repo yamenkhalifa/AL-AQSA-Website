@@ -124,7 +124,7 @@ def main():
             (temp / "fail-mail").touch()
             retry = payload(ready["token"])
             code, body, _ = request(retry)
-            assert code == 503 and body["ok"] is False
+            assert code == 503 and body["ok"] is False and body["error_code"] == "mail_rejected"
             assert len(list(temp.glob("*.eml"))) == 1
             (temp / "fail-mail").unlink()
             assert request(retry)[1]["ok"]

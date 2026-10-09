@@ -89,6 +89,7 @@ function reserveSend(): int
     }
 }
 
+$failureCode = 'server_error';
 try {
     $method = $_SERVER['REQUEST_METHOD'] ?? '';
     if (!in_array($method, ['GET', 'POST'], true)) {
@@ -121,6 +122,7 @@ try {
         }
     }
 
+    $failureCode = 'session_unavailable';
     session_name('alaqsa_enquiry');
     $secure = !empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off';
     if (!session_start([
@@ -142,6 +144,7 @@ try {
         }
         respond(200, true, 'Ready to send your enquiry.', ['token' => $_SESSION['token']]);
     }
+    $failureCode = 'server_error';
     $token = field('token');
     if (!isset($_SESSION['token'], $_SESSION['token_at']) || $_SESSION['token_at'] < time() - 3600
         || !hash_equals($_SESSION['token'], $token)) {
@@ -188,14 +191,17 @@ try {
         }
         respond(200, true, ENQUIRY_SUCCESS);
     }
+    $failureCode = 'storage_unavailable';
     $retryAfter = reserveSend();
     if ($retryAfter > 0) {
         header('Retry-After: ' . $retryAfter);
         respond(429, false, 'The form has received too many enquiries. Please try again later, or email info@al-aqsa.eu.');
     }
+    $failureCode = 'mail_unavailable';
     if (!function_exists('mail')) {
         throw new RuntimeException('Mail transport is unavailable');
     }
+    $failureCode = 'server_error';
 
     $body = implode("\r\n", [
         'New enquiry from the AL-AQSA website', '',
@@ -211,6 +217,7 @@ try {
         'Content-Transfer-Encoding' => 'base64',
     ];
     // All destination, sender and envelope addresses are fixed, never supplied by visitors.
+    $failureCode = 'mail_rejected';
     $accepted = @mail(ENQUIRY_MAILBOX, 'AL-AQSA enquiry: ' . $project,
         chunk_split(base64_encode($body), 76, "\r\n"), $headers, '-f' . ENQUIRY_MAILBOX);
     if (!$accepted) {
@@ -220,6 +227,6 @@ try {
     respond(200, true, ENQUIRY_SUCCESS);
 } catch (Throwable $error) {
     // Never log the submitted content, email address or session token.
-    error_log('AL-AQSA enquiry: server could not process the request (' . get_class($error) . ').');
-    respond(503, false, ENQUIRY_UNAVAILABLE);
+    error_log('AL-AQSA enquiry: ' . $failureCode . ' (' . get_class($error) . ').');
+    respond(503, false, ENQUIRY_UNAVAILABLE, ['error_code' => $failureCode]);
 }
