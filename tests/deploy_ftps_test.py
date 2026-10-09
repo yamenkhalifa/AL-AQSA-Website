@@ -1,0 +1,75 @@
+"""Check the upload boundary with a fake curl executable. Never connects to hosting."""
+import json
+import os
+from pathlib import Path
+import shutil
+import subprocess
+import sys
+import tempfile
+from urllib.parse import unquote, urlparse
+
+
+def main():
+    root = Path(__file__).resolve().parents[1]
+    with tempfile.TemporaryDirectory(prefix="alaqsa-deploy-test-") as folder:
+        temp = Path(folder)
+        project = temp / "project"
+        project.mkdir()
+        shutil.copytree(root / "scripts", project / "scripts")
+        shutil.copytree(root / "assets", project / "assets")
+        for filename in ["contact.php", "privacy.html", "robots.txt", "sitemap.xml",
+                         "styles.css", "script.js", "index.html"]:
+            shutil.copy(root / filename, project / filename)
+        (project / "unrelated-private.txt").write_text("Must not be published")
+        log = temp / "calls.jsonl"
+        bin_dir = temp / "bin"
+        bin_dir.mkdir()
+        mock = bin_dir / "curl"
+        mock.write_text(f"#!{sys.executable}\n"
+                        "import json,os,sys\n"
+                        "with open(os.environ['TEST_LOG'],'a') as out:\n"
+                        " out.write(json.dumps(sys.argv[1:])+'\\n')\n"
+                        "sys.exit(7 if os.environ.get('TEST_FAIL') else 0)\n")
+        mock.chmod(0o755)
+        env = {**os.environ, "PATH": str(bin_dir) + os.pathsep + os.environ["PATH"],
+               "TEST_LOG": str(log), "FTP_SERVER": "hosting.example.com",
+               "FTP_USERNAME": "test-user", "FTP_PASSWORD": "test-password",
+               "GITHUB_SHA": "a" * 40}
+        command = ["bash", str(project / "scripts/deploy-ftps.sh")]
+        result = subprocess.run(command, env=env, text=True, capture_output=True)
+        assert result.returncode == 0, result.stderr
+        calls = [json.loads(line) for line in log.read_text().splitlines()]
+        assert len(calls) == 8
+        published = []
+        for args in calls:
+            assert "--ssl-reqd" in args and "--tlsv1.2" in args
+            assert "--insecure" not in args
+            assert not any(arg.startswith("DELE ") for arg in args)
+            source = args[args.index("--upload-file") + 1]
+            published.append(source)
+            url = urlparse(args[-1])
+            assert url.hostname == env["FTP_SERVER"] and url.path.startswith("/httpdocs/")
+            name = Path(source).name
+            temporary = f".{name}.deploy-{env['GITHUB_SHA']}.tmp"
+            assert unquote(url.path).endswith("/" + temporary)
+            assert "-RNFR " + temporary in args and "-RNTO " + name in args
+        assert published[-1] == "index.html"
+        assert "unrelated-private.txt" not in published
+        assert env["FTP_PASSWORD"] not in result.stdout + result.stderr
+
+        log.unlink()
+        result = subprocess.run(command, env={**env, "TEST_FAIL": "1"}, text=True, capture_output=True)
+        assert result.returncode != 0 and len(log.read_text().splitlines()) == 1
+        log.unlink()
+        result = subprocess.run(command, env={**env, "FTP_PASSWORD": ""}, text=True, capture_output=True)
+        assert result.returncode != 0 and not log.exists()
+
+        (project / "contact.php").unlink()
+        result = subprocess.run(command, env=env, text=True, capture_output=True)
+        assert result.returncode != 0 and not log.exists()
+        print("PASS: only website files upload; TLS and post-upload renames required; homepage last")
+        print("PASS: upload failure, missing credentials and missing files stop publishing")
+
+
+if __name__ == "__main__":
+    main()

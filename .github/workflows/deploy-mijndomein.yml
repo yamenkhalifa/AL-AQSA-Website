@@ -1,0 +1,52 @@
+name: Deploy website to MijnDomein
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - index.html
+      - styles.css
+      - script.js
+      - contact.php
+      - privacy.html
+      - robots.txt
+      - sitemap.xml
+      - assets/**
+      - scripts/deploy-ftps.sh
+      - .github/workflows/deploy-mijndomein.yml
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+# Finish each upload before another run starts, avoiding overlapping deployments.
+concurrency:
+  group: mijndomein-production
+  cancel-in-progress: false
+
+jobs:
+  deploy:
+    if: github.ref == 'refs/heads/main'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    steps:
+      - name: Check out website
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
+        with:
+          persist-credentials: false
+
+      - name: Check website before uploading
+        run: |
+          php -l contact.php
+          node --check script.js
+          python3 tests/contact_form_test.py
+          node --test tests/contact_ui_test.cjs
+          python3 tests/deploy_ftps_test.py
+          bash -n scripts/deploy-ftps.sh
+
+      - name: Upload website using encrypted FTPS
+        env:
+          FTP_SERVER: ${{ secrets.FTP_SERVER }}
+          FTP_USERNAME: ${{ secrets.FTP_USERNAME }}
+          FTP_PASSWORD: ${{ secrets.FTP_PASSWORD }}
+        run: bash scripts/deploy-ftps.sh

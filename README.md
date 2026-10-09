@@ -15,6 +15,29 @@ There is no build step, third-party form activation or mailbox password to put i
 
 **Hosting requirement:** the full form requires PHP with sessions, a writable system temporary directory and a working `mail()` transport. GitHub Pages and static Cloudflare Pages can serve the design but cannot run this handler. Pointing the website there would require a different backend.
 
+## Automatic updates from GitHub using FTPS
+
+If Plesk has no Git option, the workflow in `.github/workflows/deploy-mijndomein.yml` publishes website changes from `main` to the hosting account's `httpdocs` directory. It checks the code first, then uploads through explicit FTPS on port 21 with certificate verification and encrypted data transfers.
+
+One-time setup:
+
+1. In Plesk, click **Connection Info** under **Files & Databases** to find the FTP host and system/FTP username. Use a DNS hostname matching the FTP server certificate rather than a Cloudflare-proxied domain. Ask MijnDomein for the FTP hostname if Connection Info supplies only an IP address. The FTP password is the FTP account password, not the MijnDomein or email password.
+2. Back up the current website, confirm the FTP account can access `httpdocs`, and check that an old `index.php` will not override this site's `index.html`. A dedicated FTP account restricted to this website is preferable if available; the current script expects `httpdocs` immediately beneath its login directory.
+3. In the GitHub repository, go to **Settings → Secrets and variables → Actions → New repository secret** and add these three values:
+
+| Secret | Value |
+|---|---|
+| `FTP_SERVER` | Plain FTP server hostname, without `ftp://`, a port or a path |
+| `FTP_USERNAME` | FTP account username |
+| `FTP_PASSWORD` | FTP account password |
+
+4. Merge the deployment workflow into `main`. That merge can start the first deployment if the secrets are already configured. To start one manually after setup, open **Actions → Deploy website to MijnDomein → Run workflow** and select `main`.
+5. Wait for a successful run, open the live website, and test delivery to `info@al-aqsa.eu`. Future website changes merged into `main` trigger another deployment automatically. Editing only this README does not deploy the site.
+
+The workflow uploads the seven root website files and regular files under `assets`, keeping the homepage until last. Tests, documentation, scripts and repository metadata are not uploaded. Each file is uploaded under a temporary name and renamed into place after its transfer succeeds. Other remote files are not deleted; removed or renamed assets need separate cleanup. Deployment runs do not overlap. The first connection to the actual hosting account still needs verification; no credentials are stored in this repository.
+
+If a run reports a certificate or login failure, check the FTP hostname and credentials. Do not disable TLS or certificate verification. A failed run stops further uploads and is visible in the Actions tab.
+
 ## How enquiries work
 
 - The browser requests a same-origin, session-bound security token, then posts the form to `contact.php` over HTTPS.
@@ -52,6 +75,7 @@ php -l contact.php
 node --check script.js
 python3 tests/contact_form_test.py
 node --test tests/contact_ui_test.cjs
+python3 tests/deploy_ftps_test.py
 ```
 
 The backend test starts a local PHP server with a fake mail transport; it never sends real email. Inbox delivery must still be verified after deployment on MijnDomein.
