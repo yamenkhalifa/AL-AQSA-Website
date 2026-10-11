@@ -26,7 +26,7 @@ function setup(fetch, language = null) {
     querySelectorAll: () => [],
   };
   const sandbox = {
-    document, window: { addEventListener() {}, setTimeout, clearTimeout },
+    document, window: { addEventListener() {}, matchMedia: () => ({ addEventListener() {} }), setTimeout, clearTimeout },
     IntersectionObserver: class { observe() {} },
     FormData: class extends Map { constructor() { super(Object.entries(fields)); } },
     crypto: webcrypto, Uint8Array, AbortController, fetch,

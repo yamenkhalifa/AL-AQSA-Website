@@ -29,20 +29,32 @@ menuToggle?.addEventListener('click', () => {
 
 menu?.querySelectorAll('a').forEach((link) => link.addEventListener('click', closeMenu));
 
+const mobileLayout = window.matchMedia('(max-width: 820px)');
+mobileLayout.addEventListener('change', (event) => {
+  if (!event.matches) closeMenu();
+});
+
 window.addEventListener('scroll', () => {
   header?.classList.toggle('is-stuck', window.scrollY > 16);
 }, { passive: true });
 
-const revealObserver = new IntersectionObserver((entries) => {
-  entries.forEach((entry) => {
-    if (entry.isIntersecting) {
-      entry.target.classList.add('is-visible');
-      revealObserver.unobserve(entry.target);
-    }
-  });
-}, { threshold: 0.12 });
+// Content stays visible unless an available observer takes responsibility for it.
+if (typeof IntersectionObserver === 'function') {
+  const revealObserver = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        entry.target.classList.remove('reveal-pending');
+        entry.target.classList.add('is-visible');
+        revealObserver.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.12 });
 
-document.querySelectorAll('.reveal').forEach((item) => revealObserver.observe(item));
+  document.querySelectorAll('.reveal').forEach((item) => {
+    revealObserver.observe(item);
+    item.classList.add('reveal-pending');
+  });
+}
 
 const year = document.querySelector('[data-year]');
 if (year) year.textContent = new Date().getFullYear();
