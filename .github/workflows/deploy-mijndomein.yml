@@ -21,6 +21,7 @@ permissions:
   contents: read
 
 # Finish each upload before another run starts, avoiding overlapping deployments.
+# Keep the pre-deploy checks aligned with the browser stubs used by the UI tests.
 concurrency:
   group: mijndomein-production
   cancel-in-progress: false
