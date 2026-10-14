@@ -20,7 +20,7 @@ def main():
         shutil.copytree(root / "assets", project / "assets")
         shutil.copytree(root / "vendor", project / "vendor")
         for filename in ["contact.php", "privacy.html", "robots.txt", "sitemap.xml",
-                         "styles.css", "script.js", "index.html"]:
+                         "styles.css", "script.js", "index.html", "services.html", "websites.html", "applications.html", "mendix.html", "projects.html", "sahiony-group.html", "about.html", "contact.html"]:
             shutil.copy(root / filename, project / filename)
         (project / "unrelated-private.txt").write_text("Must not be published")
         log = temp / "calls.jsonl"
@@ -62,7 +62,7 @@ def main():
         result = subprocess.run(command, env=env, text=True, capture_output=True)
         assert result.returncode == 0, result.stderr
         calls = [json.loads(line) for line in log.read_text().splitlines()]
-        assert len(calls) == 7 + sum(item.is_file() for item in (root / "assets").rglob("*"))
+        assert len(calls) == 15 + sum(item.is_file() for item in (root / "assets").rglob("*"))
         published = []
         for args in calls:
             assert "--ipv4" in args and "--ssl-reqd" in args and "--tlsv1.2" in args

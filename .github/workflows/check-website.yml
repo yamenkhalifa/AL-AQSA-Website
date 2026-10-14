@@ -1,0 +1,25 @@
+name: Check website
+on:
+  pull_request:
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  checks:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+        with:
+          persist-credentials: false
+      - name: Validate website without production credentials
+        run: |
+          php -l contact.php
+          node --check script.js
+          node --check assets/language.js
+          node --check assets/language-controller.js
+          node --test tests/contact_ui_test.cjs tests/language_test.cjs
+          python3 tests/site_structure_test.py
+          python3 tests/contact_form_test.py
+          python3 tests/contact_smtp_test.py
+          python3 tests/deploy_ftps_test.py
+          bash -n scripts/deploy-ftps.sh

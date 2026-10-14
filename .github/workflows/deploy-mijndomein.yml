@@ -4,7 +4,7 @@ on:
   push:
     branches: [main]
     paths:
-      - index.html
+      - '*.html'
       - styles.css
       - script.js
       - contact.php
@@ -49,6 +49,7 @@ jobs:
           node --test tests/language_test.cjs
           python3 tests/deploy_ftps_test.py
           bash -n scripts/deploy-ftps.sh
+          python3 tests/site_structure_test.py
 
       - name: Upload website using encrypted FTPS
         env:
