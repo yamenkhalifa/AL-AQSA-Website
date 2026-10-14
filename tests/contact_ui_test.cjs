@@ -20,7 +20,15 @@ function setup(fetch, language = null) {
     reportValidity: () => true, setAttribute() {}, removeAttribute() {},
     reset: () => { resets++; },
   };
+  const inertNode = () => ({
+    className: '', innerHTML: '', textContent: '', dataset: {}, style: {},
+    classList: { add() {}, remove() {}, toggle() {} },
+    append() {}, appendChild() {}, setAttribute() {}, replaceWith() {},
+    querySelector: () => null, querySelectorAll: () => [],
+  });
   const document = {
+    head: { append() {}, appendChild() {} },
+    createElement: () => inertNode(),
     querySelector: (selector) => selector === '[data-contact-form]' ? form
       : selector === '[data-year]' ? {} : null,
     querySelectorAll: () => [],
