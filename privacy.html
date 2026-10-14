@@ -1,50 +1,95 @@
 <!doctype html>
 <html lang="en" dir="ltr">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="description" content="AL-AQSA privacy notice." data-i18n-content="privacy.meta" />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Arabic:wght@400;500;600;700;800&family=DM+Mono:wght@400;500&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
-    <link rel="stylesheet" href="styles.css" />
-    <title data-i18n="privacy.title">Privacy — AL-AQSA</title>
-    <style>
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta name="description" content="AL-AQSA privacy notice." data-i18n-content="privacy.meta" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Arabic:wght@400;500;600;700;800&family=DM+Mono:wght@400;500&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="styles.css" />
+<link rel="stylesheet" href="assets/redesign.css" />
+<title data-i18n="privacy.title">Privacy — AL-AQSA</title>
+<style>
       .policy-header{background:var(--ink);padding:28px 0}.policy-header .shell{display:flex;align-items:center;justify-content:space-between}.policy-header .brand{width:155px}.policy-header a{color:white}.policy{max-width:780px;padding-top:90px}.policy h1{font-size:clamp(44px,7vw,75px);color:var(--ink)}.policy h2{margin-top:45px;font-size:25px}.policy p,.policy li{color:var(--muted)}.policy li{margin:7px 0}.policy .updated{font-family:var(--mono);font-size:11px;text-transform:uppercase;letter-spacing:.08em;color:var(--purple)}
     </style>
-  </head>
-  <body>
-    <header class="policy-header"><div class="shell"><a class="brand" href="index.html"><img src="assets/al-aqsa-logo.png" alt="AL-AQSA" width="1176" height="259" /></a><div class="language-picker" data-language-picker hidden>
-          <button class="language-trigger" type="button" data-language-trigger aria-expanded="false" aria-controls="language-panel" aria-label="Language: English">
-            <svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="12" r="9"/><ellipse cx="12" cy="12" rx="4" ry="9"/><path d="M3 12h18"/></svg>
-            <bdi data-language-name lang="en">English</bdi><span aria-hidden="true">⌄</span>
-          </button>
-          <div class="language-panel" id="language-panel" data-language-panel hidden>
-            <input class="language-search" type="search" data-language-search role="combobox" aria-expanded="false" aria-controls="language-list" aria-autocomplete="list" aria-label="Search languages" placeholder="Search languages" autocomplete="off" dir="auto" />
-            <div class="language-list" id="language-list" data-language-list role="listbox" aria-label="Language"></div>
-            <p class="language-empty" data-language-empty hidden></p>
-          </div>
-          <p class="language-status" data-language-status role="status" aria-live="polite" aria-atomic="true"></p>
-        </div><a href="index.html" data-i18n="privacy.back">← Back to website</a></div></header>
-    <main class="shell policy section">
-      <p class="eyebrow eyebrow-dark" data-i18n="privacy.legal">Legal</p>
-      <h1 data-i18n="privacy.heading">Privacy notice</h1>
-      <p class="updated" data-i18n="privacy.updated">Last updated: 9 October 2026</p>
-      <p data-i18n="privacy.intro">AL-AQSA respects your privacy. This notice explains how personal information is handled when you contact us through this website.</p>
-      <h2 data-i18n="privacy.shared.title">Information you choose to share</h2>
-      <p data-i18n="privacy.shared.copy">When you contact AL-AQSA by email, phone or through the enquiry form, you may choose to provide your name, email address, phone number and project information. We use this information only to respond to your request and discuss a potential collaboration.</p>
-      <h2 data-i18n="privacy.site.title">How the website works</h2>
-      <p data-i18n="privacy.site.copy">The enquiry form securely submits your name, email address, selected service and message to this website’s server. The server sends the enquiry to info@al-aqsa.eu using our hosting provider, Mijndomein. Submissions are kept as email correspondence, not in a website database.</p>
-      <p data-i18n="privacy.security">The form uses a necessary session cookie for security and to prevent duplicate submissions. Temporary security records contain hashed network addresses, submission times and counters to limit spam; these are removed from the active records after one hour. Our hosting provider may also process technical access logs to operate and protect the website.</p>
-      <h2 data-i18n="privacy.retention.title">Sharing and retention</h2>
-      <p data-i18n="privacy.retention.copy">Your information is not sold. It is only shared when necessary to provide a requested service or when required by law. Contact details and correspondence are kept only as long as reasonably needed for communication, business administration or legal obligations.</p>
-      <h2 data-i18n="privacy.rights.title">Your rights</h2>
-      <p data-i18n="privacy.rights.copy">You can ask to access, correct or delete personal information held about you, subject to applicable legal obligations. To make a request, email <a class="inline-link" href="mailto:info@al-aqsa.eu">info@al-aqsa.eu</a>.</p>
-      <h2 data-i18n="privacy.contact.title">Contact</h2>
-      <p data-i18n="privacy.contact.copy">For questions about this notice or your data, contact AL-AQSA at <a class="inline-link" href="mailto:info@al-aqsa.eu">info@al-aqsa.eu</a>.</p>
-    </main>
-    <script src="assets/language.js"></script>
-    <script src="assets/language-controller.js"></script>
-    <script src="script.js"></script>
-  </body>
+</head>
+<body>
+<header class="site-header" data-header>
+<div class="shell nav-wrap">
+<a class="brand" href="index.html" aria-current="page" aria-label="AL-AQSA home" data-i18n-aria-label="brand.home">
+<img src="assets/al-aqsa-logo.png" alt="AL-AQSA" width="1176" height="259" />
+</a>
+<div class="language-picker" data-language-picker hidden>
+<button class="language-trigger" type="button" data-language-trigger aria-expanded="false" aria-controls="language-panel" aria-label="Language: English">
+<svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6">
+<circle cx="12" cy="12" r="9"/>
+<ellipse cx="12" cy="12" rx="4" ry="9"/>
+<path d="M3 12h18"/>
+</svg>
+<bdi data-language-name lang="en">English</bdi>
+<span aria-hidden="true">⌄</span>
+</button>
+<div class="language-panel" id="language-panel" data-language-panel hidden>
+<input class="language-search" type="search" data-language-search role="combobox" aria-expanded="false" aria-controls="language-list" aria-autocomplete="list" aria-label="Search languages" placeholder="Search languages" autocomplete="off" dir="auto" />
+<div class="language-list" id="language-list" data-language-list role="listbox" aria-label="Language">
+</div>
+<p class="language-empty" data-language-empty hidden>
+</p>
+</div>
+<p class="language-status" data-language-status role="status" aria-live="polite" aria-atomic="true">
+</p>
+</div>
+<button class="menu-toggle" type="button" aria-expanded="false" aria-controls="site-menu" data-menu-toggle>
+<span class="sr-only" data-i18n="menu.open">Open navigation</span>
+<span>
+</span>
+<span>
+</span>
+</button>
+<nav class="site-nav" id="site-menu" aria-label="Main navigation" data-i18n-aria-label="nav.label" data-menu>
+<a class="" href="services.html">
+<span class="" data-i18n="nav.services">Services</span>
+</a>
+<a class="" href="projects.html">
+<span class="" data-i18n="new.projects">Projects</span>
+</a>
+<a class="" href="about.html">
+<span class="" data-i18n="nav.about">About</span>
+</a>
+<a class="" href="contact.html">
+<span class="" data-i18n="new.contact">Contact</span>
+</a>
+<a class="nav-cta" href="contact.html">
+<span class="" data-i18n="new.discuss">Discuss a project</span>
+<span aria-hidden="true">↗</span>
+</a>
+</nav>
+</div>
+</header>
+<main class="shell policy section">
+<p class="eyebrow eyebrow-dark" data-i18n="privacy.legal">Legal</p>
+<h1 data-i18n="privacy.heading">Privacy notice</h1>
+<p class="updated" data-i18n="privacy.updated">Last updated: 9 October 2026</p>
+<p data-i18n="privacy.intro">AL-AQSA respects your privacy. This notice explains how personal information is handled when you contact us through this website.</p>
+<h2 data-i18n="privacy.shared.title">Information you choose to share</h2>
+<p data-i18n="privacy.shared.copy">When you contact AL-AQSA by email, phone or through the enquiry form, you may choose to provide your name, email address, phone number and project information. We use this information only to respond to your request and discuss a potential collaboration.</p>
+<h2 data-i18n="privacy.site.title">How the website works</h2>
+<p data-i18n="privacy.site.copy">The enquiry form securely submits your name, email address, selected service and message to this website’s server. The server sends the enquiry to info@al-aqsa.eu using our hosting provider, Mijndomein. Submissions are kept as email correspondence, not in a website database.</p>
+<p data-i18n="privacy.security">The form uses a necessary session cookie for security and to prevent duplicate submissions. Temporary security records contain hashed network addresses, submission times and counters to limit spam; these are removed from the active records after one hour. Our hosting provider may also process technical access logs to operate and protect the website.</p>
+<h2 data-i18n="privacy.retention.title">Sharing and retention</h2>
+<p data-i18n="privacy.retention.copy">Your information is not sold. It is only shared when necessary to provide a requested service or when required by law. Contact details and correspondence are kept only as long as reasonably needed for communication, business administration or legal obligations.</p>
+<h2 data-i18n="privacy.rights.title">Your rights</h2>
+<p data-i18n="privacy.rights.copy">You can ask to access, correct or delete personal information held about you, subject to applicable legal obligations. To make a request, email <a class="inline-link" href="mailto:info@al-aqsa.eu">info@al-aqsa.eu</a>.</p>
+<h2 data-i18n="privacy.contact.title">Contact</h2>
+<p data-i18n="privacy.contact.copy">For questions about this notice or your data, contact AL-AQSA at <a class="inline-link" href="mailto:info@al-aqsa.eu">info@al-aqsa.eu</a>.</p>
+</main>
+<script src="assets/language.js">
+</script>
+<script src="assets/language-controller.js">
+</script>
+<script src="script.js">
+</script>
+</body>
 </html>
+

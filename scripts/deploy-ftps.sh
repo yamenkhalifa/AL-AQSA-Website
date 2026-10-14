@@ -21,7 +21,7 @@ files=()
 while IFS= read -r -d '' file; do
   files+=("$file")
 done < <(find assets -type f -print0 | sort -z)
-files+=(contact.php privacy.html robots.txt sitemap.xml styles.css script.js index.html)
+files+=(contact.php privacy.html services.html websites.html applications.html mendix.html projects.html sahiony-group.html about.html contact.html robots.txt sitemap.xml styles.css script.js index.html)
 private_files=(Exception.php SMTP.php PHPMailer.php LICENSE)
 
 for file in "${files[@]}"; do
