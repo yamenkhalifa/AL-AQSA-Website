@@ -1,6 +1,11 @@
 const header = document.querySelector('[data-header]');
 const menuToggle = document.querySelector('[data-menu-toggle]');
 const menu = document.querySelector('[data-menu]');
+const setMenuBackgroundInert = (inert) => {
+  document.querySelectorAll('main, .site-footer, .brand, [data-language-picker]').forEach((element) => {
+    element.inert = inert;
+  });
+};
 
 const renderMenuLabel = () => {
   const label = menuToggle?.querySelector('.sr-only');
@@ -16,6 +21,7 @@ const closeMenu = () => {
   menuToggle.setAttribute('aria-expanded', 'false');
   menu.classList.remove('is-open');
   document.body.classList.remove('menu-open');
+  setMenuBackgroundInert(false);
   renderMenuLabel();
 };
 
@@ -24,19 +30,38 @@ menuToggle?.addEventListener('click', () => {
   menuToggle.setAttribute('aria-expanded', String(!isOpen));
   menu?.classList.toggle('is-open', !isOpen);
   document.body.classList.toggle('menu-open', !isOpen);
+  setMenuBackgroundInert(!isOpen);
   renderMenuLabel();
+  if (!isOpen) menu?.querySelector('a')?.focus();
 });
 
 menu?.querySelectorAll('a').forEach((link) => link.addEventListener('click', closeMenu));
 window.addEventListener('keydown', (event) => {
-  if (event.key === 'Escape' && menuToggle?.getAttribute('aria-expanded') === 'true') {
+  if (menuToggle?.getAttribute('aria-expanded') !== 'true') return;
+  if (event.key === 'Escape') {
+    event.preventDefault();
     closeMenu(); menuToggle.focus();
+  }
+  if (event.key === 'Tab') {
+    // Keep the overlay keyboard cycle within its links and close button.
+    const links = [...menu.querySelectorAll('a[href]')];
+    const first = menuToggle;
+    const last = links.at(-1) || first;
+    if (event.shiftKey && document.activeElement === first) {
+      event.preventDefault(); last.focus();
+    } else if (!event.shiftKey && document.activeElement === last) {
+      event.preventDefault(); first.focus();
+    }
   }
 });
 
 const mobileLayout = window.matchMedia('(max-width: 820px)');
 mobileLayout.addEventListener('change', (event) => {
-  if (!event.matches) closeMenu();
+  if (!event.matches) {
+    const toggleFocused = document.activeElement === menuToggle;
+    closeMenu();
+    if (toggleFocused) menu?.querySelector('a')?.focus();
+  }
 });
 
 window.addEventListener('scroll', () => {
@@ -67,6 +92,16 @@ if (year) year.textContent = new Date().getFullYear();
 const contactForm = document.querySelector('[data-contact-form]');
 
 if (contactForm) {
+  const services = {
+    websites: 'Website design & development',
+    applications: 'Web application or PWA',
+    mendix: 'Mendix consulting',
+  };
+  const selectedService = new URLSearchParams(window.location?.search || '').get('service');
+  const serviceField = contactForm.querySelector('select[name="project"]');
+  if (serviceField && Object.hasOwn(services, selectedService) && !serviceField.value) {
+    serviceField.value = services[selectedService];
+  }
   const submitButton = contactForm.querySelector('button[type="submit"]');
   const status = contactForm.querySelector('[data-form-status]');
   const buttonContent = submitButton.innerHTML;

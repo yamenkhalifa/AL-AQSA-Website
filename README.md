@@ -6,7 +6,7 @@ Marketing website for AL-AQSA: Mendix consulting, web applications, digital-prod
 
 1. Download the repository as a ZIP from GitHub (**Code → Download ZIP**) and extract it.
 2. Open MijnDomein → **al-aqsa.eu → Webhosting → Beheren** to open Plesk. Back up the current website files before replacing them.
-3. In Plesk **Files / Bestanden**, open the domain's document root (usually `httpdocs`). Upload `index.html`, `styles.css`, `script.js`, `contact.php`, `privacy.html`, `robots.txt`, `sitemap.xml` and the `assets` folder **into that folder**, not inside another repository folder. Keep unrelated files and existing server settings.
+3. In Plesk **Files / Bestanden**, open the domain's document root (usually `httpdocs`). Upload all ten root HTML pages, `styles.css`, `script.js`, `contact.php`, `robots.txt`, `sitemap.xml` and the `assets` folder **into that folder**, not inside another repository folder. Keep unrelated files and existing server settings.
 4. Enable PHP for the domain using a supported PHP 8.x version. Confirm HTTPS is enabled and the home page uses this `index.html`; an old `index.php` may otherwise take priority. Back up or rename the old entry page only when replacing it with this site.
 5. Check that `info@al-aqsa.eu` exists and can receive mail. Open `https://al-aqsa.eu/contact.php`: it should return JSON with `ok: true`. Never serve this PHP file on a static-only host.
 6. Submit one test enquiry from the live website. Confirm it arrives in the inbox (also check spam), contains the name, email, selected service and message, and that **Reply** addresses the visitor. A success message means the hosting mail system accepted the email, not that inbox delivery has been confirmed.
@@ -35,7 +35,7 @@ One-time setup:
 4. Merge the deployment workflow into `main`. That merge can start the first deployment if the secrets are already configured. To start one manually after setup, open **Actions → Deploy website to MijnDomein → Run workflow** and select `main`.
 5. Wait for a successful run, open the live website, and test delivery to `info@al-aqsa.eu`. Future website changes merged into `main` trigger another deployment automatically. Editing only this README does not deploy the site.
 
-The workflow uploads the seven root website files and regular files under `assets`, keeping the homepage until last. Tests, documentation, scripts and repository metadata are not uploaded. Each file is uploaded under a temporary name and renamed into place after its transfer succeeds. Other remote files are not deleted; removed or renamed assets need separate cleanup. Deployment runs do not overlap. No credentials are committed to this repository.
+The workflow uploads the root website files in its allowlist (including all ten HTML pages) and regular files under `assets`, keeping the homepage until last. Tests, documentation, scripts and repository metadata are not uploaded. Each file is uploaded under a temporary name and renamed into place after its transfer succeeds. Other remote files are not deleted; removed or renamed assets need separate cleanup. Deployment runs do not overlap. No credentials are committed to this repository.
 
 If a run reports a certificate or login failure, check the FTP hostname and credentials. Do not disable TLS or certificate verification. A failed run stops further uploads and is visible in the Actions tab.
 
@@ -95,6 +95,12 @@ The new translation drafts were generated locally with [M2M100](https://huggingf
 The contact endpoint accepts an optional `lang` field on POST or query parameter on GET, validated against the supported registry (default English). Responses retain `ok` and `message` and include a stable `message_key` for language changes while a request is in progress. Service option values remain English in every language.
 
 ## Local verification
+
+The consultancy pages share `assets/redesign.css`. The homepage highlights project evidence and the founder; service, project and experience pages use their own layouts. Proposal FAQs on the homepage, services and contact pages cover scope, timing, pricing, hosting, maintenance and ownership. New FAQ translations are authored drafts and need native-speaker review, like the existing dictionaries.
+
+Service pages link to `contact.html?service=websites`, `?service=applications` or `?service=mendix`. Only these three slugs preselect the existing service field; other values leave it unchanged. Language switching preserves the canonical English field values. Mobile navigation focuses its first link, cycles keyboard focus through links and the close button, and makes background content inert until closed.
+
+Optional real-browser checks use Playwright and Chrome: `node --test tests/website_browser_test.cjs`. Point `CHROME_PATH` at an installed Chrome executable if needed; without Playwright this optional test skips. The test serves files on loopback, checks all ten pages at 1440, 390 and 320 pixels in English, Arabic and German, and intercepts enquiry requests so no email is sent. Set `WEBSITE_SCREENSHOTS` to a local output folder to save review screenshots. No browser tooling is shipped to the website.
 
 With PHP 8.x, Python 3 and Node installed:
 

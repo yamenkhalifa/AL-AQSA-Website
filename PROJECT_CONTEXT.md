@@ -2,12 +2,12 @@
 
 > Compact functional and technical map. Read this first, then inspect only relevant source files. Source code and current contracts take precedence; update this file when important behavior changes, replacing stale details rather than appending a diary. Never record credentials or enquiry contents.
 
-Last updated: 2026-10-11  
-Source baseline: `3c6507be1e4dbe64ef2cc6b4be6ce7353614f68e` (`main`).
+Last updated: 2026-10-16
+Source baseline: `0b2df54` (`main`), with local consultancy refinements.
 
 ## 1. Product and scope
 
-AL-AQSA's public marketing website at https://al-aqsa.eu targets prospective clients for Mendix consulting, web applications/PWAs, website development and training. Visitors browse services, solutions, approach and company information, select a language, and enquire through the form, email or WhatsApp. A separate privacy notice describes data handling.
+AL-AQSA's public marketing website at https://al-aqsa.eu targets prospective clients for Mendix consulting, web applications/PWAs, website development and training. Ten public HTML pages cover the homepage, services, websites, applications, Mendix, projects, Sahiony Group case study, founder/about, contact and privacy. Visitors select a language and enquire through the contact page, email or WhatsApp. Proposal FAQs appear on the homepage, services and contact pages; commitments are agreed in the proposal rather than published as fixed prices or timelines.
 
 Implemented scope is a brochure site plus email enquiries: no accounts, admin portal, payments, application database, ORM or migrations. Live hosting configuration and inbox delivery are not established by source inspection.
 
@@ -17,8 +17,8 @@ Plain HTML/CSS/browser JavaScript → same-origin PHP handler → authenticated 
 
 | Work area | Start here |
 | --- | --- |
-| Homepage, sections, SEO metadata, form markup | `index.html` |
-| Responsive layout, design tokens, RTL, reduced motion | `styles.css` |
+| Public pages, SEO metadata, form markup | Root HTML pages; enquiry form in `contact.html` |
+| Responsive layout, design tokens, RTL, reduced motion | `styles.css` and shared `assets/redesign.css`; page-specific body classes |
 | Menu, reveal animations, form submission/retries | `script.js` |
 | Immediate English/Arabic translations and browser language registry | `assets/language.js` |
 | Language selection, loading, rendering, dropdown/search | `assets/language-controller.js` |
@@ -31,6 +31,8 @@ Plain HTML/CSS/browser JavaScript → same-origin PHP handler → authenticated 
 | Mail dependency/license | `vendor/phpmailer/` |
 
 Script order matters: `assets/language.js` → `assets/language-controller.js` → `script.js`. Shared browser API: `window.SiteLanguage` exposes `language`, `languages`, `t()`, `set()`, `subscribe()`.
+
+Service CTA query contract: `contact.html?service=websites|applications|mendix` maps only those allowlisted slugs to the existing canonical service values, and only when the select is empty. Ordinary/invalid URLs retain the default. Mobile navigation moves focus to its first link, cycles through links and the toggle, makes background content inert, and restores toggle focus on Escape. Desktop resizing clears the overlay/inert state.
 
 External services: MijnDomein mail/hosting, Google Fonts, and a WhatsApp contact link. No live translation API or third-party form service.
 
@@ -82,7 +84,7 @@ Hosting target: MijnDomein/Plesk, PHP-enabled `httpdocs`. Handler reads `../priv
 
 Missing SMTP secret preserves existing private configuration. Missing private config selects legacy PHP `mail()`; an SMTP failure never falls back to mail. README reports legacy transport rejection on the live host; authenticated SMTP is the intended operational path.
 
-Deployment workflow runs on matching website/deployment changes pushed to `main`, or manual dispatch on `main`; runs serialize. It checks syntax/tests then uses explicit FTPS with verified TLS. Private mail configuration receives mode 600. Website uploads include assets plus seven root website files, with `index.html` last; each transfer uses a temporary file then rename. Other remote files are preserved, including obsolete assets. Documentation-only changes do not trigger deployment and are not uploaded.
+Deployment workflow runs on matching website/deployment changes pushed to `main`, or manual dispatch on `main`; runs serialize. It checks syntax/tests then uses explicit FTPS with verified TLS. Private mail configuration receives mode 600. Website uploads include assets and the root website files in the deployment allowlist, including all ten HTML pages, with `index.html` last; each transfer uses a temporary file then rename. Other remote files are preserved, including obsolete assets. Documentation-only changes do not trigger deployment and are not uploaded.
 
 Static-only hosting cannot run the handler. Keep `contact.php` same-origin and excluded from caching. An existing `index.php` can override the homepage. For manual deployment with SMTP, include the private configuration/library setup from README, not just public website files.
 
@@ -104,6 +106,8 @@ bash -n scripts/deploy-ftps.sh
 ```
 
 Backend tests start local PHP/fake mail servers; SMTP tests cover authentication and TLS rejection. JS tests use Node's test runner and DOM/VM stubs; they are not full-browser end-to-end tests. Deployment tests simulate uploads. Automated tests do not send real email. After deployment, manually verify mobile/RTL/keyboard UI and actual inbox delivery.
+
+`python tests/site_structure_test.py` verifies ten pages, translation keys and deployment coverage. Optional `node --test tests/website_browser_test.cjs` uses local Playwright/Chrome (skips if Playwright is absent). It checks all pages in English/Arabic/German at desktop and narrow widths, menu focus, service preselection, FAQ expansion, and mocked form failure/success. `CHROME_PATH` selects Chrome; `WEBSITE_SCREENSHOTS` enables local screenshots. Browser tests use a loopback-only static server and never send real enquiries.
 
 ## 8. Decisions, limitations and working notes
 

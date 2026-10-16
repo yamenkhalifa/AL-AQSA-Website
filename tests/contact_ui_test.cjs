@@ -37,7 +37,7 @@ function setup(fetch, language = null) {
     document, window: { addEventListener() {}, matchMedia: () => ({ addEventListener() {} }), setTimeout, clearTimeout },
     IntersectionObserver: class { observe() {} },
     FormData: class extends Map { constructor() { super(Object.entries(fields)); } },
-    crypto: webcrypto, Uint8Array, AbortController, fetch,
+    crypto: webcrypto, Uint8Array, AbortController, URLSearchParams, fetch,
   };
   if (language) {
     const dictionaries = vm.runInNewContext(fs.readFileSync(require.resolve('../assets/language.js'), 'utf8').split('(() => {')[0] + '\nsiteTranslations;');
