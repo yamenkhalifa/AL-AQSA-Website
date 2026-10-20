@@ -145,10 +145,10 @@
   "new.mendixCopy": "新規および既存の Mendix アプリケーションの上級実践開発、統合、セキュリティ、パフォーマンス改善。",
   "new.details": "このサービスを詳しく見る",
   "new.founder": "上級の専門知識。直接コラボレーション。",
-  "new.founderCopy": "AL-AQSA のオーナーであり、5 年以上の専門的経験を持つシニア Mendix、ソフトウェア、Web 開発者である Yamen Khalifa と直接連携します。",
+  "new.founderCopy": "AL-AQSA のオーナーであり、8 年以上の専門的経験を持つシニア Mendix、ソフトウェア、Web 開発者である Yamen Khalifa と直接連携します。",
   "new.about": "創設者に会う",
   "new.advanced": "Mendix Advanced 認定",
-  "new.years": "5年以上の専門的経験",
+  "new.years": "8年以上の専門的経験",
   "new.deliverables": "私たちが提供できるもの",
   "new.fit": "これは誰に向けたものですか",
   "new.webFit": "新しい Web サイト、より明確なオンライン プレゼンス、または複数のサービスや企業の多言語プラットフォームを必要とする企業。",
@@ -181,7 +181,7 @@
   "new.overview": "オランダに拠点を置く、集中的な独立系デジタル開発パートナー。",
   "new.certCopy": "Mendix Advanced Developer (2023) · Professional Scrum Master I (2022) · Microsoft Azure Fundamentals AZ-900 (2024)",
   "new.tools": "技術力",
-  "new.toolCopy": "Mendix · Java · JavaScript · PostgreSQL · MySQL · REST / OData / SOAP · SaaS · RBAC · PWA · ネイティブモバイル · AIサービス統合",
+  "new.toolCopy": "Mendix 8 / 9 / 10 / 11 · Java · JavaScript · PostgreSQL · MySQL · REST / OData / SOAP · SaaS · RBAC · PWA · ネイティブモバイル · AIサービス統合 · SAML / OIDC · SSO · WCAG 2.1 AA · AI / GenAI",
   "detail.rent.platform": "REST API と双方向データ交換を通じて既存のエンタープライズ アプリケーションに接続された応答性の高い Mendix PWA を開発しました。車、バイク、不動産、設備、その他のレンタル可能な資産用に再利用可能なモジュールを構築しました。",
   "detail.rent.security": "データ、ページ、機能、ビジネス プロセスにわたるきめ細かな権限を実装するとともに、Peppol 電子請求書発行および資産タイプ、ブランチ、またはグループごとに構成可能な階層型 SaaS サブスクリプションを実装しました。",
   "detail.rent.delivery": "API 契約、統合アーキテクチャ、パフォーマンス、予約、計画、デジタル契約署名、使用量ベースの価格設定について、アーキテクトおよびハイコード開発者と協力しました。",
@@ -227,5 +227,7 @@
   "seo.contact": "プロジェクトについて話し合う | AL-AQSA",
   "seo.privacy": "プライバシー | AL-AQSA",
   "image.project": "サヒオニグループ — 企業ウェブサイト",
-  "image.founder": "Yamen Khalifa — AL-AQSA"
+  "image.founder": "Yamen Khalifa — AL-AQSA",
+  "cv.mendixYears": "Mendix · 5年以上の専門的経験",
+  "cv.testing": "自動テストと単体テスト"
 }

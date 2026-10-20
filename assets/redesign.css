@@ -515,6 +515,13 @@ html:not([lang=en]) .page-intro h1 {
 .case-details article { position:relative; padding-top:28px; border-top:2px solid var(--gold); }
 .case-details article::before { counter-increment:case; content:counter(case,decimal-leading-zero); display:block; font-family:var(--mono); color:#776017; font-size:13px; margin-bottom:18px; }
 .case-details article:last-child { grid-column:1 / -1; max-width:850px; }
+.service-evidence { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:24px; margin:36px 0; }
+.evidence-card { min-width:0; padding:28px; border:1px solid var(--line); border-top:3px solid var(--gold); border-radius:6px; background:white; }
+.evidence-card h3 { margin:0 0 20px; }
+.evidence-card p { color:var(--muted); font-size:15px; }
+.evidence-card .evidence-tech { border-top:1px solid var(--line); padding-top:18px; margin-bottom:0; font-size:13px; line-height:1.8; overflow-wrap:anywhere; }
+.credentials { row-gap:14px; }
+@media(max-width:1050px) { .service-evidence { grid-template-columns:1fr; } .evidence-card { padding:24px; } }
 .faq-section { background:#fbfaf6; border-top:1px solid var(--line); }
 .faq-layout { display:grid; grid-template-columns:.7fr 1.3fr; gap:clamp(28px,6vw,80px); align-items:start; }
 .faq-layout h2 { max-width:350px; }

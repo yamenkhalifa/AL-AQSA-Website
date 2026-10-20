@@ -145,10 +145,10 @@
   "new.mendixCopy": "Vezető szintű gyakorlati fejlesztés, integráció, biztonság és teljesítményjavítás új és meglévő Mendix alkalmazásokhoz.",
   "new.details": "Fedezze fel ezt a szolgáltatást",
   "new.founder": "Vezető szakértelem. Közvetlen együttműködés.",
-  "new.founderCopy": "Dolgozzon közvetlenül Yamen Khalifával, az AL-AQSA tulajdonosával és egy vezető Mendix szoftver- és webfejlesztővel, aki több mint 5 éves szakmai tapasztalattal rendelkezik.",
+  "new.founderCopy": "Dolgozzon közvetlenül Yamen Khalifával, az AL-AQSA tulajdonosával és egy vezető Mendix szoftver- és webfejlesztővel, aki több mint 8 éves szakmai tapasztalattal rendelkezik.",
   "new.about": "Találkozz az alapítóval",
   "new.advanced": "Mendix Advanced tanúsítvánnyal rendelkezik",
-  "new.years": "5+ év szakmai tapasztalat",
+  "new.years": "8+ év szakmai tapasztalat",
   "new.deliverables": "Mit tudunk szállítani",
   "new.fit": "Kinek szól ez?",
   "new.webFit": "Vállalkozások, amelyeknek új weboldalra, világosabb online jelenlétre vagy több szolgáltatás vagy cég többnyelvű platformjára van szükségük.",
@@ -181,7 +181,7 @@
   "new.overview": "Fókuszált, független digitális fejlesztési partner Hollandiában.",
   "new.certCopy": "Mendix Advanced Developer (2023) · Professional Scrum Master I (2022) · Microsoft Azure Fundamentals AZ-900 (2024)",
   "new.tools": "Műszaki képességek",
-  "new.toolCopy": "Mendix · Java · JavaScript · PostgreSQL · MySQL · REST / OData / SOAP · SaaS · RBAC · PWA · Natív mobil · AI szolgáltatás integráció",
+  "new.toolCopy": "Mendix 8 / 9 / 10 / 11 · Java · JavaScript · PostgreSQL · MySQL · REST / OData / SOAP · SaaS · RBAC · PWA · Natív mobil · AI szolgáltatás integráció · SAML / OIDC · SSO · WCAG 2.1 AA · AI / GenAI",
   "detail.rent.platform": "Reszponzív Mendix PWA fejlesztése, amely REST API-kon és kétirányú adatcserén keresztül kapcsolódik a meglévő vállalati alkalmazásokhoz. Újrafelhasználható modulokat építettek autókhoz, kerékpárokhoz, ingatlanokhoz, felszerelésekhez és egyéb bérelhető eszközökhöz.",
   "detail.rent.security": "Részletes engedélyek implementálása az adatokra, oldalakra, szolgáltatásokra és üzleti folyamatokra, valamint a Peppol elektronikus számlázása és a többszintű SaaS-előfizetés, amely eszköztípus, ág vagy csoport szerint konfigurálható.",
   "detail.rent.delivery": "Építészekkel és magas szintű fejlesztőkkel dolgozott együtt az API-szerződések, az integrációs architektúra, a teljesítmény, a foglalások, a tervezés, a digitális szerződés-aláírás és a felhasználás alapú árképzés területén.",
@@ -227,5 +227,7 @@
   "seo.contact": "Beszéljen meg egy projektről | AL-AQSA",
   "seo.privacy": "magánélet | AL-AQSA",
   "image.project": "Sahiony Group – vállalati honlap",
-  "image.founder": "Yamen Khalifa — AL-AQSA"
+  "image.founder": "Yamen Khalifa — AL-AQSA",
+  "cv.mendixYears": "Mendix · 5+ év szakmai tapasztalat",
+  "cv.testing": "Automatizált tesztek és egységtesztek"
 }

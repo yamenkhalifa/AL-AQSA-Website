@@ -145,10 +145,10 @@
   "new.mendixCopy": "Senior hands-on development, integrations, security, at performance improvement para sa bago at kasalukuyang mga application ng Mendix.",
   "new.details": "Galugarin ang serbisyong ito",
   "new.founder": "Senior na kadalubhasaan. Direktang pakikipagtulungan.",
-  "new.founderCopy": "Direktang makipagtulungan kay Yamen Khalifa, may-ari ng AL-AQSA at isang senior Mendix, software, at web developer na may 5+ taon ng propesyonal na karanasan.",
+  "new.founderCopy": "Direktang makipagtulungan kay Yamen Khalifa, may-ari ng AL-AQSA at isang senior Mendix, software, at web developer na may 8+ taon ng propesyonal na karanasan.",
   "new.about": "Kilalanin ang nagtatag",
   "new.advanced": "Sertipikadong Mendix Advanced",
-  "new.years": "5+ taon ng propesyonal na karanasan",
+  "new.years": "8+ taon ng propesyonal na karanasan",
   "new.deliverables": "Ang maihahatid natin",
   "new.fit": "Para kanino ito",
   "new.webFit": "Mga negosyong nangangailangan ng bagong website, mas malinaw na presensya sa online, o multilinggwal na platform para sa ilang serbisyo o kumpanya.",
@@ -181,7 +181,7 @@
   "new.overview": "Isang nakatutok na independiyenteng digital-development partner na nakabase sa Netherlands.",
   "new.certCopy": "Mendix Advanced Developer (2023) · Professional Scrum Master I (2022) · Microsoft Azure Fundamentals AZ-900 (2024)",
   "new.tools": "Mga teknikal na kakayahan",
-  "new.toolCopy": "Mendix · Java · JavaScript · PostgreSQL · MySQL · REST / OData / SOAP · SaaS · RBAC · PWA · Native mobile · Pagsasama ng serbisyo ng AI",
+  "new.toolCopy": "Mendix 8 / 9 / 10 / 11 · Java · JavaScript · PostgreSQL · MySQL · REST / OData / SOAP · SaaS · RBAC · PWA · Native mobile · Pagsasama ng serbisyo ng AI · SAML / OIDC · SSO · WCAG 2.1 AA · AI / GenAI",
   "detail.rent.platform": "Bumuo ng tumutugon na Mendix PWA na konektado sa mga umiiral nang enterprise application sa pamamagitan ng REST API at bidirectional data exchange. Gumawa ng mga reusable na module para sa mga kotse, bisikleta, ari-arian, kagamitan, at iba pang narerentahang asset.",
   "detail.rent.security": "Nagpatupad ng mga butil na pahintulot sa data, page, feature, at proseso ng negosyo, kasama ng Peppol electronic invoicing at tiered na mga subscription sa SaaS na nako-configure ayon sa uri ng asset, sangay, o grupo.",
   "detail.rent.delivery": "Nakipagtulungan sa mga arkitekto at mga developer na may mataas na code sa mga kontrata ng API, arkitektura ng pagsasama, pagganap, mga reserbasyon, pagpaplano, pagpirma ng digital na kontrata, at pagpepresyo na nakabatay sa paggamit.",
@@ -227,5 +227,7 @@
   "seo.contact": "Pag-usapan ang isang proyekto | AL-AQSA",
   "seo.privacy": "Mga Privacy | AL-AQSA",
   "image.project": "Sahiony Group — corporate website",
-  "image.founder": "Yamen Khalifa — AL-AQSA"
+  "image.founder": "Yamen Khalifa — AL-AQSA",
+  "cv.mendixYears": "Mendix · 5+ taon ng propesyonal na karanasan",
+  "cv.testing": "Awtomatikong pagsusuri at unit testing"
 }

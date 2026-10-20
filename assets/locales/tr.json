@@ -145,10 +145,10 @@
   "new.mendixCopy": "Yeni ve mevcut Mendix uygulamaları için üst düzey uygulamalı geliştirme, entegrasyonlar, güvenlik ve performans iyileştirme.",
   "new.details": "Bu hizmeti keşfedin",
   "new.founder": "Kıdemli uzmanlık. Doğrudan işbirliği.",
-  "new.founderCopy": "AL-AQSA'nın sahibi ve 5 yılı aşkın mesleki deneyime sahip kıdemli Mendix, yazılım ve web geliştiricisi Yamen Khalifa ile doğrudan çalışın.",
+  "new.founderCopy": "AL-AQSA'nın sahibi ve 8 yılı aşkın mesleki deneyime sahip kıdemli Mendix, yazılım ve web geliştiricisi Yamen Khalifa ile doğrudan çalışın.",
   "new.about": "Kurucuyla tanışın",
   "new.advanced": "Mendix Gelişmiş sertifikalı",
-  "new.years": "5+ yıllık mesleki deneyim",
+  "new.years": "8+ yıllık mesleki deneyim",
   "new.deliverables": "Neler sunabiliriz?",
   "new.fit": "Bu kimin için",
   "new.webFit": "Yeni bir web sitesine, daha net bir çevrimiçi varlığa veya çeşitli hizmet veya şirketler için çok dilli bir platforma ihtiyaç duyan işletmeler.",
@@ -181,7 +181,7 @@
   "new.overview": "Hollanda merkezli, odaklanmış bağımsız bir dijital geliştirme ortağı.",
   "new.certCopy": "Mendix Gelişmiş Geliştirici (2023) · Profesyonel Scrum Master I (2022) · Microsoft Azure Temelleri AZ-900 (2024)",
   "new.tools": "Teknik yetenekler",
-  "new.toolCopy": "Mendix · Java · JavaScript · PostgreSQL · MySQL · REST / OData / SOAP · SaaS · RBAC · PWA · Yerel mobil · AI hizmet entegrasyonu",
+  "new.toolCopy": "Mendix 8 / 9 / 10 / 11 · Java · JavaScript · PostgreSQL · MySQL · REST / OData / SOAP · SaaS · RBAC · PWA · Yerel mobil · AI hizmet entegrasyonu · SAML / OIDC · SSO · WCAG 2.1 AA · AI / GenAI",
   "detail.rent.platform": "REST API'leri ve çift yönlü veri alışverişi aracılığıyla mevcut kurumsal uygulamalara bağlanan duyarlı bir Mendix PWA geliştirildi. Arabalar, bisikletler, mülkler, ekipmanlar ve diğer kiralanabilir varlıklar için yeniden kullanılabilir modüller oluşturuldu.",
   "detail.rent.security": "Peppol elektronik faturalandırma ve varlık türüne, şubeye veya gruba göre yapılandırılabilen katmanlı SaaS aboneliklerinin yanı sıra veriler, sayfalar, özellikler ve iş süreçleri genelinde ayrıntılı izinler uygulandı.",
   "detail.rent.delivery": "API sözleşmeleri, entegrasyon mimarisi, performans, rezervasyonlar, planlama, dijital sözleşme imzalama ve kullanıma dayalı fiyatlandırma konularında mimarlar ve yüksek kod geliştiricilerle çalıştı.",
@@ -227,5 +227,7 @@
   "seo.contact": "Bir projeyi tartışın | AL-AQSA",
   "seo.privacy": "Gizlilik | AL-AQSA",
   "image.project": "Sahiony Grubu — kurumsal web sitesi",
-  "image.founder": "Yamen Khalifa — AL-AQSA"
+  "image.founder": "Yamen Khalifa — AL-AQSA",
+  "cv.mendixYears": "Mendix · 5+ yıllık mesleki deneyim",
+  "cv.testing": "Otomatik testler ve birim testleri"
 }

@@ -145,10 +145,10 @@
   "new.mendixCopy": "ለአዲስ እና ነባር የሜንዲክስ አፕሊኬሽኖች የላቁ እጆች ልማት፣ ውህደቶች፣ ደህንነት እና የአፈጻጸም ማሻሻያ።",
   "new.details": "ይህን አገልግሎት ያስሱ",
   "new.founder": "ከፍተኛ እውቀት. ቀጥተኛ ትብብር.",
-  "new.founderCopy": "የAL-AQSA ባለቤት ከሆነው ከያመን ካሊፋ እና ከ5 ዓመት በላይ ሙያዊ ልምድ ካለው ከፍተኛ ሜንዲክስ፣ ሶፍትዌር እና የድር ገንቢ ጋር በቀጥታ ይስሩ።",
+  "new.founderCopy": "የAL-AQSA ባለቤት ከሆነው ከያመን ካሊፋ እና ከ8 ዓመት በላይ ሙያዊ ልምድ ካለው ከፍተኛ ሜንዲክስ፣ ሶፍትዌር እና የድር ገንቢ ጋር በቀጥታ ይስሩ።",
   "new.about": "መስራቹን ያግኙ",
   "new.advanced": "ሜንዲክስ የላቀ የምስክር ወረቀት",
-  "new.years": "5+ ዓመታት ሙያዊ ልምድ",
+  "new.years": "8+ ዓመታት ሙያዊ ልምድ",
   "new.deliverables": "እኛ የምናቀርበው",
   "new.fit": "ይህ ለማን ነው",
   "new.webFit": "አዲስ ድር ጣቢያ የሚያስፈልጋቸው ንግዶች፣ የበለጠ ግልጽ የመስመር ላይ መገኘት ወይም ለብዙ አገልግሎቶች ወይም ኩባንያዎች ብዙ ቋንቋ ተናጋሪ መድረክ።",
@@ -181,7 +181,7 @@
   "new.overview": "በኔዘርላንድ ውስጥ የተመሰረተ ገለልተኛ ዲጂታል-ልማት አጋር።",
   "new.certCopy": "ሜንዲክስ የላቀ ገንቢ (2023) · ፕሮፌሽናል Scrum Master I (2022) · Microsoft Azure Fundamentals AZ-900 (2024)",
   "new.tools": "ቴክኒካዊ ችሎታዎች",
-  "new.toolCopy": "ሜንዲክስ · ጃቫ · JavaScript · PostgreSQL · MySQL · REST / OData / SOAP · SaaS · RBAC · PWA · ቤተኛ ሞባይል · AI አገልግሎት ውህደት",
+  "new.toolCopy": "ሜንዲክስ · ጃቫ · JavaScript · PostgreSQL · MySQL · REST / OData / SOAP · SaaS · RBAC · PWA · ቤተኛ ሞባይል · AI አገልግሎት ውህደት · SAML / OIDC · SSO · WCAG 2.1 AA · AI / GenAI",
   "detail.rent.platform": "ምላሽ ሰጪ Mendix PWA ከኢንተርፕራይዝ አፕሊኬሽኖች ጋር በREST APIs እና በሁለት አቅጣጫ የመረጃ ልውውጥ ፈጥሯል። ለመኪናዎች፣ ለብስክሌቶች፣ ለንብረት፣ ለመሳሪያዎች እና ለሌሎች ሊከራዩ የሚችሉ ንብረቶች እንደገና ጥቅም ላይ ሊውሉ የሚችሉ ሞጁሎች።",
   "detail.rent.security": "ከፔፕፖል ኤሌክትሮኒካዊ የክፍያ መጠየቂያ እና በንብረት አይነት፣ ቅርንጫፍ ወይም ቡድን ሊዋቀሩ ከሚችሉ የSaaS ምዝገባዎች ጋር በመረጃ፣ ገጾች፣ ባህሪያት እና የንግድ ሂደቶች ላይ የተተገበሩ የጥራጥሬ ፈቃዶች።",
   "detail.rent.delivery": "በኤፒአይ ኮንትራቶች፣ በውህደት አርክቴክቸር፣ አፈጻጸም፣ ቦታ ማስያዝ፣ እቅድ ማውጣት፣ ዲጂታል ውል መፈረም እና በአጠቃቀም ላይ የተመሰረተ የዋጋ አሰጣጥ ላይ ከአርክቴክቶች እና ከፍተኛ ኮድ ገንቢዎች ጋር ሰርቷል።",
@@ -227,5 +227,7 @@
   "seo.contact": "በአንድ ፕሮጀክት ላይ ተወያዩ | AL-AQSA",
   "seo.privacy": "ግላዊነት | AL-AQSA",
   "image.project": "Sahiony ቡድን - የኮርፖሬት ድር ጣቢያ",
-  "image.founder": "Yamen Khalifa — AL-AQSA"
+  "image.founder": "Yamen Khalifa — AL-AQSA",
+  "cv.mendixYears": "Mendix · 5+ ዓመታት ሙያዊ ልምድ",
+  "cv.testing": "ራስ-ሰር እና የክፍል ሙከራዎች"
 }

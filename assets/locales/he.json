@@ -145,10 +145,10 @@
   "new.mendixCopy": "פיתוח מעשית בכירים, אינטגרציות, אבטחה ושיפור ביצועים עבור יישומי Mendix חדשים וקיימים.",
   "new.details": "חקור את השירות הזה",
   "new.founder": "מומחיות בכירה. שיתוף פעולה ישיר.",
-  "new.founderCopy": "עבוד ישירות עם Yamen Khalifa, הבעלים של AL-AQSA ומפתח בכיר של Mendix, תוכנה ו-Web עם 5+ שנות ניסיון מקצועי.",
+  "new.founderCopy": "עבוד ישירות עם Yamen Khalifa, הבעלים של AL-AQSA ומפתח בכיר של Mendix, תוכנה ו-Web עם 8+ שנות ניסיון מקצועי.",
   "new.about": "הכירו את המייסד",
   "new.advanced": "מוסמך Mendix Advanced",
-  "new.years": "5+ שנות ניסיון מקצועי",
+  "new.years": "8+ שנות ניסיון מקצועי",
   "new.deliverables": "מה אנחנו יכולים לספק",
   "new.fit": "למי זה מיועד",
   "new.webFit": "עסקים שזקוקים לאתר חדש, נוכחות מקוונת ברורה יותר או פלטפורמה רב לשונית למספר שירותים או חברות.",
@@ -181,7 +181,7 @@
   "new.overview": "שותף עצמאי ממוקד לפיתוח דיגיטלי שבסיסו בהולנד.",
   "new.certCopy": "Mendix Advanced Developer (2023) · Professional Scrum Master I (2022) · Microsoft Azure Fundamentals AZ-900 (2024)",
   "new.tools": "יכולות טכניות",
-  "new.toolCopy": "Mendix · Java · JavaScript · PostgreSQL · MySQL · REST / OData / SOAP · SaaS · RBAC · PWA · Native mobile · שילוב שירותי AI",
+  "new.toolCopy": "Mendix 8 / 9 / 10 / 11 · Java · JavaScript · PostgreSQL · MySQL · REST / OData / SOAP · SaaS · RBAC · PWA · Native mobile · שילוב שירותי AI · SAML / OIDC · SSO · WCAG 2.1 AA · AI / GenAI",
   "detail.rent.platform": "פיתח Mendix PWA רספונסיבי המחובר ליישומים ארגוניים קיימים באמצעות REST APIs וחילופי נתונים דו-כיווניים. בנו מודולים לשימוש חוזר עבור מכוניות, אופניים, רכוש, ציוד ונכסים אחרים הניתנים להשכרה.",
   "detail.rent.security": "הטמעה הרשאות מפורטות על פני נתונים, דפים, תכונות ותהליכים עסקיים, לצד חשבונית אלקטרונית של Peppol ומנויי SaaS מדורגים הניתנים להגדרה לפי סוג נכס, ענף או קבוצה.",
   "detail.rent.delivery": "עבד עם אדריכלים ומפתחי קוד גבוה על חוזי API, ארכיטקטורת אינטגרציה, ביצועים, הזמנות, תכנון, חתימה על חוזים דיגיטליים ותמחור מבוסס ניצול.",
@@ -227,5 +227,7 @@
   "seo.contact": "דיון בפרויקט | AL-AQSA",
   "seo.privacy": "פרטיות | AL-AQSA",
   "image.project": "קבוצת סחיוני - אתר תאגידי",
-  "image.founder": "Yamen Khalifa — AL-AQSA"
+  "image.founder": "Yamen Khalifa — AL-AQSA",
+  "cv.mendixYears": "Mendix · 5+ שנות ניסיון מקצועי",
+  "cv.testing": "בדיקות אוטומטיות ובדיקות יחידה"
 }

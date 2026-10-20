@@ -145,10 +145,10 @@
   "new.mendixCopy": "การพัฒนาเชิงปฏิบัติระดับอาวุโส การบูรณาการ ความปลอดภัย และการปรับปรุงประสิทธิภาพสำหรับแอปพลิเคชัน Mendix ใหม่และที่มีอยู่",
   "new.details": "สำรวจบริการนี้",
   "new.founder": "ความเชี่ยวชาญระดับสูง การทำงานร่วมกันโดยตรง",
-  "new.founderCopy": "ทำงานโดยตรงกับ Yamen Khalifa เจ้าของ AL-AQSA และ Mendix อาวุโส ซอฟต์แวร์ และนักพัฒนาเว็บไซต์ที่มีประสบการณ์ทางวิชาชีพ 5 ปีขึ้นไป",
+  "new.founderCopy": "ทำงานโดยตรงกับ Yamen Khalifa เจ้าของ AL-AQSA และ Mendix อาวุโส ซอฟต์แวร์ และนักพัฒนาเว็บไซต์ที่มีประสบการณ์ทางวิชาชีพ 8 ปีขึ้นไป",
   "new.about": "พบกับผู้ก่อตั้ง",
   "new.advanced": "ได้รับการรับรอง Mendix Advanced",
-  "new.years": "ประสบการณ์วิชาชีพ 5 ปีขึ้นไป",
+  "new.years": "ประสบการณ์วิชาชีพ 8 ปีขึ้นไป",
   "new.deliverables": "สิ่งที่เราส่งมอบได้",
   "new.fit": "ทำเพื่อใคร",
   "new.webFit": "ธุรกิจที่ต้องการเว็บไซต์ใหม่ สถานะออนไลน์ที่ชัดเจนยิ่งขึ้น หรือมีแพลตฟอร์มหลายภาษาสำหรับบริการหรือบริษัทต่างๆ",
@@ -181,7 +181,7 @@
   "new.overview": "พันธมิตรด้านการพัฒนาดิจิทัลอิสระที่มุ่งเน้นซึ่งตั้งอยู่ในประเทศเนเธอร์แลนด์",
   "new.certCopy": "Mendix Advanced Developer (2023) · Professional Scrum Master I (2022) · Microsoft Azure Fundamentals AZ-900 (2024)",
   "new.tools": "ความสามารถด้านเทคนิค",
-  "new.toolCopy": "Mendix · Java · JavaScript · PostgreSQL · MySQL · REST / OData / SOAP · SaaS · RBAC · PWA · Native mobile · การบูรณาการบริการ AI",
+  "new.toolCopy": "Mendix 8 / 9 / 10 / 11 · Java · JavaScript · PostgreSQL · MySQL · REST / OData / SOAP · SaaS · RBAC · PWA · Native mobile · การบูรณาการบริการ AI · SAML / OIDC · SSO · WCAG 2.1 AA · AI / GenAI",
   "detail.rent.platform": "พัฒนา Mendix PWA ที่ตอบสนองได้ซึ่งเชื่อมต่อกับแอปพลิเคชันระดับองค์กรที่มีอยู่ผ่าน REST API และการแลกเปลี่ยนข้อมูลแบบสองทิศทาง สร้างโมดูลที่ใช้ซ้ำได้สำหรับรถยนต์ จักรยาน ทรัพย์สิน อุปกรณ์ และทรัพย์สินให้เช่าอื่นๆ",
   "detail.rent.security": "นำสิทธิ์อนุญาตแบบละเอียดไปใช้ในข้อมูล เพจ คุณลักษณะ และกระบวนการทางธุรกิจ ควบคู่ไปกับการออกใบแจ้งหนี้อิเล็กทรอนิกส์ของ Peppol และการสมัคร SaaS แบบแบ่งระดับที่กำหนดค่าได้ตามประเภทสินทรัพย์ สาขา หรือกลุ่ม",
   "detail.rent.delivery": "ทำงานร่วมกับสถาปนิกและนักพัฒนาที่ใช้โค้ดสูงในสัญญา API สถาปัตยกรรมบูรณาการ ประสิทธิภาพ การจอง การวางแผน การลงนามสัญญาดิจิทัล และราคาตามการใช้งาน",
@@ -227,5 +227,7 @@
   "seo.contact": "อภิปรายโครงการ | AL-AQSA",
   "seo.privacy": "ความเป็นส่วนตัว | AL-AQSA",
   "image.project": "Sahiony Group — เว็บไซต์ของบริษัท",
-  "image.founder": "Yamen Khalifa — AL-AQSA"
+  "image.founder": "Yamen Khalifa — AL-AQSA",
+  "cv.mendixYears": "Mendix · ประสบการณ์วิชาชีพ 5 ปีขึ้นไป",
+  "cv.testing": "การทดสอบอัตโนมัติและการทดสอบหน่วย"
 }

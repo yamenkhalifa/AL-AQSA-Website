@@ -145,10 +145,10 @@
   "new.mendixCopy": "Vanhempi käytännön kehitys, integraatiot, tietoturva ja suorituskyvyn parantaminen uusille ja olemassa oleville Mendix-sovelluksille.",
   "new.details": "Tutustu tähän palveluun",
   "new.founder": "Vanhempi asiantuntemus. Suora yhteistyö.",
-  "new.founderCopy": "Työskentele suoraan Yamen Khalifan kanssa, AL-AQSA:n omistaja ja vanhempi Mendix, ohjelmisto- ja verkkokehittäjä, jolla on yli 5 vuoden ammattikokemus.",
+  "new.founderCopy": "Työskentele suoraan Yamen Khalifan kanssa, AL-AQSA:n omistaja ja vanhempi Mendix, ohjelmisto- ja verkkokehittäjä, jolla on yli 8 vuoden ammattikokemus.",
   "new.about": "Tapaa perustaja",
   "new.advanced": "Mendix Advanced -sertifioitu",
-  "new.years": "Yli 5 vuoden työkokemus",
+  "new.years": "Yli 8 vuoden työkokemus",
   "new.deliverables": "Mitä voimme toimittaa",
   "new.fit": "Kenelle tämä on tarkoitettu",
   "new.webFit": "Yritykset, jotka tarvitsevat uuden verkkosivuston, selkeämmän verkkonäkyvyyden tai monikielisen alustan useille palveluille tai yrityksille.",
@@ -181,7 +181,7 @@
   "new.overview": "Keskitetty itsenäinen digitaalisen kehityksen kumppani, joka sijaitsee Alankomaissa.",
   "new.certCopy": "Mendix Advanced Developer (2023) · Professional Scrum Master I (2022) · Microsoft Azure Fundamentals AZ-900 (2024)",
   "new.tools": "Tekniset ominaisuudet",
-  "new.toolCopy": "Mendix · Java · JavaScript · PostgreSQL · MySQL · REST / OData / SOAP · SaaS · RBAC · PWA · Natiivi mobiili · AI-palvelun integrointi",
+  "new.toolCopy": "Mendix 8 / 9 / 10 / 11 · Java · JavaScript · PostgreSQL · MySQL · REST / OData / SOAP · SaaS · RBAC · PWA · Natiivi mobiili · AI-palvelun integrointi · SAML / OIDC · SSO · WCAG 2.1 AA · AI / GenAI",
   "detail.rent.platform": "Kehitetty reagoiva Mendix PWA, joka on yhdistetty olemassa oleviin yrityssovelluksiin REST API:iden ja kaksisuuntaisen tiedonvaihdon kautta. Rakennettu uudelleenkäytettäviä moduuleja autoille, pyörille, kiinteistöille, laitteille ja muulle vuokrattavalle omaisuudelle.",
   "detail.rent.security": "Otettu käyttöön yksityiskohtaisia ​​käyttöoikeuksia tiedoille, sivuille, ominaisuuksille ja liiketoimintaprosesseille sekä Peppolin sähköinen laskutus ja porrastetut SaaS-tilaukset, jotka voidaan määrittää omaisuustyypin, haaran tai ryhmän mukaan.",
   "detail.rent.delivery": "Työskenteli arkkitehtien ja korkean koodin kehittäjien kanssa API-sopimuksissa, integraatioarkkitehtuurissa, suorituskyvyssä, varauksissa, suunnittelussa, digitaalisessa sopimusten allekirjoittamisessa ja käyttöperusteisessa hinnoittelussa.",
@@ -227,5 +227,7 @@
   "seo.contact": "Keskustele projektista | AL-AQSA",
   "seo.privacy": "Yksityisyys | AL-AQSA",
   "image.project": "Sahiony Group – yrityksen verkkosivusto",
-  "image.founder": "Yamen Khalifa — AL-AQSA"
+  "image.founder": "Yamen Khalifa — AL-AQSA",
+  "cv.mendixYears": "Mendix · Yli 5 vuoden työkokemus",
+  "cv.testing": "Automatisoidut testit ja yksikkötestit"
 }

@@ -145,10 +145,10 @@
   "new.mendixCopy": "Desarrollo práctico senior, integraciones, seguridad y mejora del rendimiento para aplicaciones Mendix nuevas y existentes.",
   "new.details": "Explora este servicio",
   "new.founder": "Experiencia senior. Colaboración directa.",
-  "new.founderCopy": "Trabaje directamente con Yamen Khalifa, propietario de AL-AQSA y desarrollador senior de Mendix, software y web con más de 5 años de experiencia profesional.",
+  "new.founderCopy": "Trabaje directamente con Yamen Khalifa, propietario de AL-AQSA y desarrollador senior de Mendix, software y web con más de 8 años de experiencia profesional.",
   "new.about": "Conoce al fundador",
   "new.advanced": "Certificación Mendix Avanzado",
-  "new.years": "Más de 5 años de experiencia profesional.",
+  "new.years": "Más de 8 años de experiencia profesional.",
   "new.deliverables": "Qué podemos ofrecer",
   "new.fit": "¿Para quién es esto?",
   "new.webFit": "Empresas que necesitan un nuevo sitio web, una presencia online más clara o una plataforma multilingüe para varios servicios o empresas.",
@@ -181,7 +181,7 @@
   "new.overview": "Un socio de desarrollo digital independiente y enfocado con sede en los Países Bajos.",
   "new.certCopy": "Mendix Advanced Developer (2023) · Professional Scrum Master I (2022) · Microsoft Azure Fundamentals AZ-900 (2024)",
   "new.tools": "Capacidades técnicas",
-  "new.toolCopy": "Mendix · Java · JavaScript · PostgreSQL · MySQL · REST / OData / SOAP · SaaS · RBAC · PWA · Móvil nativo · Integración de servicios de IA",
+  "new.toolCopy": "Mendix 8 / 9 / 10 / 11 · Java · JavaScript · PostgreSQL · MySQL · REST / OData / SOAP · SaaS · RBAC · PWA · Móvil nativo · Integración de servicios de IA · SAML / OIDC · SSO · WCAG 2.1 AA · AI / GenAI",
   "detail.rent.platform": "Desarrollé una PWA Mendix receptiva conectada a aplicaciones empresariales existentes a través de API REST e intercambio de datos bidireccional. Construyó módulos reutilizables para automóviles, bicicletas, propiedades, equipos y otros activos rentables.",
   "detail.rent.security": "Implementé permisos granulares en datos, páginas, funciones y procesos comerciales, junto con la facturación electrónica de Peppol y suscripciones SaaS escalonadas configurables por tipo de activo, sucursal o grupo.",
   "detail.rent.delivery": "Trabajó con arquitectos y desarrolladores de código alto en contratos API, arquitectura de integración, rendimiento, reservas, planificación, firma de contratos digitales y precios basados ​​en la utilización.",
@@ -227,5 +227,7 @@
   "seo.contact": "Discutir un proyecto | AL-AQSA",
   "seo.privacy": "Privacidad | AL-AQSA",
   "image.project": "Grupo Sahiony: sitio web corporativo",
-  "image.founder": "Yamen Khalifa — AL-AQSA"
+  "image.founder": "Yamen Khalifa — AL-AQSA",
+  "cv.mendixYears": "Mendix · Más de 5 años de experiencia profesional.",
+  "cv.testing": "Pruebas automatizadas y unitarias"
 }

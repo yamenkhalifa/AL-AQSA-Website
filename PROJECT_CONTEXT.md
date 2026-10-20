@@ -2,14 +2,16 @@
 
 > Compact functional and technical map. Read this first, then inspect only relevant source files. Source code and current contracts take precedence; update this file when important behavior changes, replacing stale details rather than appending a diary. Never record credentials or enquiry contents.
 
-Last updated: 2026-10-16
-Source baseline: `0b2df54` (`main`), with local consultancy refinements.
+Last updated: 2026-10-20
+Source baseline: `a278728` (`main`), with local CV content updates.
 
 ## 1. Product and scope
 
 AL-AQSA's public marketing website at https://al-aqsa.eu targets prospective clients for Mendix consulting, web applications/PWAs, website development and training. Ten public HTML pages cover the homepage, services, websites, applications, Mendix, projects, Sahiony Group case study, founder/about, contact and privacy. Visitors select a language and enquire through the contact page, email or WhatsApp. Proposal FAQs appear on the homepage, services and contact pages; commitments are agreed in the proposal rather than published as fixed prices or timelines.
 
 Implemented scope is a brochure site plus email enquiries: no accounts, admin portal, payments, application database, ORM or migrations. Live hosting configuration and inbox delivery are not established by source inspection.
+
+Profile content follows the CV PDF supplied on 20 October: distinguish 8+ years of overall professional experience from 5+ years of hands-on Mendix experience. Keep websites, business applications and Mendix equally prominent. Service evidence reuses translated, attributed experience from RentVisie, WelcomeApp! and Blue Green Solutions; Sahiony is the AL-AQSA delivery. Technical experience includes Mendix 8–11, Java/JavaScript, testing, WCAG 2.1 AA, AI/GenAI and SAML/OIDC/SSO. These describe the founder's experience, not blanket compliance promises or client endorsements. The original CV and personal contact details are not copied into public assets.
 
 ## 2. Architecture, stack and quick navigation
 

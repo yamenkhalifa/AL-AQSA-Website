@@ -145,10 +145,10 @@
   "new.mendixCopy": "Ukuzaji wa hali ya juu, miunganisho, usalama, na uboreshaji wa utendakazi kwa programu mpya na zilizopo za Mendix.",
   "new.details": "Chunguza huduma hii",
   "new.founder": "Utaalamu mkuu. Ushirikiano wa moja kwa moja.",
-  "new.founderCopy": "Fanya kazi moja kwa moja na Yamen Khalifa, mmiliki wa AL-AQSA na mtaalamu mkuu wa Mendix, programu na msanidi wavuti aliye na uzoefu wa kitaaluma wa miaka 5+.",
+  "new.founderCopy": "Fanya kazi moja kwa moja na Yamen Khalifa, mmiliki wa AL-AQSA na mtaalamu mkuu wa Mendix, programu na msanidi wavuti aliye na uzoefu wa kitaaluma wa miaka 8+.",
   "new.about": "Kutana na mwanzilishi",
   "new.advanced": "Mendix Advanced kuthibitishwa",
-  "new.years": "Miaka 5+ ya uzoefu wa kitaaluma",
+  "new.years": "Miaka 8+ ya uzoefu wa kitaaluma",
   "new.deliverables": "Tunachoweza kutoa",
   "new.fit": "Hii ni kwa ajili ya nani",
   "new.webFit": "Biashara zinazohitaji tovuti mpya, uwepo wazi mtandaoni, au jukwaa la lugha nyingi kwa huduma au makampuni kadhaa.",
@@ -181,7 +181,7 @@
   "new.overview": "Mshirika huru anayelenga maendeleo ya kidijitali anayeishi Uholanzi.",
   "new.certCopy": "Mendix Advanced Developer (2023) · Professional Scrum Master I (2022) · Microsoft Azure Fundamentals AZ-900 (2024)",
   "new.tools": "Uwezo wa kiufundi",
-  "new.toolCopy": "Mendix · Java · JavaScript · PostgreSQL · MySQL · REST / OData / SOAP · SaaS · RBAC · PWA · Simu ya asili · Muunganisho wa huduma ya AI",
+  "new.toolCopy": "Mendix 8 / 9 / 10 / 11 · Java · JavaScript · PostgreSQL · MySQL · REST / OData / SOAP · SaaS · RBAC · PWA · Simu ya asili · Muunganisho wa huduma ya AI · SAML / OIDC · SSO · WCAG 2.1 AA · AI / GenAI",
   "detail.rent.platform": "Imetengeneza Mendix PWA inayoitikia iliyounganishwa kwa programu zilizopo za biashara kupitia API za REST na ubadilishanaji wa data unaoelekezwa pande mbili. Imeunda moduli zinazoweza kutumika tena za magari, baiskeli, mali, vifaa na mali nyingine zinazoweza kukodishwa.",
   "detail.rent.security": "Ruhusa za punjepunje zimetekelezwa kwenye data, kurasa, vipengele na michakato ya biashara, pamoja na ankara za kielektroniki za Peppol na usajili wa viwango vya SaaS unaoweza kusanidiwa kwa aina ya kipengee, tawi au kikundi.",
   "detail.rent.delivery": "Ilifanya kazi na wasanifu na watengenezaji wa kanuni za juu kwenye kandarasi za API, usanifu wa ujumuishaji, utendakazi, uhifadhi, mipango, kutia sahihi kwa mikataba ya kidijitali, na uwekaji bei kulingana na utumiaji.",
@@ -227,5 +227,7 @@
   "seo.contact": "Jadili mradi | AL-AQSA",
   "seo.privacy": "Usalama wa | AL-AQSA",
   "image.project": "Sahiony Group - tovuti ya ushirika",
-  "image.founder": "Yamen Khalifa — AL-AQSA"
+  "image.founder": "Yamen Khalifa — AL-AQSA",
+  "cv.mendixYears": "Mendix · Miaka 5+ ya uzoefu wa kitaaluma",
+  "cv.testing": "Majaribio ya kiotomatiki na ya vipashio"
 }

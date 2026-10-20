@@ -145,10 +145,10 @@
   "new.mendixCopy": "توسعه عملی ارشد، ادغام، امنیت و بهبود عملکرد برای برنامه های کاربردی جدید و موجود Mendix.",
   "new.details": "این سرویس را کاوش کنید",
   "new.founder": "تخصص ارشد. همکاری مستقیم",
-  "new.founderCopy": "مستقیماً با یامن خلیفه، مالک AL-AQSA و یک برنامه نویس ارشد Mendix، نرم افزار و وب با بیش از 5 سال تجربه حرفه ای کار کنید.",
+  "new.founderCopy": "مستقیماً با یامن خلیفه، مالک AL-AQSA و یک برنامه نویس ارشد Mendix، نرم افزار و وب با بیش از 8 سال تجربه حرفه ای کار کنید.",
   "new.about": "با موسس آشنا شوید",
   "new.advanced": "Mendix Advanced دارای گواهی",
-  "new.years": "5+ سال تجربه حرفه ای",
+  "new.years": "8+ سال تجربه حرفه ای",
   "new.deliverables": "آنچه ما می توانیم ارائه دهیم",
   "new.fit": "این برای چه کسی است",
   "new.webFit": "مشاغلی که نیاز به یک وب سایت جدید، حضور آنلاین واضح تر، یا یک پلت فرم چند زبانه برای چندین سرویس یا شرکت دارند.",
@@ -181,7 +181,7 @@
   "new.overview": "یک شریک مستقل متمرکز در توسعه دیجیتال مستقر در هلند.",
   "new.certCopy": "Mendix Advanced Developer (2023) · Professional Scrum Master I (2022) · Microsoft Azure Fundamentals AZ-900 (2024)",
   "new.tools": "قابلیت های فنی",
-  "new.toolCopy": "Mendix · Java · JavaScript · PostgreSQL · MySQL · REST / OData / SOAP · SaaS · RBAC · PWA · تلفن همراه بومی · یکپارچه سازی سرویس هوش مصنوعی",
+  "new.toolCopy": "Mendix 8 / 9 / 10 / 11 · Java · JavaScript · PostgreSQL · MySQL · REST / OData / SOAP · SaaS · RBAC · PWA · تلفن همراه بومی · یکپارچه سازی سرویس هوش مصنوعی · SAML / OIDC · SSO · WCAG 2.1 AA · AI / GenAI",
   "detail.rent.platform": "یک Mendix PWA پاسخگو که از طریق REST APIها و تبادل داده های دوطرفه به برنامه های کاربردی موجود متصل است. ماژول های قابل استفاده مجدد برای اتومبیل ها، دوچرخه ها، اموال، تجهیزات و سایر دارایی های قابل اجاره ساخته شده است.",
   "detail.rent.security": "مجوزهای ریز را در میان داده‌ها، صفحات، ویژگی‌ها، و فرآیندهای تجاری، در کنار صورت‌حساب الکترونیکی Peppol و اشتراک‌های SaaS طبقه‌بندی شده که بر اساس نوع دارایی، شاخه یا گروه قابل تنظیم هستند، پیاده‌سازی کرد.",
   "detail.rent.delivery": "با معماران و توسعه دهندگان کد بالا در مورد قراردادهای API، معماری یکپارچه سازی، عملکرد، رزرو، برنامه ریزی، امضای قرارداد دیجیتال، و قیمت گذاری مبتنی بر استفاده کار کرده است.",
@@ -227,5 +227,7 @@
   "seo.contact": "در مورد یک پروژه بحث کنید | AL-AQSA",
   "seo.privacy": "خصوصیات | AL-AQSA",
   "image.project": "Sahiony Group — وب سایت شرکتی",
-  "image.founder": "Yamen Khalifa — AL-AQSA"
+  "image.founder": "Yamen Khalifa — AL-AQSA",
+  "cv.mendixYears": "Mendix · 5+ سال تجربه حرفه ای",
+  "cv.testing": "آزمون خودکار و آزمون واحد"
 }

@@ -104,8 +104,8 @@ test('responsive pages, translated FAQs, service enquiries and menu keyboard flo
 
     if (process.env.WEBSITE_SCREENSHOTS) {
       await fs.mkdir(process.env.WEBSITE_SCREENSHOTS,{recursive:true});
-      for (const [name,width,language] of [['home-desktop',1440,'en'],['home-mobile',390,'en'],['home-arabic',390,'ar'],['services',1440,'en'],['case-study',1440,'en'],['about',1440,'en'],['contact',390,'de']]) {
-        const file = name.startsWith('home')?'index':({'case-study':'sahiony-group'}[name] || name);
+      for (const [name,width,language] of [['home-desktop',1440,'en'],['home-mobile',390,'en'],['home-arabic',390,'ar'],['services',1440,'en'],['websites',1440,'en'],['applications',1440,'en'],['mendix',1440,'en'],['mendix-arabic',390,'ar'],['applications-dutch',390,'nl'],['case-study',1440,'en'],['about',1440,'en'],['contact',390,'de']]) {
+        const file = name.startsWith('home')?'index':({'case-study':'sahiony-group','mendix-arabic':'mendix','applications-dutch':'applications'}[name] || name);
         const preview = await browser.newPage({viewport:{width,height:1000},reducedMotion:'reduce'});
         await preview.goto(`${base}/${file}.html`);
         await preview.evaluate(code => window.SiteLanguage.set(code), language);

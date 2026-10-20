@@ -145,10 +145,10 @@
   "new.mendixCopy": "Thực hành cấp cao, tích hợp, bảo mật và cải thiện hiệu suất cho các ứng dụng Mendix mới và hiện có.",
   "new.details": "Khám phá dịch vụ này",
   "new.founder": "Chuyên môn cao cấp. Hợp tác trực tiếp.",
-  "new.founderCopy": "Làm việc trực tiếp với Yamen Khalifa, chủ sở hữu của AL-AQSA và là nhà phát triển web, phần mềm và web Mendix cấp cao với hơn 5 năm kinh nghiệm chuyên môn.",
+  "new.founderCopy": "Làm việc trực tiếp với Yamen Khalifa, chủ sở hữu của AL-AQSA và là nhà phát triển web, phần mềm và web Mendix cấp cao với hơn 8 năm kinh nghiệm chuyên môn.",
   "new.about": "Gặp gỡ người sáng lập",
   "new.advanced": "Chứng nhận Mendix Advanced",
-  "new.years": "Hơn 5 năm kinh nghiệm chuyên môn",
+  "new.years": "Hơn 8 năm kinh nghiệm chuyên môn",
   "new.deliverables": "Những gì chúng tôi có thể cung cấp",
   "new.fit": "Cái này dành cho ai",
   "new.webFit": "Các doanh nghiệp cần một trang web mới, sự hiện diện trực tuyến rõ ràng hơn hoặc nền tảng đa ngôn ngữ cho một số dịch vụ hoặc công ty.",
@@ -181,7 +181,7 @@
   "new.overview": "Một đối tác phát triển kỹ thuật số độc lập tập trung có trụ sở tại Hà Lan.",
   "new.certCopy": "Mendix Advanced Developer (2023) · Professional Scrum Master I (2022) · Microsoft Azure Fundamentals AZ-900 (2024)",
   "new.tools": "Năng lực kỹ thuật",
-  "new.toolCopy": "Mendix · Java · JavaScript · PostgreSQL · MySQL · REST / OData / SOAP · SaaS · RBAC · PWA · Di động gốc · Tích hợp dịch vụ AI",
+  "new.toolCopy": "Mendix 8 / 9 / 10 / 11 · Java · JavaScript · PostgreSQL · MySQL · REST / OData / SOAP · SaaS · RBAC · PWA · Di động gốc · Tích hợp dịch vụ AI · SAML / OIDC · SSO · WCAG 2.1 AA · AI / GenAI",
   "detail.rent.platform": "Đã phát triển Mendix PWA đáp ứng được kết nối với các ứng dụng doanh nghiệp hiện có thông qua API REST và trao đổi dữ liệu hai chiều. Xây dựng các mô-đun có thể tái sử dụng cho ô tô, xe đạp, tài sản, thiết bị và các tài sản có thể cho thuê khác.",
   "detail.rent.security": "Triển khai các quyền chi tiết trên dữ liệu, trang, tính năng và quy trình kinh doanh, cùng với hóa đơn điện tử Peppol và đăng ký SaaS theo cấp độ có thể định cấu hình theo loại nội dung, chi nhánh hoặc nhóm.",
   "detail.rent.delivery": "Làm việc với các kiến ​​trúc sư và nhà phát triển mã cao về hợp đồng API, kiến ​​trúc tích hợp, hiệu suất, đặt chỗ, lập kế hoạch, ký hợp đồng kỹ thuật số và định giá dựa trên việc sử dụng.",
@@ -227,5 +227,7 @@
   "seo.contact": "Thảo luận về một dự án | AL-AQSA",
   "seo.privacy": "Quyền riêng tư | AL-AQSA",
   "image.project": "Tập đoàn Sahiony — trang web công ty",
-  "image.founder": "Yamen Khalifa — AL-AQSA"
+  "image.founder": "Yamen Khalifa — AL-AQSA",
+  "cv.mendixYears": "Mendix · Hơn 5 năm kinh nghiệm chuyên môn",
+  "cv.testing": "Kiểm thử tự động và kiểm thử đơn vị"
 }

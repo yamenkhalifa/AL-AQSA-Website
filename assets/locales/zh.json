@@ -145,10 +145,10 @@
   "new.mendixCopy": "新的和现有的 Mendix 应用程序的高级实践开发、集成、安全性和性能改进。",
   "new.details": "探索这项服务",
   "new.founder": "资深的专业知识。直接合作。",
-  "new.founderCopy": "直接与 AL-AQSA 所有者、具有 5 年以上专业经验的高级 Mendix、软件和 Web 开发人员 Yamen Khalifa 合作。",
+  "new.founderCopy": "直接与 AL-AQSA 所有者、具有 8 年以上专业经验的高级 Mendix、软件和 Web 开发人员 Yamen Khalifa 合作。",
   "new.about": "认识创始人",
   "new.advanced": "Mendix高级认证",
-  "new.years": "5年以上专业经验",
+  "new.years": "8年以上专业经验",
   "new.deliverables": "我们可以提供什么",
   "new.fit": "这是给谁的",
   "new.webFit": "需要新网站、更清晰的在线形象或多语言平台以供多种服务或公司使用的企业。",
@@ -181,7 +181,7 @@
   "new.overview": "总部位于荷兰的专注的独立数字开发合作伙伴。",
   "new.certCopy": "Mendix 高级开发人员 (2023) · 专业 Scrum Master I (2022) · Microsoft Azure 基础知识 AZ-900 (2024)",
   "new.tools": "技术能力",
-  "new.toolCopy": "Mendix · Java · JavaScript · PostgreSQL · MySQL · REST / OData / SOAP · SaaS · RBAC · PWA · 原生移动 · AI 服务集成",
+  "new.toolCopy": "Mendix 8 / 9 / 10 / 11 · Java · JavaScript · PostgreSQL · MySQL · REST / OData / SOAP · SaaS · RBAC · PWA · 原生移动 · AI 服务集成 · SAML / OIDC · SSO · WCAG 2.1 AA · AI / GenAI",
   "detail.rent.platform": "开发了响应式 Mendix PWA，通过 REST API 和双向数据交换连接到现有企业应用程序。为汽车、自行车、财产、设备和其他可租赁资产构建可重复使用的模块。",
   "detail.rent.security": "实现了跨数据、页面、功能和业务流程的细化权限，以及 Peppol 电子发票和可按资产类型、分支机构或组配置的分层 SaaS 订阅。",
   "detail.rent.delivery": "与架构师和高代码开发人员合作处理 API 合同、集成架构、性能、预订、规划、数字合同签署和基于利用率的定价。",
@@ -227,5 +227,7 @@
   "seo.contact": "讨论一个项目 | AL-AQSA",
   "seo.privacy": "隐私 | AL-AQSA",
   "image.project": "Sahiony 集团 — 企业网站",
-  "image.founder": "Yamen Khalifa — AL-AQSA"
+  "image.founder": "Yamen Khalifa — AL-AQSA",
+  "cv.mendixYears": "Mendix · 5年以上专业经验",
+  "cv.testing": "自动化测试和单元测试"
 }

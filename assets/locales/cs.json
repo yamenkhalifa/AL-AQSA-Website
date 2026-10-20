@@ -145,10 +145,10 @@
   "new.mendixCopy": "Praktický vývoj, integrace, bezpečnost a zlepšení výkonu pro nové a stávající aplikace Mendix.",
   "new.details": "Prozkoumejte tuto službu",
   "new.founder": "Seniorská odbornost. Přímá spolupráce.",
-  "new.founderCopy": "Pracujte přímo s Yamenem Khalifou, vlastníkem AL-AQSA a senior Mendix, softwarovým a webovým vývojářem s více než 5 lety profesionálních zkušeností.",
+  "new.founderCopy": "Pracujte přímo s Yamenem Khalifou, vlastníkem AL-AQSA a senior Mendix, softwarovým a webovým vývojářem s více než 8 lety profesionálních zkušeností.",
   "new.about": "Seznamte se se zakladatelem",
   "new.advanced": "Certifikace Mendix Advanced",
-  "new.years": "5+ let profesionální praxe",
+  "new.years": "8+ let profesionální praxe",
   "new.deliverables": "Co můžeme dodat",
   "new.fit": "Pro koho to je",
   "new.webFit": "Firmy, které potřebují nové webové stránky, přehlednější online prezentaci nebo vícejazyčnou platformu pro několik služeb nebo společností.",
@@ -181,7 +181,7 @@
   "new.overview": "Zaměřený nezávislý partner pro digitální rozvoj se sídlem v Nizozemsku.",
   "new.certCopy": "Mendix Advanced Developer (2023) · Professional Scrum Master I (2022) · Microsoft Azure Fundamentals AZ-900 (2024)",
   "new.tools": "Technické schopnosti",
-  "new.toolCopy": "Mendix · Java · JavaScript · PostgreSQL · MySQL · REST / OData / SOAP · SaaS · RBAC · PWA · Nativní mobilní · Integrace služeb AI",
+  "new.toolCopy": "Mendix 8 / 9 / 10 / 11 · Java · JavaScript · PostgreSQL · MySQL · REST / OData / SOAP · SaaS · RBAC · PWA · Nativní mobilní · Integrace služeb AI · SAML / OIDC · SSO · WCAG 2.1 AA · AI / GenAI",
   "detail.rent.platform": "Vyvinutý citlivý Mendix PWA připojený ke stávajícím podnikovým aplikacím prostřednictvím REST API a obousměrné výměny dat. Postavené opakovaně použitelné moduly pro auta, kola, majetek, vybavení a další pronajímatelná aktiva.",
   "detail.rent.security": "Implementována podrobná oprávnění napříč daty, stránkami, funkcemi a obchodními procesy, spolu s elektronickou fakturací Peppol a vrstveným předplatným SaaS konfigurovatelným podle typu majetku, pobočky nebo skupiny.",
   "detail.rent.delivery": "Spolupracoval s architekty a vývojáři s vysokým kódem na smlouvách API, architektuře integrace, výkonu, rezervacích, plánování, digitálním podepisování smluv a cenách podle využití.",
@@ -227,5 +227,7 @@
   "seo.contact": "Diskutujte o projektu | AL-AQSA",
   "seo.privacy": "soukromí | AL-AQSA",
   "image.project": "Sahiony Group — firemní web",
-  "image.founder": "Yamen Khalifa — AL-AQSA"
+  "image.founder": "Yamen Khalifa — AL-AQSA",
+  "cv.mendixYears": "Mendix · 5+ let profesionální praxe",
+  "cv.testing": "Automatizované a jednotkové testy"
 }

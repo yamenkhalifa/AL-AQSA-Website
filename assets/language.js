@@ -147,10 +147,10 @@ const siteTranslations = {
     "new.mendixCopy": "Senior hands-on development, integrations, security, and performance improvement for new and existing Mendix applications.",
     "new.details": "Explore this service",
     "new.founder": "Senior expertise. Direct collaboration.",
-    "new.founderCopy": "Work directly with Yamen Khalifa, owner of AL-AQSA and a senior Mendix, software, and web developer with 5+ years of professional experience.",
+    "new.founderCopy": "Work directly with Yamen Khalifa, owner of AL-AQSA and a senior Mendix, software, and web developer with 8+ years of professional experience.",
     "new.about": "Meet the founder",
     "new.advanced": "Mendix Advanced certified",
-    "new.years": "5+ years of professional experience",
+    "new.years": "8+ years of professional experience",
     "new.deliverables": "What we can deliver",
     "new.fit": "Who this is for",
     "new.webFit": "Businesses that need a new website, a clearer online presence, or a multilingual platform for several services or companies.",
@@ -183,7 +183,7 @@ const siteTranslations = {
     "new.overview": "A focused independent digital-development partner based in the Netherlands.",
     "new.certCopy": "Mendix Advanced Developer (2023) · Professional Scrum Master I (2022) · Microsoft Azure Fundamentals AZ-900 (2024)",
     "new.tools": "Technical capabilities",
-    "new.toolCopy": "Mendix · Java · JavaScript · PostgreSQL · MySQL · REST / OData / SOAP · SaaS · RBAC · PWA · Native mobile · AI service integration",
+    "new.toolCopy": "Mendix 8 / 9 / 10 / 11 · Java · JavaScript · PostgreSQL · MySQL · REST / OData / SOAP · SaaS · RBAC · PWA · Native mobile · AI service integration · SAML / OIDC · SSO · WCAG 2.1 AA · AI / GenAI",
     "detail.rent.platform": "Developed a responsive Mendix PWA connected to existing enterprise applications through REST APIs and bidirectional data exchange. Built reusable modules for cars, bikes, property, equipment, and other rentable assets.",
     "detail.rent.security": "Implemented granular permissions across data, pages, features, and business processes, alongside Peppol electronic invoicing and tiered SaaS subscriptions configurable by asset type, branch, or group.",
     "detail.rent.delivery": "Worked with architects and high-code developers on API contracts, integration architecture, performance, reservations, planning, digital contract signing, and utilization-based pricing.",
@@ -229,7 +229,9 @@ const siteTranslations = {
     "seo.contact": "Discuss a project | AL-AQSA",
     "seo.privacy": "Privacy | AL-AQSA",
     "image.project": "Sahiony Group — corporate website",
-    "image.founder": "Yamen Khalifa — AL-AQSA"
+    "image.founder": "Yamen Khalifa — AL-AQSA",
+    "cv.mendixYears": "5+ years of hands-on Mendix experience",
+    "cv.testing": "Automated and unit testing"
   },
   "ar": {
     "page.title": "AL-AQSA — تطوير التطبيقات والمواقع",
@@ -378,10 +380,10 @@ const siteTranslations = {
     "new.mendixCopy": "تطوير عملي بخبرة متقدمة، وتكامل الأنظمة، وتحسين الأمان والأداء لتطبيقات Mendix الجديدة والقائمة.",
     "new.details": "تعرف على الخدمة",
     "new.founder": "خبرة متقدمة. تعاون مباشر.",
-    "new.founderCopy": "تعاون مباشرة مع يامن خليفة، مالك AL-AQSA ومطور أول في Mendix والبرمجيات والويب، بخبرة مهنية تزيد عن خمس سنوات.",
+    "new.founderCopy": "تعاون مباشرة مع يامن خليفة، مالك AL-AQSA ومطور أول في Mendix والبرمجيات والويب، بخبرة مهنية تزيد عن ثماني سنوات.",
     "new.about": "تعرف على المؤسس",
     "new.advanced": "شهادة Mendix Advanced",
-    "new.years": "خبرة مهنية تزيد عن خمس سنوات",
+    "new.years": "خبرة مهنية تزيد عن ثماني سنوات",
     "new.deliverables": "ما يمكننا تقديمه",
     "new.fit": "لمن تناسب هذه الخدمة؟",
     "new.webFit": "للشركات التي تحتاج إلى موقع جديد، أو حضور رقمي أوضح، أو منصة متعددة اللغات لعرض خدمات أو شركات متعددة.",
@@ -414,7 +416,7 @@ const siteTranslations = {
     "new.overview": "شريك مستقل ومتخصص في التطوير الرقمي، مقره هولندا.",
     "new.certCopy": "Mendix Advanced Developer (2023) · Professional Scrum Master I (2022) · Microsoft Azure Fundamentals AZ-900 (2024)",
     "new.tools": "القدرات التقنية",
-    "new.toolCopy": "Mendix · Java · JavaScript · PostgreSQL · MySQL · REST / OData / SOAP · SaaS · RBAC · PWA · تطبيقات جوال أصلية · تكامل خدمات الذكاء الاصطناعي",
+    "new.toolCopy": "Mendix 8 / 9 / 10 / 11 · Java · JavaScript · PostgreSQL · MySQL · REST / OData / SOAP · SaaS · RBAC · PWA · تطبيقات جوال أصلية · تكامل خدمات الذكاء الاصطناعي · SAML / OIDC · SSO · WCAG 2.1 AA · AI / GenAI",
     "detail.rent.platform": "طور تطبيق Mendix PWA متجاوبًا ومتصلًا بأنظمة المؤسسة القائمة عبر REST API وتبادل البيانات في الاتجاهين. وبنى وحدات قابلة لإعادة الاستخدام للسيارات والدراجات والعقارات والمعدات وغيرها من الأصول القابلة للتأجير.",
     "detail.rent.security": "نفذ صلاحيات دقيقة للبيانات والصفحات والوظائف والعمليات، إلى جانب الفوترة الإلكترونية عبر Peppol واشتراكات SaaS متعددة المستويات قابلة للتخصيص حسب نوع الأصل أو الفرع أو المجموعة.",
     "detail.rent.delivery": "تعاون مع معماريي الأنظمة ومطوري البرمجيات التقليدية في تصميم واجهات API والتكامل وتحسين الأداء، والحجوزات والتخطيط وتوقيع العقود رقميًا والتسعير حسب الاستخدام.",
@@ -460,7 +462,9 @@ const siteTranslations = {
     "seo.contact": "ناقش مشروعك | AL-AQSA",
     "seo.privacy": "الخصوصية | AL-AQSA",
     "image.project": "مجموعة صهيوني — موقع الشركات",
-    "image.founder": "Yamen Khalifa — AL-AQSA"
+    "image.founder": "Yamen Khalifa — AL-AQSA",
+    "cv.mendixYears": "خبرة عملية تزيد عن خمس سنوات في Mendix",
+    "cv.testing": "الاختبارات الآلية واختبارات الوحدات"
   }
 };
 const siteLanguages = [

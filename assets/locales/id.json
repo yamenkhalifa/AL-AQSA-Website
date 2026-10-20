@@ -145,10 +145,10 @@
   "new.mendixCopy": "Pengembangan langsung senior, integrasi, keamanan, dan peningkatan kinerja untuk aplikasi Mendix baru dan yang sudah ada.",
   "new.details": "Jelajahi layanan ini",
   "new.founder": "Keahlian senior. Kolaborasi langsung.",
-  "new.founderCopy": "Bekerja langsung dengan Yamen Khalifa, pemilik AL-AQSA dan senior Mendix, pengembang perangkat lunak dan web dengan pengalaman profesional lebih dari 5 tahun.",
+  "new.founderCopy": "Bekerja langsung dengan Yamen Khalifa, pemilik AL-AQSA dan senior Mendix, pengembang perangkat lunak dan web dengan pengalaman profesional lebih dari 8 tahun.",
   "new.about": "Temui pendirinya",
   "new.advanced": "Mendix Bersertifikat Lanjutan",
-  "new.years": "5+ tahun pengalaman profesional",
+  "new.years": "8+ tahun pengalaman profesional",
   "new.deliverables": "Apa yang bisa kami berikan",
   "new.fit": "Untuk siapa ini",
   "new.webFit": "Bisnis yang memerlukan situs web baru, kehadiran online yang lebih jelas, atau platform multibahasa untuk beberapa layanan atau perusahaan.",
@@ -181,7 +181,7 @@
   "new.overview": "Mitra pengembangan digital independen dan terfokus yang berbasis di Belanda.",
   "new.certCopy": "Pengembang Tingkat Lanjut Mendix (2023) · Scrum Master I Profesional (2022) · Microsoft Azure Fundamentals AZ-900 (2024)",
   "new.tools": "Kemampuan teknis",
-  "new.toolCopy": "Mendix · Java · JavaScript · PostgreSQL · MySQL · REST / OData / SOAP · SaaS · RBAC · PWA · Ponsel asli · Integrasi layanan AI",
+  "new.toolCopy": "Mendix 8 / 9 / 10 / 11 · Java · JavaScript · PostgreSQL · MySQL · REST / OData / SOAP · SaaS · RBAC · PWA · Ponsel asli · Integrasi layanan AI · SAML / OIDC · SSO · WCAG 2.1 AA · AI / GenAI",
   "detail.rent.platform": "Mengembangkan PWA Mendix responsif yang terhubung ke aplikasi perusahaan yang ada melalui REST API dan pertukaran data dua arah. Membangun modul yang dapat digunakan kembali untuk mobil, sepeda, properti, peralatan, dan aset lain yang dapat disewa.",
   "detail.rent.security": "Menerapkan izin terperinci di seluruh data, halaman, fitur, dan proses bisnis, bersama dengan faktur elektronik Peppol dan langganan SaaS berjenjang yang dapat dikonfigurasi berdasarkan jenis aset, cabang, atau grup.",
   "detail.rent.delivery": "Bekerja dengan arsitek dan pengembang kode tinggi dalam kontrak API, arsitektur integrasi, kinerja, reservasi, perencanaan, penandatanganan kontrak digital, dan penetapan harga berbasis pemanfaatan.",
@@ -227,5 +227,7 @@
   "seo.contact": "Diskusikan sebuah proyek | AL-AQSA",
   "seo.privacy": "Privasi | AL-AQSA",
   "image.project": "Sahiony Group — situs web perusahaan",
-  "image.founder": "Yamen Khalifa — AL-AQSA"
+  "image.founder": "Yamen Khalifa — AL-AQSA",
+  "cv.mendixYears": "Mendix · 5+ tahun pengalaman profesional",
+  "cv.testing": "Pengujian otomatis dan unit"
 }
